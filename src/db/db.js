@@ -1,9 +1,9 @@
 import pizzaImg from '../assets/img/pizza.png'
-import burgerImg from '../assets/img/pizza.png'
-import cocaImg from '../assets/img/pizza.png'
-import saladImg from '../assets/img/pizza.png'
-import waterImg from '../assets/img/pizza.png'
-import iceCreamImg from '../assets/img/pizza.png'
+import burgerImg from '../assets/img/burger.png'
+import cocaImg from '../assets/img/cocacola.png'
+import saladImg from '../assets/img/salad.png'
+import waterImg from '../assets/img/water.png'
+import iceCreamImg from '../assets/img/icecream.png'
 
 
 
