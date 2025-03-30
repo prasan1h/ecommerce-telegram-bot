@@ -8,8 +8,7 @@ if (!TOKEN) {
   throw new Error(" Bot Token is missing! Set it in the .env file.");
 }
 
-// const web_link = process.env.WEB_LINK;
-const web_link = "https://ecommercetelegrambothere.netlify.app/"
+const web_link = process.env.WEB_LINK;
 
 bot.start((ctx) =>
   ctx.reply("Welcome :)))))", {
