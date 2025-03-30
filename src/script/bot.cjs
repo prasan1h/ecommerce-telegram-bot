@@ -2,7 +2,6 @@ require("dotenv").config();
 const { Telegraf } = require("telegraf");
 const TOKEN = process.env.TOKEN;
 
-// TOKEN="7961772517:AAGUNv_xQHnA0kJL-ZgATtdHQXa_kHlh1Pc"
 const bot = new Telegraf(TOKEN);
 
 if (!TOKEN) {
