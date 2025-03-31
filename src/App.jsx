@@ -10,8 +10,7 @@ import Cart from './components/cart';
 import { getData } from './db/db'; 
 
 const tele = window.Telegram.WebApp;
-// tele.requestFullscreen();
-tele.expand();
+// tele.expand();
 
 const foods = getData();
 
