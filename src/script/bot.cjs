@@ -7,6 +7,7 @@ const TOKEN = process.env.BOT_TOKEN;
 const bot = new Telegraf(TOKEN);
 const web_link = process.env.WEB_LINK;
 
+
 bot.start((ctx) =>{
   console.log(ctx.chat);
   const f_name = ctx.chat.first_name;
