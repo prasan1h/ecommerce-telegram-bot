@@ -31,7 +31,7 @@ const card = ({food,onAdd,onRemove}) => {
         <img src={Image} alt={title} />
       </div>
       <h4 className="card__title">
-        {title} . <span className="card__price">$ {price}</span>
+        {title} . <span className="card__price">₹ {price}</span>
       </h4>
 
       <div className="btn-container">
