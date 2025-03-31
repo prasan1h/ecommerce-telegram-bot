@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { message } = require('telegraf/filters')
+const { message } = require('telegraf/filters');
 const { Telegraf } = require("telegraf");
 
 const TOKEN = process.env.BOT_TOKEN;
