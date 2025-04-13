@@ -2,7 +2,6 @@
   "name": "ecommerce-telegram-bot",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "start": "node src/script/bot.cjs",
     "dev": "vite",
@@ -11,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "telegraf": "^4.16.3"
