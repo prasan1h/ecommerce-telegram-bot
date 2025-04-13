@@ -10,7 +10,7 @@ import Cart from './components/cart';
 import { getData } from './db/db'; 
 
 const tele = window.Telegram.WebApp;
-tele.setResizeMode;
+// tele.setResizeMode;
 tele.setResizeMode('resize');
 
 // tele.expand();
