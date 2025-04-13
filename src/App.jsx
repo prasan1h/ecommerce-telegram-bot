@@ -11,7 +11,6 @@ import { getData } from './db/db';
 
 const tele = window.Telegram.WebApp;
 // tele.setResizeMode;
-tele.setResizeMode('resize');
 
 // tele.expand();
 
@@ -21,6 +20,8 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
     tele.ready();
+    tele.expand();
+    // tele.setResizeMode('resize');
   });
 
   const onAdd = (food) => {
