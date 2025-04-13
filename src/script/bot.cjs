@@ -10,6 +10,7 @@ const { Telegraf } = require("telegraf");
 const TOKEN = process.env.BOT_TOKEN;
 const bot = new Telegraf(TOKEN);
 const web_link = process.env.WEB_LINK;
+const port = process.env.BOT_PORT;
 
 
 bot.start((ctx) =>{
@@ -38,6 +39,6 @@ app.get("/", (req,res) => {
   res.send("bot working");
 });
 
-app.listen(8800, () => {
+app.listen(port, () => {
   console.log("bot is on");
 });
