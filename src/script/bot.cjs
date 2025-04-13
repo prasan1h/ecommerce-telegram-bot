@@ -1,5 +1,8 @@
 // import dotenv from 'dotenv';
 require("dotenv").config();
+const express = require('express');
+
+const app = express();
 
 const { message } = require('telegraf/filters');
 const { Telegraf } = require("telegraf");
@@ -30,3 +33,11 @@ bot.on(message("text"), async msg => {
 });
 
 bot.launch();
+
+app.get("/", (req,res) => {
+  res.send("bot working");
+});
+
+app.listen(8800, () => {
+  console.log("bot is on");
+});
