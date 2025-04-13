@@ -17,7 +17,7 @@ bot.start((ctx) =>{
   console.log(ctx.chat);
   const f_name = ctx.chat.first_name;
 
-  ctx.reply(`Welcome ${f_name} :) \n\n\ninformation : /info \n :-}`,
+  ctx.reply(`Welcome ${f_name} :) \n\n\ninformation : /info \ncart : /cart \n :-}`,
   {
     reply_markup: {
       keyboard: [
