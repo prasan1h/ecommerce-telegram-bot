@@ -43,18 +43,18 @@ const Listing = () => {
         }
       };
     
-    //   const onCheckout = () => {
-    //     tele.MainButton.text = "Checkout :)";
-    //     tele.MainButton.show();
-    //   };
+      const onCheckout = () => {
+        tele.MainButton.text = "Checkout :)";
+        tele.MainButton.show();
+      };
     
 
 
   return (
     <>
       <h1 className="heading">Order Food</h1>
-      {/* <Cart cartItems={cartItems} onCheckout={onCheckout}/> */}
-      <Cart cartItems={cartItems}/>
+      <Cart cartItems={cartItems} onCheckout={onCheckout}/>
+      {/* <Cart cartItems={cartItems}/> */}
       <div className="cards__container">
         {foods.map((food) => {
           return (
