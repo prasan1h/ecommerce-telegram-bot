@@ -1,4 +1,5 @@
 import { useState,useEffect,React } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 import "../assets/style.css";
 
@@ -12,13 +13,15 @@ const foods = getData();
 
 const Listing = () => {
 
+  const navigate = useNavigate();
+
       const [cartItems, setCartItems] = useState([]);
       useEffect(() => {
         tele.ready();
         tele.expand();
       }, []);
 
-      
+
       const onAdd = (food) => {
         const exist = cartItems.find((x) => x.id === food.id);
         if (exist) {
@@ -41,10 +44,18 @@ const Listing = () => {
         }
       };
     
-      const onCheckout = () => {
-        tele.MainButton.text = "Checkout :)";
-        tele.MainButton.show();
-      };
+      
+  const onCheckout = () => {
+    if (cartItems.length === 0) return;
+
+    tele.MainButton.text = "Checkout ✅";
+    tele.MainButton.show();
+
+    tele.MainButton.onClick(() => {
+      tele.sendData(JSON.stringify(cartItems));
+      navigate('/checkout', { state: { cartItems } }); // ⬅️ pass data to Checkout
+    });
+  };
     
 
 
