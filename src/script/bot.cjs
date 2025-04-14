@@ -12,6 +12,7 @@ const app = express();
 const TOKEN = process.env.BOT_TOKEN;
 const WEB_LINK = process.env.WEB_LINK;
 const PORT = process.env.BOT_PORT || 3000;
+const DOMAIN = process.env.RENDER_EXTERNAL_URL;
 
 if (!TOKEN || !WEB_LINK) {
   throw new Error("Missing BOT_TOKEN or WEB_LINK in environment variables");
@@ -49,9 +50,15 @@ bot.on(message("text"), async (ctx) => {
 });
 
 // Launch the bot
-bot.launch()
-  .then(() => console.log("🤖 Bot launched successfully"))
-  .catch((err) => console.error("Bot launch error:", err));
+// bot.launch()
+//   .then(() => console.log("🤖 Bot launched successfully"))
+//   .catch((err) => console.error("Bot launch error:", err));
+
+app.use(bot.webhookCallback("/")); // Express handles Telegram updates
+
+bot.telegram.setWebhook(`${DOMAIN}/`)
+  .then(() => console.log(`✅ Webhook set to ${DOMAIN}/`))
+  .catch(err => console.error("❌ Failed to set webhook:", err));
 
 // Basic Express route
 app.get("/", (req, res) => {
