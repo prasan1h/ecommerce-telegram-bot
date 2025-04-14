@@ -5,6 +5,9 @@ import "./App.css";
 import "./assets/style.css";
 
 import Listing from './pages/Listing';
+import Checkout from './pages/Checkout';
+import Address from './pages/Address';
+import Payment from './pages/Payment';
 
 function App() {
   const router = createBrowserRouter([
@@ -14,15 +17,15 @@ function App() {
     },
     {
       path:"/checkout",
-      element: <><Listing/></>
+      element: <><Checkout/></>
     },
     {
-      path:"/adddress",
-      element: <><Listing/></>
+      path:"/address",
+      element: <><Address/></>
     },
     {
       path:"/payment",
-      element: <><Listing/></>
+      element: <><Payment/></>
     }
   ])
 
