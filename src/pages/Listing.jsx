@@ -51,10 +51,8 @@ const Listing = () => {
     tele.MainButton.text = "Checkout ✅";
     tele.MainButton.show();
 
-    tele.MainButton.onClick(() => {
-      tele.sendData(JSON.stringify(cartItems));
-      navigate('/checkout', { state: { cartItems } }); // ⬅️ pass data to Checkout
-    });
+    tele.sendData(JSON.stringify(cartItems)); 
+  navigate('/checkout', { state: { cartItems } });
   };
     
 
