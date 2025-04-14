@@ -167,7 +167,7 @@ body{
 /* cart */
 
 .cart__container{
-    min-width: 350px;
+    min-width: 330px;
     display: flex;
     justify-content: center;
     align-items: center;
