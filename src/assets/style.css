@@ -89,7 +89,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     width: 120px;
-    height: 230px;
+    height: 200px;
     border: 2px solid var(--primary-color);
     padding: 0.5rem 0.3rem;
     margin: 13px 10px;
