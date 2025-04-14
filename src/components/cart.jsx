@@ -9,7 +9,7 @@ const cart = ({cartItems,onCheckout}) => {
       {cartItems.length === 0 ? "No items in cart" : ""}  &nbsp;
       <br /> <span className="">Total Price: ₹{totalPrice.toFixed(2)}</span>
       <Button
-        title={`${cartItems.length === 0 ? "Order !" : "Confirm"} `}
+        title={`${cartItems.length === 0 ? "Order !" : "Confirm!"} `}
         type={"checkout"}
         disable={cartItems.length === 0 ? true : false}
         onClick={onCheckout}
