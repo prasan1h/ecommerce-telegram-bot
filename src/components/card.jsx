@@ -28,7 +28,7 @@ const card = ({food,onAdd,onRemove}) => {
           if(count >= 1){
           tele.MainButton.show();
           }
-          else{
+          else if(count = 0){
             tele.MainButton.hide();
           }
         };
