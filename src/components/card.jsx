@@ -4,6 +4,8 @@ import '../assets/style.css'
 
 import Button from './button'
 
+const tele = window.Telegram.WebApp;
+
 const card = ({food,onAdd,onRemove}) => {
 
     const [count,setCount] = useState(0);
@@ -19,6 +21,11 @@ const card = ({food,onAdd,onRemove}) => {
         setCount(count-1);
         onRemove(food);
     }
+
+    const onCheckout = () => {
+          tele.MainButton.text = "Checkout :)";
+          tele.MainButton.show();
+        };
 
     if(count >= 1){
       onCheckout();
