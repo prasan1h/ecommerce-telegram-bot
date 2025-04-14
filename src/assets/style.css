@@ -88,7 +88,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 150px;
+    width: 140px;
     height: 250px;
     border: 2px solid var(--primary-color);
     padding: 0.5rem 0.3rem;
@@ -165,7 +165,7 @@ body{
 /* cart */
 
 .cart__container{
-    min-width: 375px;
+    min-width: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
