@@ -24,15 +24,21 @@ const card = ({food,onAdd,onRemove}) => {
 
     const onCheckout = () => {
           tele.MainButton.text = "Checkout :)";
+          
+          if(count >= 1){
           tele.MainButton.show();
+          }
+          else{
+            tele.MainButton.hide();
+          }
         };
 
-    if(count >= 1){
-      onCheckout();
-    }
-    else{
-      tele.MainButton.hide();
-    }
+    // if(count >= 1){
+    //   onCheckout();
+    // }
+    // else{
+    //   tele.MainButton.hide();
+    // }
 
 
   return (
@@ -50,9 +56,9 @@ const card = ({food,onAdd,onRemove}) => {
       </h4>
 
       <div className="btn-container">
-        <Button title={"+"} type={"add"} onClick={handleIncrement} />
+        <Button title={"+"} type={"add"} onClick={handleIncrement} onCheckout={onCheckout}/>
         {count !== 0 ? (
-          <Button title={"-"} type={"remove"} onClick={handleDecrement} />
+          <Button title={"-"} type={"remove"} onClick={handleDecrement} onCheckout={onCheckout}/>
         ) : (
           ""
         )}
