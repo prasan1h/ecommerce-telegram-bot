@@ -30,6 +30,9 @@ const card = ({food,onAdd,onRemove}) => {
     if(count >= 1){
       onCheckout();
     }
+    else{
+      tele.MainButton.hide();
+    }
 
 
   return (
