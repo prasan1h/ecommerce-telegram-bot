@@ -12,11 +12,16 @@ const card = ({food,onAdd,onRemove}) => {
     const handleIncrement = () => {
         setCount(count+1);
         onAdd(food);
+
     }
 
     const handleDecrement = () => {
         setCount(count-1);
         onRemove(food);
+    }
+
+    if(count >= 1){
+      onCheckout();
     }
 
 

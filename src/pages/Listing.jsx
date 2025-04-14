@@ -1,16 +1,13 @@
 import { useState,useEffect,React } from 'react'
 
-
 import "../assets/style.css";
 
-import Button from "../components/button";
 import Card from "../components/card";
 import Cart from '../components/cart';
 
 import { getData } from '../db/db'; 
 
 const tele = window.Telegram.WebApp;
-
 const foods = getData();
 
 const Listing = () => {
@@ -46,10 +43,10 @@ const Listing = () => {
         }
       };
     
-      const onCheckout = () => {
-        tele.MainButton.text = "Checkout :)";
-        tele.MainButton.show();
-      };
+    //   const onCheckout = () => {
+    //     tele.MainButton.text = "Checkout :)";
+    //     tele.MainButton.show();
+    //   };
     
 
 

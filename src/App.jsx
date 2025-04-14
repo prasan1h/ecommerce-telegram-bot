@@ -1,73 +1,33 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect,React } from "react";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 
 import "./App.css";
 import "./assets/style.css";
 
-import Button from "./components/button";
-import Card from "./components/card";
-import Cart from './components/cart';
 import Listing from './pages/Listing';
 
-import { getData } from './db/db'; 
-
-const tele = window.Telegram.WebApp;
-// tele.setResizeMode;
-
-// tele.expand();
-
-const foods = getData();
-
 function App() {
-  // const [cartItems, setCartItems] = useState([]);
-  // useEffect(() => {
-  //   tele.ready();
-  //   tele.expand();
-  // });
-
-  // const onAdd = (food) => {
-  //   const exist = cartItems.find((x) => x.id === food.id);
-  //   if(exist){
-  //     setCartItems(cartItems.map((x) => 
-  //       x.id === food.id ? {...exist,quantity : exist.quantity + 1} : x 
-  //     ));
-  //   }
-  //   else{
-  //     setCartItems([...cartItems,{...food,quantity:1}]);
-  //   }
-  // }; 
-
-  // const onRemove = (food) => {
-  //   const exist = cartItems.find((x) => x.id === food.id);
-  //   if (exist.quantity === 1) {
-  //     setCartItems(cartItems.filter((x) => x.id !== food.id));
-  //   } else {
-  //     setCartItems(
-  //       cartItems.map((x) =>
-  //         x.id === food.id ? { ...exist, quantity: exist.quantity - 1 } : x
-  //       )
-  //     );
-  //   }
-  // };
-
-  // const onCheckout = () => {
-  //   tele.MainButton.text = "Checkout :)";
-  //   tele.MainButton.show();
-  // };
-
+  const router = createBrowserRouter([
+    {
+      path:"/",
+      element: <><Listing/></>
+    },
+    {
+      path:"/checkout",
+      element: <><Listing/></>
+    },
+    {
+      path:"/adddress",
+      element: <><Listing/></>
+    },
+    {
+      path:"/payment",
+      element: <><Listing/></>
+    }
+  ])
 
   return (
-    <>
-      {/* <h1 className="heading">Order Food</h1>
-      <Cart cartItems={cartItems} onCheckout={onCheckout}/>
-      <div className="cards__container">
-        {foods.map((food) => {
-          return (
-            <Card food={food} key={food.id} onAdd={onAdd} onRemove={onRemove} />
-          );
-        })}
-      </div> */}
-      <Listing/>
-    </>
+      <RouterProvider router={router} />
   );
 }
 
