@@ -45,15 +45,15 @@ const Listing = () => {
       };
     
       
-  const onCheckout = () => {
-    if (cartItems.length === 0) return;
-
-    tele.MainButton.text = "Checkout ✅";
-    tele.MainButton.show();
-
-    tele.sendData(JSON.stringify(cartItems)); 
-  navigate('/checkout', { state: { cartItems } });
-  };
+      const onCheckout = () => {
+        if (cartItems.length === 0) return;
+      
+        // 1. Send data to Telegram bot
+        tele.sendData(JSON.stringify(cartItems));
+      
+        // 2. Navigate to checkout page
+        navigate('/checkout', { state: { cartItems } });
+      };
     
 
 
