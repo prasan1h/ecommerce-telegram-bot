@@ -58,7 +58,7 @@ bot.command('checkout', async (ctx) => {
   const username = encodeURIComponent(ctx.from.username || '');
   
   // Construct dynamic checkout URL
-  const checkoutUrl = `${WEB_LINK}/checkout?user=${userId}&name=${firstName}&username=${username}`;
+  const checkoutUrl = `${WEB_LINK}/checkout`;
 
   // Send a message and launch button
   await ctx.reply(
