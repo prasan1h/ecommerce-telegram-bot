@@ -49,7 +49,7 @@ const Listing = () => {
     
         // Send cart data to the Telegram bot
         tele.sendData(JSON.stringify(cartItems));
-    
+        setCartItems(cartItems);
         // Then navigate to the checkout page (not inside Telegram's button callback)
         navigate('/checkout', { state: { cartItems } });
       };

@@ -64,7 +64,7 @@ bot.command('checkout', async (ctx) => {
 
   // Send a message and launch button
   await ctx.reply(
-    `🛒 *Checkout Process Initiated!*\n\nHi ${ctx.from.first_name}, your cart is ready for review. Click the button below to view your cart and complete your purchase.`,
+    `🛒 *Checkout Process Initiated!*\n\nHi ${firstName}, your cart is ready for review. Click the button below to view your cart and complete your purchase.`,
     { parse_mode: "Markdown" }
   );
 

@@ -1,12 +1,18 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import '../assets/style.css';
+import Listing from './Listing';
 
 const Checkout = () => {
   const location = useLocation();
-  const cartItems = location.state?.cartItems || [];
+  // const cartItems = location.state?.cartItems || [];
+
+  const { cartItems } = useContext(Listing);
+
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  
 
   return (
     <>
