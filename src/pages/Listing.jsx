@@ -54,7 +54,8 @@ const Listing = () => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
       
         // Navigate to checkout page
-        navigate('/checkout');
+        navigate('/checkout', { state: { cartItems } });
+        // navigate('/checkout');
       };
 
 
