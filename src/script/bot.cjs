@@ -24,7 +24,7 @@ const bot = new Telegraf(TOKEN);
 bot.start((ctx) => {
   const firstName = ctx.chat.first_name || "User";
   ctx.reply(
-    `Welcome ${firstName} 🙂\n\nInformation: /info\nCart: /cart`,
+    `Welcome ${firstName} 🙂\n\nInformation: /info\nCart: /checkout`,
     {
       reply_markup: {
         keyboard: [
