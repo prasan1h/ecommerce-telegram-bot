@@ -54,39 +54,58 @@ bot.command('info', (ctx) =>
 
 
 
-bot.command('checkout', async (ctx) => {
-  const userId = ctx.from.id;
-  const firstName = encodeURIComponent(ctx.from.first_name || '');
-  const username = encodeURIComponent(ctx.from.username || '');
+// bot.command('checkout', async (ctx) => {
+//   const userId = ctx.from.id;
+//   const firstName = encodeURIComponent(ctx.from.first_name || '');
+//   const username = encodeURIComponent(ctx.from.username || '');
   
-  // Construct dynamic checkout URL
-  const checkoutUrl = `${WEB_LINK}/checkout`;
+//   // Construct dynamic checkout URL
+//   const checkoutUrl = `${WEB_LINK}/checkout`;
 
-  // Send a message and launch button
-  await ctx.reply(
-    `🛒 *Checkout Process Initiated!*\n\nHi ${firstName}, your cart is ready for review. Click the button below to view your cart and complete your purchase.`,
-    { parse_mode: "Markdown" }
-  );
+//   // Send a message and launch button
+//   await ctx.reply(
+//     `🛒 *Checkout Process Initiated!*\n\nHi ${firstName}, your cart is ready for review. Click the button below to view your cart and complete your purchase.`,
+//     { parse_mode: "Markdown" }
+//   );
 
-  await ctx.reply("👇 Tap below to open the checkout page:", {
-    reply_markup: {
-      inline_keyboard: [
-        [
-          {
-            text: "🧾 Proceed to Checkout",
-            web_app: {
-              url: checkoutUrl
-            }
-          }
-        ]
-      ]
+//   await ctx.reply("👇 Tap below to open the checkout page:", {
+//     reply_markup: {
+//       inline_keyboard: [
+//         [
+//           {
+//             text: "🧾 Proceed to Checkout",
+//             web_app: {
+//               url: checkoutUrl
+//             }
+//           }
+//         ]
+//       ]
+//     }
+//   });
+// });
+
+
+
+bot.command('checkout', 
+  async (ctx) => {
+    const webAppData = ctx.webAppData?.data;
+  
+    if (webAppData) {
+      const cart = JSON.parse(webAppData);
+  
+      // Respond to user with cart summary or confirmation
+      let message = '🧾 Your order:\n\n';
+      cart.forEach((item, idx) => {
+        message += `${idx + 1}. ${item.name} × ${item.quantity} = ₹${item.price * item.quantity}\n`;
+      });
+  
+      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      message += `\n💰 Total: ₹${total}`;
+  
+      await ctx.reply(message);
     }
-  });
-});
-
-
-
-
+  }
+)
 
 
 
