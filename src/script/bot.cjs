@@ -9,6 +9,8 @@ const { message } = require('telegraf/filters');
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, 'dist')));
+
 const TOKEN = process.env.BOT_TOKEN;
 const WEB_LINK = process.env.WEB_LINK;
 const PORT = process.env.BOT_PORT || 3000;
@@ -116,6 +118,12 @@ bot.telegram.setWebhook(`${DOMAIN}/`)
   .catch(err => console.error("❌ Failed to set webhook:", err));
 
 // Basic Express route
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+
 app.get("/", (req, res) => {
   res.send("🤖 Bot is running.");
 });
