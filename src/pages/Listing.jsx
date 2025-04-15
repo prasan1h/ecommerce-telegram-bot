@@ -44,17 +44,15 @@ const Listing = () => {
         }
       };
     
-      
       const onCheckout = () => {
         if (cartItems.length === 0) return;
-      
-        // 1. Send data to Telegram bot
+    
+        // Send cart data to the Telegram bot
         tele.sendData(JSON.stringify(cartItems));
-      
-        // 2. Navigate to checkout page
+    
+        // Then navigate to the checkout page (not inside Telegram's button callback)
         navigate('/checkout', { state: { cartItems } });
       };
-    
 
 
   return (
@@ -75,10 +73,10 @@ const Listing = () => {
     <h1 className="heading">Order Food</h1>
     <Cart cartItems={cartItems} onCheckout={onCheckout} />
     <div className="cards__container">
-      {foods.map((food) => (
+      {foods.map((food, index) => (
         <Card
           food={food}
-          key={food.id}
+          key={food.id || index}
           onAdd={onAdd}
           onRemove={onRemove}
         />
