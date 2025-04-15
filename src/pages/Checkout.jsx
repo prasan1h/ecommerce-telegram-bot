@@ -7,7 +7,16 @@ const Checkout = () => {
   const location = useLocation();
   // const cartItems = location.state?.cartItems || [];
 
-  const { cartItems } = useContext(Listing);
+
+  const [cartItems, setCartItems] = useState([]);
+
+useEffect(() => {
+  const savedCart = localStorage.getItem('cartItems');
+  if (savedCart) {
+    setCartItems(JSON.parse(savedCart));
+  }
+}, []);
+
 
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);

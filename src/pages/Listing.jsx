@@ -46,12 +46,15 @@ const Listing = () => {
     
       const onCheckout = () => {
         if (cartItems.length === 0) return;
-    
-        // Send cart data to the Telegram bot
+      
+        // Send cart data to Telegram bot
         tele.sendData(JSON.stringify(cartItems));
-        setCartItems(cartItems);
-        // Then navigate to the checkout page (not inside Telegram's button callback)
-        navigate('/checkout', { state: { cartItems } });
+      
+        // Store cart data for the next page (persistent across reloads)
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      
+        // Navigate to checkout page
+        navigate('/checkout');
       };
 
 
