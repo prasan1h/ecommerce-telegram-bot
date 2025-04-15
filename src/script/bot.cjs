@@ -6,6 +6,7 @@ require("dotenv").config();
 const express = require('express');
 const { Telegraf } = require("telegraf");
 const { message } = require('telegraf/filters');
+const { default: Checkout } = require("../pages/Checkout");
 
 const app = express();
 
@@ -102,7 +103,7 @@ bot.command('checkout',
       const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
       message += `\n💰 Total: ₹${total}`;
   
-      await ctx.reply(message);
+      await ctx.reply(Checkout);
     }
   }
 )
