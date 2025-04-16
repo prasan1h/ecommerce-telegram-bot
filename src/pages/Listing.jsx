@@ -182,13 +182,31 @@ const Listing = () => {
   };
 
   const handlePayment = () => {
-    // Simulate sending data
     tele.sendData(JSON.stringify({ cartItems, userData }));
     setStep('completed');
   };
 
+  const BackButton = ({ onClick }) => (
+    <button
+      onClick={onClick}
+      style={{
+        position: 'absolute',
+        top: '10px',
+        left: '10px',
+        backgroundColor: '#eee',
+        border: 'none',
+        padding: '6px 12px',
+        cursor: 'pointer',
+        borderRadius: '8px',
+        fontWeight: 'bold',
+      }}
+    >
+      ← Back
+    </button>
+  );
+
   return (
-    <div>
+    <div style={{ position: 'relative', paddingTop: '50px' }}>
       {/* Listing Page */}
       {step === 'listing' && (
         <>
@@ -210,19 +228,23 @@ const Listing = () => {
       {/* Checkout Page */}
       {step === 'checkout' && (
         <div className="checkout-page">
+          <BackButton onClick={() => setStep('listing')} />
           <h2>Checkout</h2>
           <ul>
             {cartItems.map((item) => (
-              <li key={item.id}>{item.name} x {item.quantity}</li>
+              <li key={item.id}>
+                {item.name} x {item.quantity} — ₹{item.price * item.quantity}
+              </li>
             ))}
           </ul>
-          <button onClick={() => setStep('address')}>Go to Address</button>
+          <button onClick={() => setStep('address')}>Continue to Address</button>
         </div>
       )}
 
       {/* Address Page */}
       {step === 'address' && (
         <div className="address-page">
+          <BackButton onClick={() => setStep('checkout')} />
           <h2>Enter Address</h2>
           <form onSubmit={handleAddressSubmit}>
             <input
@@ -247,6 +269,7 @@ const Listing = () => {
       {/* Payment Page */}
       {step === 'payment' && (
         <div className="payment-page">
+          <BackButton onClick={() => setStep('address')} />
           <h2>Payment</h2>
           <p>Total: ₹{cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}</p>
           <button onClick={handlePayment}>Pay and Complete Order</button>
