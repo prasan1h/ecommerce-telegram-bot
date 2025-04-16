@@ -129,7 +129,6 @@
 
 
 
-
 import { useState, useEffect, React } from 'react';
 import "../assets/style.css";
 import Card from "../components/card";
@@ -141,7 +140,7 @@ const foods = getData();
 
 const Listing = () => {
   const [cartItems, setCartItems] = useState([]);
-  const [step, setStep] = useState('listing'); // listing, checkout, address, payment, completed
+  const [step, setStep] = useState('listing');
   const [userData, setUserData] = useState({ name: '', address: '' });
 
   useEffect(() => {
@@ -171,19 +170,19 @@ const Listing = () => {
     }
   };
 
-  const onCheckout = () => {
-    if (cartItems.length === 0) return;
-    setStep('checkout');
-  };
-
-  const handleAddressSubmit = (e) => {
-    e.preventDefault();
-    setStep('payment');
-  };
-
-  const handlePayment = () => {
-    tele.sendData(JSON.stringify({ cartItems, userData }));
-    setStep('completed');
+  const handleNext = () => {
+    if (step === 'checkout') {
+      setStep('address');
+    } else if (step === 'address') {
+      if (!userData.name || !userData.address) {
+        alert("Please fill out both fields.");
+        return;
+      }
+      setStep('payment');
+    } else if (step === 'payment') {
+      tele.sendData(JSON.stringify({ cartItems, userData }));
+      setStep('completed');
+    }
   };
 
   const BackButton = ({ onClick }) => (
@@ -205,13 +204,33 @@ const Listing = () => {
     </button>
   );
 
+  const NextButton = ({ onClick }) => (
+    <button
+      onClick={onClick}
+      style={{
+        position: 'absolute',
+        top: '10px',
+        right: '10px',
+        backgroundColor: '#0f62fe',
+        color: '#fff',
+        border: 'none',
+        padding: '6px 12px',
+        cursor: 'pointer',
+        borderRadius: '8px',
+        fontWeight: 'bold',
+      }}
+    >
+      Next →
+    </button>
+  );
+
   return (
     <div style={{ position: 'relative', paddingTop: '50px' }}>
       {/* Listing Page */}
       {step === 'listing' && (
         <>
           <h1 className="heading">Order Food</h1>
-          <Cart cartItems={cartItems} onCheckout={onCheckout} />
+          <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
           <div className="cards__container">
             {foods.map((food, index) => (
               <Card
@@ -229,6 +248,7 @@ const Listing = () => {
       {step === 'checkout' && (
         <div className="checkout-page">
           <BackButton onClick={() => setStep('listing')} />
+          <NextButton onClick={handleNext} />
           <h2>Checkout</h2>
           <ul>
             {cartItems.map((food) => (
@@ -237,7 +257,6 @@ const Listing = () => {
               </li>
             ))}
           </ul>
-          <button onClick={() => setStep('address')}>Continue to Address</button>
         </div>
       )}
 
@@ -245,8 +264,9 @@ const Listing = () => {
       {step === 'address' && (
         <div className="address-page">
           <BackButton onClick={() => setStep('checkout')} />
+          <NextButton onClick={handleNext} />
           <h2>Enter Address</h2>
-          <form onSubmit={handleAddressSubmit}>
+          <form>
             <input
               type="text"
               placeholder="Your Name"
@@ -261,7 +281,6 @@ const Listing = () => {
               onChange={(e) => setUserData({ ...userData, address: e.target.value })}
               required
             />
-            <button type="submit">Proceed to Payment</button>
           </form>
         </div>
       )}
@@ -270,9 +289,9 @@ const Listing = () => {
       {step === 'payment' && (
         <div className="payment-page">
           <BackButton onClick={() => setStep('address')} />
+          <NextButton onClick={handleNext} />
           <h2>Payment</h2>
           <p>Total: ₹{cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}</p>
-          <button onClick={handlePayment}>Pay and Complete Order</button>
         </div>
       )}
 
@@ -288,3 +307,4 @@ const Listing = () => {
 };
 
 export default Listing;
+
