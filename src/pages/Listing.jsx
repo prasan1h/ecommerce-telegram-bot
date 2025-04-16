@@ -242,7 +242,10 @@ const Listing = () => {
       {/* Listing Page */}
       {step === 'listing' && (
         <>
-          <h1 className="heading">{user.first_name}</h1>
+          {userData?.first_name && (
+            <h1 className="heading">Hello, {userData.first_name}</h1>
+          )}
+
           <h1 className="heading">Order Food</h1>
           <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
           <div className="cards__container">
