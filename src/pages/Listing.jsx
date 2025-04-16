@@ -261,7 +261,7 @@ const Listing = () => {
                   </span>
                 </div>
                 <div className="item-price">
-                  ₹{food.price * food.quantity}
+                  ₹{food.price.toFixed(2) * food.quantity}
                 </div>
               </div>
             </li>
