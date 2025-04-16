@@ -325,13 +325,14 @@ const Listing = () => {
 
     <form className="address-form">
       <div className="form-row">
-        <input
-          type="text"
-          placeholder="First Name"
-          value={userData.first_name}
-          onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
-          required
-        />
+      <input
+        type="text"
+        placeholder="First Name"
+        value={userData.first_name || ''}
+        onChange={(e) => setUserData({ ...userData, first_name: e.target.value })}
+        required
+      />
+
         <input
           type="text"
           placeholder="Last Name"
