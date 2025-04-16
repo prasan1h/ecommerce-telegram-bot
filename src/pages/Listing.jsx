@@ -246,29 +246,43 @@ const Listing = () => {
 
       {/* Checkout Page */}
       {step === 'checkout' && (
-        <div className="checkout-page">
-          <BackButton onClick={() => setStep('listing')} />
-          <NextButton onClick={handleNext} />
-          <h2 style={{textAlign : 'center'}}>YOUR ORDER</h2>
-          <ul>
+      <div className="checkout-page">
+    
+       {/* Div 1: Back and Next buttons */}
+      <div className="checkout-nav">
+        <BackButton onClick={() => setStep('listing')} />
+        <NextButton onClick={handleNext} />
+      </div>
+
+      {/* Div 2: Title */}
+        <div className="checkout-title">
+          <h2>YOUR ORDER</h2>
+        </div>
+
+        {/* Div 3: List of Items */}
+        <div className="checkout-list-wrapper">
+          <ul className="checkout-list">
             {cartItems.map((food) => (
               <li className="checkout-item" key={food.id}>
-              <div className="checkout-item-box">
-                <div className="item-info">
-                  <img src={food.Image} alt={food.title} className="item-image"/>
-                  <span className="item-title">
-                    {food.title} x {food.quantity}
-                  </span>
+                <div className="checkout-item-box">
+                  <div className="item-info">
+                    <img src={food.Image} alt={food.title} className="item-image" />
+                    <span className="item-title">
+                      {food.title} x {food.quantity}
+                    </span>
+                  </div>
+                  <div className="item-price">
+                    ₹{(food.price * food.quantity).toFixed(2)}
+                  </div>
                 </div>
-                <div className="item-price">
-                  ₹{food.price.toFixed(2) * food.quantity}
-                </div>
-              </div>
-            </li>
+              </li>
             ))}
           </ul>
         </div>
+
+        </div>
       )}
+
 
       {/* Address Page */}
       {step === 'address' && (
