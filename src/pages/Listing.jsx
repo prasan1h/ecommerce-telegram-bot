@@ -249,16 +249,22 @@ const Listing = () => {
         <div className="checkout-page">
           <BackButton onClick={() => setStep('listing')} />
           <NextButton onClick={handleNext} />
-          <h2>Checkout</h2>
+          <h2>YOUR ORDER</h2>
           <ul>
             {cartItems.map((food) => (
-              <li key={food.id}>
-                  <img
-                    src={food.Image}
-                    alt={food.title}
-                    style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '6px' }}/>
-                    <span>{food.title} x {food.quantity} — ₹{food.price * food.quantity}</span>
-              </li>
+              <li className="checkout-item" key={food.id}>
+              <div className="checkout-item-box">
+                <div className="item-info">
+                  <img src={food.Image} alt={food.title} className="item-image"/>
+                  <span className="item-title">
+                    {food.title} x {food.quantity}
+                  </span>
+                </div>
+                <div className="item-price">
+                  ₹{food.price * food.quantity}
+                </div>
+              </div>
+            </li>
             ))}
           </ul>
         </div>
