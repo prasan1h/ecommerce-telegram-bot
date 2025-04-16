@@ -249,7 +249,7 @@ const Listing = () => {
         <div className="checkout-page">
           <BackButton onClick={() => setStep('listing')} />
           <NextButton onClick={handleNext} />
-          <h2>YOUR ORDER</h2>
+          <h2 style={{textAlign : 'center'}}>YOUR ORDER</h2>
           <ul>
             {cartItems.map((food) => (
               <li className="checkout-item" key={food.id}>
