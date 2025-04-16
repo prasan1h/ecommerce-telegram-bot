@@ -1,4 +1,4 @@
-// 
+
 
 
 
@@ -106,7 +106,7 @@ bot.command('checkout',
       await ctx.reply(Checkout);
     }
   }
-)
+);
 
 
 
@@ -151,7 +151,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`🌐 Server is running on port ${PORT}`);
 });
-
-// Graceful stop
-process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM'));
