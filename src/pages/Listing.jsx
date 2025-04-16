@@ -144,11 +144,13 @@ const user = userData();
 const Listing = () => {
   const [cartItems, setCartItems] = useState([]);
   const [step, setStep] = useState('listing');
-  const [userData, setUserData] = useState(user);
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     tele.ready();
     tele.expand();
+    const user = window.Telegram.WebApp.initDataUnsafe.user;
+
   }, []);
 
   const onAdd = (food) => {
@@ -240,7 +242,7 @@ const Listing = () => {
       {/* Listing Page */}
       {step === 'listing' && (
         <>
-          <h1 className="heading">{userData.first_name}</h1>
+          <h1 className="heading">{user.first_name}</h1>
           <h1 className="heading">Order Food</h1>
           <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
           <div className="cards__container">
