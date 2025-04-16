@@ -231,9 +231,9 @@ const Listing = () => {
           <BackButton onClick={() => setStep('listing')} />
           <h2>Checkout</h2>
           <ul>
-            {cartItems.map((item) => (
-              <li key={item.id}>
-                {item.name} x {item.quantity} — ₹{item.price * item.quantity}
+            {cartItems.map((food) => (
+              <li key={food.id}>
+                {food.name} x {food.quantity} — ₹{food.price * food.quantity}
               </li>
             ))}
           </ul>
