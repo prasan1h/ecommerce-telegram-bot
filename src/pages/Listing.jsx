@@ -233,7 +233,7 @@ const Listing = () => {
           <ul>
             {cartItems.map((food) => (
               <li key={food.id}>
-                {food.name} x {food.quantity} — ₹{food.price * food.quantity}
+                {food.title} x {food.quantity} — ₹{food.price * food.quantity}
               </li>
             ))}
           </ul>
