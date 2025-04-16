@@ -253,7 +253,11 @@ const Listing = () => {
           <ul>
             {cartItems.map((food) => (
               <li key={food.id}>
-                {food.Image} &nbsp; {food.title} x {food.quantity} — ₹{food.price * food.quantity}
+                  <img
+                    src={food.Image}
+                    alt={food.title}
+                    style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '6px' }}/>
+                    <span>{food.title} x {food.quantity} — ₹{food.price * food.quantity}</span>
               </li>
             ))}
           </ul>
