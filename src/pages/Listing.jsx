@@ -133,15 +133,18 @@ import { useState, useEffect, React } from 'react';
 import "../assets/style.css";
 import Card from "../components/card";
 import Cart from "../components/cart";
+
+import {userData} from '../script/bot.cjs'
 import { getData } from "../db/db";
 
 const tele = window.Telegram.WebApp;
 const foods = getData();
+const user = userData();
 
 const Listing = () => {
   const [cartItems, setCartItems] = useState([]);
   const [step, setStep] = useState('listing');
-  const [userData, setUserData] = useState({ name: '', address: '' });
+  const [userData, setUserData] = useState(user);
 
   useEffect(() => {
     tele.ready();
@@ -225,10 +228,19 @@ const Listing = () => {
   );
 
   return (
+
+
+
     <div style={{ position: 'relative', paddingTop: '50px' }}>
+
+
+
+
+
       {/* Listing Page */}
       {step === 'listing' && (
         <>
+          <h1 className="heading">{userData.first_name}</h1>
           <h1 className="heading">Order Food</h1>
           <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
           <div className="cards__container">
@@ -243,6 +255,12 @@ const Listing = () => {
           </div>
         </>
       )}
+
+
+
+
+
+
 
       {/* Checkout Page */}
       {step === 'checkout' && (
@@ -284,30 +302,95 @@ const Listing = () => {
       )}
 
 
+
+
+
+
       {/* Address Page */}
       {step === 'address' && (
-        <div className="address-page">
-          <BackButton onClick={() => setStep('checkout')} />
-          <NextButton onClick={handleNext} />
-          <h2>Enter Address</h2>
-          <form>
-            <input
-              type="text"
-              placeholder="Your Name"
-              value={userData.name}
-              onChange={(e) => setUserData({ ...userData, name: e.target.value })}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Address"
-              value={userData.address}
-              onChange={(e) => setUserData({ ...userData, address: e.target.value })}
-              required
-            />
-          </form>
-        </div>
-      )}
+  <div className="address-page">
+    <div className="checkout-nav">
+      <BackButton onClick={() => setStep('checkout')} />
+      <NextButton onClick={handleNext} />
+    </div>
+
+    <div className="address-title">
+      <h2>Enter Shipping Details</h2>
+    </div>
+
+    <form className="address-form">
+      <div className="form-row">
+        <input
+          type="text"
+          placeholder="First Name"
+          value={userData.first_name}
+          onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          value={userData.last_name}
+          onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
+          required
+        />
+      </div>
+
+      <div className="form-row">
+        <input
+          type="tel"
+          placeholder="Phone Number"
+          value={userData.phone}
+          onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
+          required
+        />
+      </div>
+
+      <div className="form-row">
+        <input
+          type="text"
+          placeholder="City"
+          value={userData.city}
+          onChange={(e) => setUserData({ ...userData, city: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="State"
+          value={userData.state}
+          onChange={(e) => setUserData({ ...userData, state: e.target.value })}
+          required
+        />
+      </div>
+
+      <div className="form-row">
+        <input
+          type="text"
+          placeholder="Country"
+          value={userData.country}
+          onChange={(e) => setUserData({ ...userData, country: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Post Code"
+          value={userData.postcode}
+          onChange={(e) => setUserData({ ...userData, postcode: e.target.value })}
+          required
+        />
+      </div>
+    </form>
+  </div>
+)}
+
+
+
+
+
+
+
+
+
 
       {/* Payment Page */}
       {step === 'payment' && (
@@ -319,6 +402,13 @@ const Listing = () => {
         </div>
       )}
 
+
+
+
+
+
+
+
       {/* Order Completed Page */}
       {step === 'completed' && (
         <div className="completed-page">
@@ -329,6 +419,10 @@ const Listing = () => {
     </div>
   );
 };
+
+
+
+
 
 export default Listing;
 

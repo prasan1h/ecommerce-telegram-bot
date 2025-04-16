@@ -137,6 +137,24 @@ bot.telegram.setWebhook(`${DOMAIN}/`)
   .then(() => console.log(`✅ Webhook set to ${DOMAIN}/`))
   .catch(err => console.error("❌ Failed to set webhook:", err));
 
+
+
+
+
+
+
+
+
+export function userData(){
+  return ctx.chat
+}
+
+
+
+
+
+
+
 // Basic Express route
 
 app.get('*', (req, res) => {
