@@ -51,42 +51,6 @@ bot.command('info', (ctx) =>
 
 
 
-
-
-
-
-// bot.command('checkout', async (ctx) => {
-//   const userId = ctx.from.id;
-//   const firstName = encodeURIComponent(ctx.from.first_name || '');
-//   const username = encodeURIComponent(ctx.from.username || '');
-  
-//   // Construct dynamic checkout URL
-//   const checkoutUrl = `${WEB_LINK}/checkout`;
-
-//   // Send a message and launch button
-//   await ctx.reply(
-//     `🛒 *Checkout Process Initiated!*\n\nHi ${firstName}, your cart is ready for review. Click the button below to view your cart and complete your purchase.`,
-//     { parse_mode: "Markdown" }
-//   );
-
-//   await ctx.reply("👇 Tap below to open the checkout page:", {
-//     reply_markup: {
-//       inline_keyboard: [
-//         [
-//           {
-//             text: "🧾 Proceed to Checkout",
-//             web_app: {
-//               url: checkoutUrl
-//             }
-//           }
-//         ]
-//       ]
-//     }
-//   });
-// });
-
-
-
 bot.command('checkout', 
   async (ctx) => {
     const webAppData = ctx.webAppData?.data;

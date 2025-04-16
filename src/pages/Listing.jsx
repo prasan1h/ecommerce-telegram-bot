@@ -144,7 +144,15 @@ const foods = getData();
 const Listing = () => {
   const [cartItems, setCartItems] = useState([]);
   const [step, setStep] = useState('listing');
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({
+    firstName: '',
+    lastName: '',
+    phone: '',
+    city: '',
+    state: '',
+    country: '',
+    postcode: ''
+  });
 
   useEffect(() => {
     tele.ready();
@@ -328,15 +336,15 @@ const Listing = () => {
       <input
         type="text"
         placeholder="First Name"
-        value={userData.first_name || ''}
-        onChange={(e) => setUserData({ ...userData, first_name: e.target.value })}
+        value={userData.firstName || ''}
+        onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
         required
       />
 
         <input
           type="text"
           placeholder="Last Name"
-          value={userData.last_name}
+          value={userData.lastName}
           onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
           required
         />
