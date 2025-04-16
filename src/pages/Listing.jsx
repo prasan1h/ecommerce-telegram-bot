@@ -134,12 +134,12 @@ import "../assets/style.css";
 import Card from "../components/card";
 import Cart from "../components/cart";
 
-import {userData} from '../script/bot.cjs'
+// import {userData} from '../script/bot.cjs'
 import { getData } from "../db/db";
 
 const tele = window.Telegram.WebApp;
 const foods = getData();
-const user = userData();
+// const user = userData();
 
 const Listing = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -149,8 +149,8 @@ const Listing = () => {
   useEffect(() => {
     tele.ready();
     tele.expand();
-    const user = window.Telegram.WebApp.initDataUnsafe.user;
-
+    const user = window.Telegram.WebApp.initDataUnsafe.chat;
+    setUserData(user);
   }, []);
 
   const onAdd = (food) => {
