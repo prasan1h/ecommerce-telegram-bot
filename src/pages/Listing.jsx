@@ -216,7 +216,7 @@ const Listing = () => {
               <li key={item.id}>{item.name} x {item.quantity}</li>
             ))}
           </ul>
-          <button onClick={() => setStep('address')}>Continue to Address</button>
+          <button onClick={() => setStep('address')}>Go to Address</button>
         </div>
       )}
 
