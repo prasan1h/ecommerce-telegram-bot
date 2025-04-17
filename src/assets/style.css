@@ -246,40 +246,55 @@ ul{
   
 
 
-  /* address page */
-  .address-page {
-    padding: 16px;
-  }
-  
-  .address-title h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .address-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  
+/* address page */
+.address-page {
+  padding: 16px;
+}
+
+.address-title h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.form-row input {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-row input:focus {
+  border-color: #007bff;
+}
+
+.form-row input::placeholder {
+  color: #999;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
   .form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+    flex-direction: column;
   }
-  
-  .form-row input {
-    flex: 1;
-    min-width: 120px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    transition: border-color 0.3s ease;
-  }
-  
-  .form-row input:focus {
-    border-color: #007bff;
-  }
+}
+
   

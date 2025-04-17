@@ -144,7 +144,15 @@ const foods = getData();
 const Listing = () => {
   const [cartItems, setCartItems] = useState([]);
   const [step, setStep] = useState('listing');
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({
+    firstName: '',
+    lastName: '',
+    phone: '',
+    city: '',
+    state: '',
+    country: '',
+    postcode: ''
+  });
 
   useEffect(() => {
     tele.ready();
@@ -179,10 +187,10 @@ const Listing = () => {
     if (step === 'checkout') {
       setStep('address');
     } else if (step === 'address') {
-      if (!userData.name || !userData.address) {
+      if (userData.firstName.trim() === '' || userData.lastName.trim() === '') {
         alert("Please fill out both fields.");
-        return;
       }
+      
       setStep('payment');
     } else if (step === 'payment') {
       tele.sendData(JSON.stringify({ cartItems, userData }));
@@ -325,19 +333,28 @@ const Listing = () => {
 
           <form className="address-form">
             <div className="form-row">
-            <input
+            {/* <input
               type="text"
               placeholder="First Name"
-              // value={userData.firstName || ''}
-              value=''
-              onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
-              required/>
+              // value={userData.firstName}
+              onChange={(e) => console.log(e.target.value)}
+              required
+            /> */}
+
+              <input
+                type="text"
+                placeholder="First Name"
+                // value={userData.lastName}
+                // value=''
+                onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+                required/>
+
 
               <input
                 type="text"
                 placeholder="Last Name"
                 // value={userData.lastName}
-                value=''
+                // value=''
                 onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
                 required/>
             </div>
@@ -347,7 +364,7 @@ const Listing = () => {
                 type="tel"
                 placeholder="Phone Number"
                 // value={userData.phone}
-                value=''
+                // value=''
                 onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
                 required/>
             </div>
@@ -357,14 +374,14 @@ const Listing = () => {
                 type="text"
                 placeholder="City"
                 // value={userData.city}
-                value=''
+                // value=''
                 onChange={(e) => setUserData({ ...userData, city: e.target.value })}
                 required/>
               <input
                 type="text"
                 placeholder="State"
                 // value={userData.state}
-                value=''
+                // value=''
                 onChange={(e) => setUserData({ ...userData, state: e.target.value })}
                 required/>
             </div>
@@ -374,14 +391,14 @@ const Listing = () => {
                 type="text"
                 placeholder="Country"
                 // value={userData.country}
-                value=''
+                // value=''
                 onChange={(e) => setUserData({ ...userData, country: e.target.value })}
                 required/>
               <input
                 type="text"
                 placeholder="Post Code"
                 // value={userData.postcode}
-                value=''
+                // value=''
                 onChange={(e) => setUserData({ ...userData, postcode: e.target.value })}
                 required/>
             </div>
