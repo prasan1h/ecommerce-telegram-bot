@@ -320,82 +320,89 @@ const Listing = () => {
 
 
       {/* Address Page */}
-      {step === 'address' && (
-  <div className="address-page">
-    <div className="checkout-nav">
-      <BackButton onClick={() => setStep('checkout')} />
-      <NextButton onClick={handleNext} />
-    </div>
+            {step === 'address' && (
+        <div className="address-page">
+          <div className="checkout-nav">
+            <BackButton onClick={() => setStep('checkout')} />
+            <NextButton onClick={handleNext} />
+          </div>
 
-    <div className="address-title">
-      <h2>Enter Shipping Details</h2>
-    </div>
+          <div className="address-title">
+            <h2>Enter Shipping Details</h2>
+          </div>
 
-    <form className="address-form">
-      <div className="form-row">
-      <input
-        type="text"
-        placeholder="First Name"
-        value={userData.firstName || ''}
-        onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
-        required
-      />
+          <form className="address-form">
+            <div className="form-row">
+            <input
+              type="text"
+              placeholder="First Name"
+              // value={userData.firstName || ''}
+              value=''
+              onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+              required
+            />
 
-        <input
-          type="text"
-          placeholder="Last Name"
-          value={userData.lastName}
-          onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
-          required
-        />
-      </div>
+              <input
+                type="text"
+                placeholder="Last Name"
+                // value={userData.lastName}
+                value=''
+                onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
+                required
+              />
+            </div>
 
-      <div className="form-row">
-        <input
-          type="tel"
-          placeholder="Phone Number"
-          value={userData.phone}
-          onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
-          required
-        />
-      </div>
+            <div className="form-row">
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                // value={userData.phone}
+                value=''
+                onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
+                required
+              />
+            </div>
 
-      <div className="form-row">
-        <input
-          type="text"
-          placeholder="City"
-          value={userData.city}
-          onChange={(e) => setUserData({ ...userData, city: e.target.value })}
-          required
-        />
-        <input
-          type="text"
-          placeholder="State"
-          value={userData.state}
-          onChange={(e) => setUserData({ ...userData, state: e.target.value })}
-          required
-        />
-      </div>
+            <div className="form-row">
+              <input
+                type="text"
+                placeholder="City"
+                // value={userData.city}
+                value=''
+                onChange={(e) => setUserData({ ...userData, city: e.target.value })}
+                required
+              />
+              <input
+                type="text"
+                placeholder="State"
+                // value={userData.state}
+                value=''
+                onChange={(e) => setUserData({ ...userData, state: e.target.value })}
+                required
+              />
+            </div>
 
-      <div className="form-row">
-        <input
-          type="text"
-          placeholder="Country"
-          value={userData.country}
-          onChange={(e) => setUserData({ ...userData, country: e.target.value })}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Post Code"
-          value={userData.postcode}
-          onChange={(e) => setUserData({ ...userData, postcode: e.target.value })}
-          required
-        />
-      </div>
-    </form>
-  </div>
-)}
+            <div className="form-row">
+              <input
+                type="text"
+                placeholder="Country"
+                // value={userData.country}
+                value=''
+                onChange={(e) => setUserData({ ...userData, country: e.target.value })}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Post Code"
+                // value={userData.postcode}
+                value=''
+                onChange={(e) => setUserData({ ...userData, postcode: e.target.value })}
+                required
+              />
+            </div>
+          </form>
+        </div>
+      )}
 
 
 
