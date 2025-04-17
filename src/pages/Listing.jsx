@@ -339,8 +339,7 @@ const Listing = () => {
               // value={userData.firstName || ''}
               value=''
               onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
-              required
-            />
+              required/>
 
               <input
                 type="text"
@@ -348,8 +347,7 @@ const Listing = () => {
                 // value={userData.lastName}
                 value=''
                 onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
-                required
-              />
+                required/>
             </div>
 
             <div className="form-row">
@@ -359,8 +357,7 @@ const Listing = () => {
                 // value={userData.phone}
                 value=''
                 onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
-                required
-              />
+                required/>
             </div>
 
             <div className="form-row">
@@ -370,16 +367,14 @@ const Listing = () => {
                 // value={userData.city}
                 value=''
                 onChange={(e) => setUserData({ ...userData, city: e.target.value })}
-                required
-              />
+                required/>
               <input
                 type="text"
                 placeholder="State"
                 // value={userData.state}
                 value=''
                 onChange={(e) => setUserData({ ...userData, state: e.target.value })}
-                required
-              />
+                required/>
             </div>
 
             <div className="form-row">
@@ -389,16 +384,14 @@ const Listing = () => {
                 // value={userData.country}
                 value=''
                 onChange={(e) => setUserData({ ...userData, country: e.target.value })}
-                required
-              />
+                required/>
               <input
                 type="text"
                 placeholder="Post Code"
                 // value={userData.postcode}
                 value=''
                 onChange={(e) => setUserData({ ...userData, postcode: e.target.value })}
-                required
-              />
+                required/>
             </div>
           </form>
         </div>
