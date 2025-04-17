@@ -420,6 +420,7 @@ const Listing = () => {
         <div className="payment-page">
           <BackButton onClick={() => setStep('address')} />
           <NextButton onClick={handleNext} />
+          <h2>{userData.firstName}</h2>
           <h2>Payment</h2>
           <p>Total: ₹{cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}</p>
         </div>
