@@ -144,15 +144,7 @@ const foods = getData();
 const Listing = () => {
   const [cartItems, setCartItems] = useState([]);
   const [step, setStep] = useState('listing');
-  const [userData, setUserData] = useState({
-    firstName: '',
-    lastName: '',
-    phone: '',
-    city: '',
-    state: '',
-    country: '',
-    postcode: ''
-  });
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     tele.ready();
@@ -320,7 +312,7 @@ const Listing = () => {
 
 
       {/* Address Page */}
-            {step === 'address' && (
+        {step === 'address' && (
         <div className="address-page">
           <div className="checkout-nav">
             <BackButton onClick={() => setStep('checkout')} />
