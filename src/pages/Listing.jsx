@@ -73,11 +73,11 @@ const Listing = () => {
       
       setStep('payment');
     }else if (step === 'payment') {
-      tele.sendData(JSON.stringify({ cartItems, userData }));
+      // tele.sendData(JSON.stringify({ cartItems, userData }));
       
       setTimeout(() => {
         setStep('completed');
-      }, 2000);
+      }, 3000);
     }
 
   };
