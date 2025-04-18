@@ -28,7 +28,6 @@ const Listing = () => {
   useEffect(() => {
     tele.ready();
     tele.expand();
-    tele.closeConfirmation = true; // prevents auto-close
   
     const user = window.Telegram.WebApp.initDataUnsafe.chat;
     setUserData(user);
@@ -37,8 +36,20 @@ const Listing = () => {
       const confetti = document.querySelector('.confetti');
       if (confetti) confetti.classList.add('animate');
     }, 100);
+  
     return () => clearTimeout(timer);
   }, []);
+  
+  useEffect(() => {
+    if (step === 'completed') {
+      tele.MainButton.setText('Done');
+      tele.MainButton.show();
+      tele.MainButton.onClick(() => tele.close());
+    } else {
+      tele.MainButton.hide();
+    }
+  }, [step]);
+  
   
 
   const onAdd = (food) => {
@@ -77,7 +88,7 @@ const Listing = () => {
       
       setTimeout(() => {
         setStep('completed');
-      }, 3000);
+      }, 500);
     }
 
   };
