@@ -1,133 +1,3 @@
-// import { useState,useEffect,React } from 'react'
-// import { useNavigate } from 'react-router-dom';
-
-// import "../assets/style.css";
-
-// import Card from "../components/card";
-// import Cart from '../components/cart';
-
-// import { getData } from '../db/db'; 
-
-// const tele = window.Telegram.WebApp;
-// const foods = getData();
-
-// const Listing = () => {
-
-//   const navigate = useNavigate();
-
-//       const [cartItems, setCartItems] = useState([]);
-//       useEffect(() => {
-//         tele.ready();
-//         tele.expand();
-//       }, []);
-
-
-//       const onAdd = (food) => {
-//         const exist = cartItems.find((x) => x.id === food.id);
-//         if (exist) {
-//           setCartItems(cartItems.map((x) =>
-//             x.id === food.id ? { ...x, quantity: x.quantity + 1 } : x
-//           ));
-//         } else {
-//           setCartItems([...cartItems, { ...food, quantity: 1 }]);
-//         }
-//       };
-    
-//       const onRemove = (food) => {
-//         const exist = cartItems.find((x) => x.id === food.id);
-//         if (exist.quantity === 1) {
-//           setCartItems(cartItems.filter((x) => x.id !== food.id));
-//         } else {
-//           setCartItems(cartItems.map((x) =>
-//             x.id === food.id ? { ...x, quantity: x.quantity - 1 } : x
-//           ));
-//         }
-//       };
-    
-//       const onCheckout = () => {
-//         if (cartItems.length === 0) return;
-      
-//         // Send cart data to Telegram bot
-//         tele.sendData(JSON.stringify(cartItems));
-      
-//         // Store cart data for the next page (persistent across reloads)
-//         localStorage.setItem('cartItems', JSON.stringify(cartItems));
-      
-//         // Navigate to checkout page
-//         navigate('/checkout', { state: { cartItems } });
-//         // navigate('/checkout');
-//       };
-
-
-//   return (
-//     // <>
-//     //   <h1 className="heading">Order Food</h1>
-//     //   <Cart cartItems={cartItems} onCheckout={onCheckout}/>
-//     //   {/* <Cart cartItems={cartItems}/> */}
-//     //   <div className="cards__container">
-//     //     {foods.map((food) => {
-//     //       return (
-//     //         <Card food={food} key={food.id} onAdd={onAdd} onRemove={onRemove} />
-//     //       );
-//     //     })}
-//     //   </div>
-//     // </>
-
-//     <>
-//     <h1 className="heading">Order Food</h1>
-//     <Cart cartItems={cartItems} onCheckout={onCheckout} />
-//     <div className="cards__container">
-//       {foods.map((food, index) => (
-//         <Card
-//           food={food}
-//           key={food.id || index}
-//           onAdd={onAdd}
-//           onRemove={onRemove}
-//         />
-//       ))}
-//     </div>
-//   </>
-
-
-//   );
-// }
-
-// export default Listing
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 import { useState, useEffect, React } from 'react';
 import "../assets/style.css";
@@ -154,21 +24,22 @@ const Listing = () => {
     postcode: ''
   });
 
+
   useEffect(() => {
     tele.ready();
     tele.expand();
+    tele.closeConfirmation = true; // prevents auto-close
+  
     const user = window.Telegram.WebApp.initDataUnsafe.chat;
     setUserData(user);
-
-
-
+  
     const timer = setTimeout(() => {
       const confetti = document.querySelector('.confetti');
       if (confetti) confetti.classList.add('animate');
     }, 100);
     return () => clearTimeout(timer);
-
   }, []);
+  
 
   const onAdd = (food) => {
     const exist = cartItems.find((x) => x.id === food.id);
@@ -201,10 +72,14 @@ const Listing = () => {
       }
       
       setStep('payment');
-    } else if (step === 'payment') {
+    }else if (step === 'payment') {
       tele.sendData(JSON.stringify({ cartItems, userData }));
-      setStep('completed');
+      
+      setTimeout(() => {
+        setStep('completed');
+      }, 2000);
     }
+
   };
 
   const BackButton = ({ onClick }) => (
@@ -359,18 +234,11 @@ const Listing = () => {
 
           <form className="address-form">
             <div className="form-row">
-            {/* <input
-              type="text"
-              placeholder="First Name"
-              // value={userData.firstName}
-              onChange={(e) => console.log(e.target.value)}
-              required
-            /> */}
 
               <input
                 type="text"
                 placeholder="First Name"
-                // value={userData.lastName}
+                // value={userData.firstName}
                 // value=''
                 onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
                 required/>
