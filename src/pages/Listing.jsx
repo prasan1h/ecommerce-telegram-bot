@@ -29,8 +29,20 @@ const Listing = () => {
     tele.ready();
     tele.expand();
   
-    const user = window.Telegram.WebApp.initDataUnsafe.chat;
-    setUserData(user);
+    const user = window.Telegram.WebApp.initDataUnsafe.user;
+    if (user) {
+      setUserData((prev) => ({
+        ...prev,
+        firstName: user.first_name || '',
+        lastName: user.last_name || '',
+        phone: '', // Telegram doesn't provide phone directly unless shared explicitly
+        city: '',
+        state: '',
+        country: '',
+        postcode: ''
+      }));
+    }
+
   
     const timer = setTimeout(() => {
       const confetti = document.querySelector('.confetti');
@@ -244,70 +256,144 @@ const Listing = () => {
           </div>
 
           <form className="address-form">
-            <div className="form-row">
 
-              <input
-                type="text"
-                placeholder="First Name"
-                // value={userData.firstName}
-                // value=''
-                onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
-                required/>
+          {/* First Name */}
+          <div className="form-row">
+            <label htmlFor="firstName">First Name</label>
+            <input
+              id="firstName"
+              type="text"
+              placeholder="Enter your first name"
+              value={userData.firstName}
+              onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+              required
+            />
+          </div>
 
+          {/* Last Name */}
+          <div className="form-row">
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              id="lastName"
+              type="text"
+              placeholder="Enter your last name"
+              value={userData.lastName}
+              onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
+              required
+            />
+          </div>
 
-              <input
-                type="text"
-                placeholder="Last Name"
-                // value={userData.lastName}
-                // value=''
-                onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
-                required/>
-            </div>
+          {/* Email */}
+          <div className="form-row">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              value={userData.email || ''}
+              onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+              required
+            />
+          </div>
 
-            <div className="form-row">
-              <input
-                type="tel"
-                placeholder="Phone Number"
-                // value={userData.phone}
-                // value=''
-                onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
-                required/>
-            </div>
+          {/* Phone Number */}
+          <div className="form-row">
+            <label htmlFor="phone">Phone Number</label>
+            <input
+              id="phone"
+              type="tel"
+              placeholder="Enter your phone number"
+              value={userData.phone}
+              onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
+              required
+            />
+          </div>
 
-            <div className="form-row">
-              <input
-                type="text"
-                placeholder="City"
-                // value={userData.city}
-                // value=''
-                onChange={(e) => setUserData({ ...userData, city: e.target.value })}
-                required/>
-              <input
-                type="text"
-                placeholder="State"
-                // value={userData.state}
-                // value=''
-                onChange={(e) => setUserData({ ...userData, state: e.target.value })}
-                required/>
-            </div>
+          {/* House No. */}
+          <div className="form-row">
+            <label htmlFor="houseNo">House No.</label>
+            <input
+              id="houseNo"
+              type="text"
+              placeholder="Enter your house number"
+              value={userData.houseNo || ''}
+              onChange={(e) => setUserData({ ...userData, houseNo: e.target.value })}
+              required
+            />
+          </div>
 
-            <div className="form-row">
-              <input
-                type="text"
-                placeholder="Country"
-                // value={userData.country}
-                // value=''
-                onChange={(e) => setUserData({ ...userData, country: e.target.value })}
-                required/>
-              <input
-                type="text"
-                placeholder="Post Code"
-                // value={userData.postcode}
-                // value=''
-                onChange={(e) => setUserData({ ...userData, postcode: e.target.value })}
-                required/>
-            </div>
-          </form>
+          {/* Landmark */}
+          <div className="form-row">
+            <label htmlFor="landmark">Landmark</label>
+            <input
+              id="landmark"
+              type="text"
+              placeholder="Nearby landmark"
+              value={userData.landmark || ''}
+              onChange={(e) => setUserData({ ...userData, landmark: e.target.value })}
+              required
+            />
+          </div>
+
+          {/* Address Type */}
+          <div className="form-row">
+            <label htmlFor="addressType">Address Type</label>
+            <input
+              id="addressType"
+              type="text"
+              placeholder="e.g., Home, Office"
+              value={userData.addressType || ''}
+              onChange={(e) => setUserData({ ...userData, addressType: e.target.value })}
+              required
+            />
+          </div>
+
+          {/* City and State */}
+          <div className="form-row">
+            <label htmlFor="city">City</label>
+            <input
+              id="city"
+              type="text"
+              placeholder="Enter your city"
+              value={userData.city}
+              onChange={(e) => setUserData({ ...userData, city: e.target.value })}
+              required
+            />
+            <label htmlFor="state">State</label>
+            <input
+              id="state"
+              type="text"
+              placeholder="Enter your state"
+              value={userData.state}
+              onChange={(e) => setUserData({ ...userData, state: e.target.value })}
+              required
+            />
+          </div>
+
+          {/* Country and Postcode */}
+          <div className="form-row">
+            <label htmlFor="country">Country</label>
+            <input
+              id="country"
+              type="text"
+              placeholder="Enter your country"
+              value={userData.country}
+              onChange={(e) => setUserData({ ...userData, country: e.target.value })}
+              required
+            />
+            <label htmlFor="postcode">Post Code</label>
+            <input
+              id="postcode"
+              type="text"
+              placeholder="Enter your post code"
+              value={userData.postcode}
+              onChange={(e) => setUserData({ ...userData, postcode: e.target.value })}
+              required
+            />
+          </div>
+
+        </form>
+
         </div>
       )}
 
@@ -351,7 +437,7 @@ const Listing = () => {
           <div><span>Delivery Fee</span><span>₹{deliveryFee}</span></div>
           <div><span>Handling Fee</span><span>₹{handlingFee}</span></div>
           <div><span>Platform Fee</span><span>₹{platformFee}</span></div>
-          <div className="total"><span>Total</span><span>₹{totalPrice}</span></div>
+          <div className="total"><span>Total</span><span>₹{totalPrice.toFixed(2)}</span></div>
           <div><span>Payment Method</span><span>{userData.paymentMethod || 'UPI'}</span></div>
         </div>
       </div>

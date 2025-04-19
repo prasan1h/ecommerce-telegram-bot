@@ -90,12 +90,8 @@ bot.on(message("text"), async (ctx) => {
   await ctx.reply("🚫 Please use the provided buttons or commands.");
 });
 
-// Launch the bot
-// bot.launch()
-//   .then(() => console.log("🤖 Bot launched successfully"))
-//   .catch((err) => console.error("Bot launch error:", err));
 
-app.use(bot.webhookCallback("/")); // Express handles Telegram updates
+app.use(bot.webhookCallback("/"));
 
 bot.telegram.setWebhook(`${DOMAIN}/`)
   .then(() => console.log(`✅ Webhook set to ${DOMAIN}/`))
