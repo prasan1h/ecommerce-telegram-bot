@@ -167,6 +167,11 @@ ul{
     display: none;
 }
 
+.card__badge--reset {
+  animation: none !important;
+}
+
+
 
 /* cart */
 

@@ -150,8 +150,8 @@ const Listing = () => {
 
   const totalItemPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const deliveryFee = 30;
-  const handlingFee = 15;
-  const platformFee = 10;
+  const handlingFee = 3;
+  const platformFee = 7;
   const totalPrice = totalItemPrice + deliveryFee + handlingFee + platformFee;
 
 
@@ -185,6 +185,8 @@ const Listing = () => {
               <Card
                 food={food}
                 key={food.id || index}
+                // key={`${food.id || index}-${step}`}
+                step={step}
                 onAdd={onAdd}
                 onRemove={onRemove}
               />
