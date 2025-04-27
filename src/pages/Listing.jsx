@@ -1,6 +1,8 @@
 
 import { useState, useEffect, React } from 'react';
 import "../assets/style.css";
+import "../assets/style/address.css"
+import "../assets/style/payMethod.css"
 import Card from "../components/card";
 import Cart from "../components/cart";
 
@@ -17,12 +19,26 @@ const Listing = () => {
   const [userData, setUserData] = useState({
     firstName: '',
     lastName: '',
+    email: '',
     phone: '',
+    houseNo: '',
+    landmark: '',
+    addressType: '',
     city: '',
     state: '',
     country: '',
     postcode: ''
   });
+  const [formErrors, setFormErrors] = useState({});
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [selectedPayment, setSelectedPayment] = useState('upi');
+  const [paymentData, setPaymentData] = useState({
+    upiId: '',
+    cardNumber: '',
+    expiry: '',
+    cvv: '',
+  });
+
 
 
   useEffect(() => {
@@ -35,7 +51,11 @@ const Listing = () => {
         ...prev,
         firstName: user.first_name || '',
         lastName: user.last_name || '',
+        email: '',
         phone: '',
+        houseNo: '',
+        landmark: '',
+        addressType: '',
         city: '',
         state: '',
         country: '',
@@ -61,6 +81,74 @@ const Listing = () => {
       tele.MainButton.hide();
     }
   }, [step]);
+
+
+
+
+
+
+
+
+
+
+
+
+  const validateForm = () => {
+    const errors = {};
+    
+    if (!userData.firstName.trim()) {
+      errors.firstName = 'First name is required';
+    }
+    if (!userData.lastName.trim()) {
+      errors.lastName = 'Last name is required';
+    }
+    if (!userData.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(userData.email)) {
+      errors.email = 'Email is invalid';
+    }
+    if (!userData.phone.trim()) {
+      errors.phone = 'Phone number is required';
+    } else if (userData.phone.length < 10) {
+      errors.phone = 'Phone number must be at least 10 digits';
+    }
+    if (!userData.houseNo.trim()) {
+      errors.houseNo = 'House number is required';
+    }
+    if (!userData.city.trim()) {
+      errors.city = 'City is required';
+    }
+    if (!userData.state.trim()) {
+      errors.state = 'State is required';
+    }
+    if (!userData.country.trim()) {
+      errors.country = 'Country is required';
+    }
+    if (!userData.postcode.trim()) {
+      errors.postcode = 'Post code is required';
+    }
+  
+    setFormErrors(errors);   // update formErrors
+    return Object.keys(errors).length === 0;  // true if no errors
+  };
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   
 
@@ -86,24 +174,63 @@ const Listing = () => {
     }
   };
 
-  const handleNext = () => {
-    if (step === 'checkout') {
-      setStep('address');
-    } else if (step === 'address') {
-      if (userData.firstName.trim() === '' || userData.lastName.trim() === '') {
-        alert("Please fill out both fields.");
-      }
-      
-      setStep('payment');
-    }else if (step === 'payment') {
-      // tele.sendData(JSON.stringify({ cartItems, userData }));
-      
-      setTimeout(() => {
-        setStep('completed');
-      }, 500);
-    }
+  // const handleNext = () => {
+  //   setFormSubmitted(true);
+  
+  //   if (step === 'checkout') {
+  //     setStep('address');
+  //   } 
+    
+  //   else if (step === 'address') {
+  //     if (!validateForm()) {
+  //       // Focus on the first field with an error
+  //       const firstErrorField = Object.keys(formErrors)[0];
+  //       if (firstErrorField) {
+  //         document.getElementById(firstErrorField)?.focus();
+  //       }
+  //       return; // Stop if form invalid
+  //     }
+  
+  //     // Additional manual check
+  //     if (userData.firstName.trim() === '' || userData.lastName.trim() === '') {
+  //       alert("Please fill out both fields.");
+  //       return; // Stop if fields empty
+  //     }
+  
+  //     console.log("Form submitted successfully:", userData);
+  
+  //     if (props.onAddressSubmit) {
+  //       props.onAddressSubmit(userData);
+  //     }
+  
+  //     setStep('payment');
+  //   } 
+    
+  //   else if (step === 'payment') {
+  //     // Optional: sendData or any logic here
+  //     // tele.sendData(JSON.stringify({ cartItems, userData }));
+  
+  //     setTimeout(() => {
+  //       setStep('completed');
+  //     }, 500);
+  //   }
+  
 
-  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   const BackButton = ({ onClick }) => (
     <button
@@ -159,6 +286,77 @@ const Listing = () => {
 
 
 
+
+  useEffect(() => {
+    if (formSubmitted) {
+      // Only run validations if the form has been submitted once
+      if (userData.email && !/\S+@\S+\.\S+/.test(userData.email)) {
+        setFormErrors(prev => ({ ...prev, email: 'Email is invalid' }));
+      } else if (userData.email) {
+        setFormErrors(prev => {
+          const newErrors = { ...prev };
+          delete newErrors.email;
+          return newErrors;
+        });
+      }
+      
+      // Re-validate the entire form to update error states as user edits
+      validateForm();
+    }
+  }, [userData, formSubmitted]);
+
+
+
+  const handleCheckoutNext = () => {
+    setStep('address');
+  };
+
+  const handleAddressNext = () => {
+    const isValid = validateForm();  // validate first
+    
+    if (!isValid) {
+      setFormSubmitted(true);
+      const firstErrorField = Object.keys(formErrors)[0];
+      if (firstErrorField) {
+        document.getElementById(firstErrorField)?.focus();
+      }
+      return;
+    }
+  
+    console.log("Address submitted successfully:", userData);
+  
+    setStep('payment-method'); // 👉 move to payment-method page
+  };
+
+  
+  const handlePaymentMethodNext = () => {
+    if (selectedPayment === 'upi' && paymentData.upiId.trim() === '') {
+      alert('Please enter your UPI ID.');
+      return;
+    }
+    if (selectedPayment === 'card' && (paymentData.cardNumber.trim() === '' || paymentData.expiry.trim() === '' || paymentData.cvv.trim() === '')) {
+      alert('Please fill in all card details.');
+      return;
+    }
+  
+    setStep('payment'); // 👉 move to payment page
+  };
+
+  
+  const handlePaymentNext = () => {
+    // Optionally: sendData if needed
+    // tele.sendData(JSON.stringify({ cartItems, userData }));
+  
+    setTimeout(() => {
+      setStep('completed');
+    }, 500);
+  };
+  
+
+
+
+
+  
 
 
   return (
@@ -217,7 +415,8 @@ const Listing = () => {
        {/* Div 1: Back and Next buttons */}
       <div className="checkout-nav">
         <BackButton onClick={() => setStep('listing')} />
-        <NextButton onClick={handleNext} />
+        <NextButton onClick={handleCheckoutNext} />
+
       </div>
 
       {/* Div 2: Title */}
@@ -255,7 +454,7 @@ const Listing = () => {
 
 
       {/* Address Page */}
-        {step === 'address' && (
+        {/* {step === 'address' && (
         <div className="address-page">
           <div className="checkout-nav">
             <BackButton onClick={() => setStep('checkout')} />
@@ -268,7 +467,7 @@ const Listing = () => {
 
           <form className="address-form">
 
-          {/* First Name */}
+
           <div className="form-row">
             <label htmlFor="firstName">First Name</label>
             <input
@@ -281,7 +480,7 @@ const Listing = () => {
             />
           </div>
 
-          {/* Last Name */}
+
           <div className="form-row">
             <label htmlFor="lastName">Last Name</label>
             <input
@@ -294,7 +493,7 @@ const Listing = () => {
             />
           </div>
 
-          {/* Email */}
+
           <div className="form-row">
             <label htmlFor="email">Email</label>
             <input
@@ -307,7 +506,7 @@ const Listing = () => {
             />
           </div>
 
-          {/* Phone Number */}
+ 
           <div className="form-row">
             <label htmlFor="phone">Phone Number</label>
             <input
@@ -320,7 +519,7 @@ const Listing = () => {
             />
           </div>
 
-          {/* House No. */}
+      
           <div className="form-row">
             <label htmlFor="houseNo">House No.</label>
             <input
@@ -333,7 +532,6 @@ const Listing = () => {
             />
           </div>
 
-          {/* Landmark */}
           <div className="form-row">
             <label htmlFor="landmark">Landmark</label>
             <input
@@ -346,7 +544,6 @@ const Listing = () => {
             />
           </div>
 
-          {/* Address Type */}
           <div className="form-row">
             <label htmlFor="addressType">Address Type</label>
             <input
@@ -359,7 +556,7 @@ const Listing = () => {
             />
           </div>
 
-          {/* City and State */}
+
           <div className="form-row">
             <label htmlFor="city">City</label>
             <input
@@ -381,7 +578,7 @@ const Listing = () => {
             />
           </div>
 
-          {/* Country and Postcode */}
+ 
           <div className="form-row">
             <label htmlFor="country">Country</label>
             <input
@@ -406,8 +603,250 @@ const Listing = () => {
         </form>
 
         </div>
+      )} */}
+
+
+{step === 'address' && (
+  <div className="address-page">
+    <div className="checkout-nav">
+      <BackButton onClick={() => setStep('checkout')} />
+      {/* <NextButton className="next-btn" onClick={handlePaymentNext} /> */}
+      <NextButton onClick={handleAddressNext} />
+    </div>
+
+    <div className="address-title">
+      <h2>Enter Shipping Details</h2>
+    </div>
+
+    <form className="address-form" onSubmit={(e) => e.preventDefault()}>
+      <div className="form-row">
+        <label htmlFor="firstName">First Name</label>
+        <input
+          id="firstName"
+          type="text"
+          placeholder="Enter your first name"
+          value={userData.firstName}
+          onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+          className={formErrors.firstName ? 'invalid-input' : ''}
+          required
+        />
+        {formErrors.firstName && <div className="error-message">{formErrors.firstName}</div>}
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="lastName">Last Name</label>
+        <input
+          id="lastName"
+          type="text"
+          placeholder="Enter your last name"
+          value={userData.lastName}
+          onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
+          className={formErrors.lastName ? 'invalid-input' : ''}
+          required
+        />
+        {formErrors.lastName && <div className="error-message">{formErrors.lastName}</div>}
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="Enter your email"
+          value={userData.email || ''}
+          onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+          className={formErrors.email ? 'invalid-input' : ''}
+          required
+        />
+        {formErrors.email && <div className="error-message">{formErrors.email}</div>}
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="phone">Phone Number</label>
+        <input
+          id="phone"
+          type="text" 
+          placeholder="Enter your phone number"
+          value={userData.phone}
+          onChange={(e) => {
+            const onlyNums = e.target.value.replace(/[^0-9]/g, '');
+            setUserData({ ...userData, phone: onlyNums });
+          }}
+          className={formErrors.phone ? 'invalid-input' : ''}
+          required
+        />
+        {formErrors.phone && <div className="error-message">{formErrors.phone}</div>}
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="houseNo">House No.</label>
+        <input
+          id="houseNo"
+          type="text"
+          placeholder="Enter your house number"
+          value={userData.houseNo || ''}
+          onChange={(e) => setUserData({ ...userData, houseNo: e.target.value })}
+          className={formErrors.houseNo ? 'invalid-input' : ''}
+          required
+        />
+        {formErrors.houseNo && <div className="error-message">{formErrors.houseNo}</div>}
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="landmark">Landmark</label>
+        <input
+          id="landmark"
+          type="text"
+          placeholder="Nearby landmark"
+          value={userData.landmark || ''}
+          onChange={(e) => setUserData({ ...userData, landmark: e.target.value })}
+          className={formErrors.landmark ? 'invalid-input' : ''}
+          required
+        />
+        {formErrors.landmark && <div className="error-message">{formErrors.landmark}</div>}
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="addressType">Address Type</label>
+        <input
+          id="addressType"
+          type="text"
+          placeholder="e.g., Home, Office"
+          value={userData.addressType || ''}
+          onChange={(e) => setUserData({ ...userData, addressType: e.target.value })}
+          className={formErrors.addressType ? 'invalid-input' : ''}
+          required
+        />
+        {formErrors.addressType && <div className="error-message">{formErrors.addressType}</div>}
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="city">City</label>
+        <input
+          id="city"
+          type="text"
+          placeholder="Enter your city"
+          value={userData.city}
+          onChange={(e) => setUserData({ ...userData, city: e.target.value })}
+          className={formErrors.city ? 'invalid-input' : ''}
+          required
+        />
+        <label htmlFor="state">State</label>
+        <input
+          id="state"
+          type="text"
+          placeholder="Enter your state"
+          value={userData.state}
+          onChange={(e) => setUserData({ ...userData, state: e.target.value })}
+          className={formErrors.state ? 'invalid-input' : ''}
+          required
+        />
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="country">Country</label>
+        <input
+          id="country"
+          type="text"
+          placeholder="Enter your country"
+          value={userData.country}
+          onChange={(e) => setUserData({ ...userData, country: e.target.value })}
+          className={formErrors.country ? 'invalid-input' : ''}
+          required
+        />
+        <label htmlFor="postcode">Post Code</label>
+        <input
+          id="postcode"
+          type="text"
+          placeholder="Enter your post code"
+          value={userData.postcode}
+          onChange={(e) => {
+            const onlyNums = e.target.value.replace(/[^0-9]/g, '');
+            setUserData({ ...userData, postcode: onlyNums });
+          }}
+          className={formErrors.postcode ? 'invalid-input' : ''}
+          required
+        />
+        {formErrors.postcode && <div className="error-message">{formErrors.postcode}</div>}
+      </div>
+    </form>
+  </div>
+)}
+
+
+
+
+{step === 'payment-method' && (
+  <div className="payment-method-page">
+    <BackButton onClick={() => setStep('address')} />
+    <NextButton onClick={handlePaymentMethodNext} />
+
+
+    <h2>Choose Payment Method</h2>
+
+    <div className="payment-options">
+      <button
+        className={`payment-option ${selectedPayment === 'upi' ? 'selected' : ''}`}
+        onClick={() => setSelectedPayment('upi')}
+      >
+        UPI
+      </button>
+
+      <button
+        className={`payment-option ${selectedPayment === 'card' ? 'selected' : ''}`}
+        onClick={() => setSelectedPayment('card')}
+      >
+        Debit/Credit Card
+      </button>
+    </div>
+
+    <div className="payment-form">
+      {selectedPayment === 'upi' && (
+        <form>
+          <label htmlFor="upiId">UPI ID</label>
+          <input
+            type="text"
+            id="upiId"
+            placeholder="example@upi"
+            value={paymentData.upiId}
+            onChange={(e) => setPaymentData({ ...paymentData, upiId: e.target.value })}
+          />
+        </form>
       )}
 
+      {selectedPayment === 'card' && (
+        <form>
+          <label htmlFor="cardNumber">Card Number</label>
+          <input
+            type="text"
+            id="cardNumber"
+            placeholder="1234 5678 9012 3456"
+            value={paymentData.cardNumber}
+            onChange={(e) => setPaymentData({ ...paymentData, cardNumber: e.target.value })}
+          />
+
+          <label htmlFor="expiry">Expiry Date</label>
+          <input
+            type="text"
+            id="expiry"
+            placeholder="MM/YY"
+            value={paymentData.expiry}
+            onChange={(e) => setPaymentData({ ...paymentData, expiry: e.target.value })}
+          />
+
+          <label htmlFor="cvv">CVV</label>
+          <input
+            type="password"
+            id="cvv"
+            placeholder="123"
+            value={paymentData.cvv}
+            onChange={(e) => setPaymentData({ ...paymentData, cvv: e.target.value })}
+          />
+        </form>
+      )}
+    </div>
+  </div>
+)}
 
 
 
@@ -419,6 +858,8 @@ const Listing = () => {
 
      {step === 'payment' && (
 <div className="payment-page">
+
+
       {/* Div 1: Header */}
       <div className="order-header">
         <h2>🧾 Order ID: #ORD123456</h2>
@@ -476,8 +917,8 @@ const Listing = () => {
 
       {/* Buttons */}
       <div className="button-row">
-        <BackButton onClick={() => setStep('address')} />
-        <NextButton onClick={handleNext} />
+            <BackButton onClick={() => setStep('address')} />
+            <NextButton onClick={handlePaymentNext} />
       </div>
     </div>
 )}

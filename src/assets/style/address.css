@@ -1,0 +1,136 @@
+/* Container styles */
+.address-container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Page layout */
+  .address-page {
+    /* background-color: #f9f9f9; */
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  /* Navigation */
+  .checkout-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .back-btn, .next-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .back-btn {
+    background-color: #f1f1f1;
+  }
+  
+  .next-btn {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  /* Title */
+  .address-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .address-title h2 {
+    margin-bottom: 20px;
+  }
+  
+  /* Form layout */
+  .address-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Form rows */
+  .form-row {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Form row with two inputs */
+  .form-row:has(input + label) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  /* Labels */
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    width: 100%;
+  }
+  
+  /* Inputs */
+  input {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #007bff;
+  }
+  
+  input::placeholder {
+    color: #999;
+  }
+  
+  /* Validation Styles */
+  .invalid-input {
+    border: 1px solid #dc3545 !important;
+    background-color: #fff8f8;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  }
+  
+  .error-message {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+  }
+  
+  /* Success state styling */
+  .valid-input {
+    border: 1px solid #28a745 !important;
+    background-color: #f8fff8;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .form-row {
+      flex-direction: column;
+    }
+    
+    .form-row:has(input + label) {
+      display: flex;
+      flex-direction: column;
+    }
+  }

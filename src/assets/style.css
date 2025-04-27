@@ -4,6 +4,17 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+/* Hide the number input arrows in most browsers (WebKit-based browsers) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+
 ul{
     padding: 0;
 }
@@ -170,8 +181,8 @@ ul{
 
 .cards__inner__wrap {
   display: flex;
-  flex-wrap: wrap; /* important */
-  overflow-x: auto;   /* allows horizontal scroll */
+  flex-wrap: wrap; 
+  overflow-x: auto;   
   gap: 0.1rem;
   padding-top: 1rem;
 }
@@ -296,7 +307,7 @@ ul{
 
 
 /* address page */
-.address-page {
+/* .address-page {
   padding: 16px;
 }
 
@@ -339,12 +350,38 @@ ul{
   color: #999;
 }
 
-/* Responsive adjustments */
+
+.invalid-input {
+  border: 1px solid #dc3545 !important;
+  background-color: #fff8f8;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.form-row {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  position: absolute;
+  bottom: -18px;
+}
+
+.valid-input {
+  border: 1px solid #28a745 !important;
+  background-color: #f8fff8;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+
 @media (max-width: 480px) {
   .form-row {
     flex-direction: column;
   }
-}
+} */
 
   
 
