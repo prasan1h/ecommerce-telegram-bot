@@ -8,33 +8,89 @@ import iceCreamImg from '../assets/img/icecream.png'
 
 
 export function getData() {
-    return [
-      { title: "Pizza", price: 17.99, Image: pizzaImg,id:1 },
-      { title: "Burger", price: 15, Image: burgerImg,id:2 },
-      { title: "Coca", price: 3.5, Image: cocaImg ,id:3},
-      { title: "Salad", price: 2.5, Image: saladImg,id:5 },
-      { title: "Water", price: 0.99, Image: waterImg,id:6 },
-      { title: "Ice cream", price: 2.99, Image: iceCreamImg,id:7 },
+
+  const foods = {
+    pizzas: {
+      title: "Pizzas",
+      items: [
+        { title: "Pizza", price: 17.99, Image: pizzaImg, id: 1 },
+        { title: "Pizza", price: 17.99, Image: pizzaImg, id: 1 },
+        { title: "Pizza", price: 17.99, Image: pizzaImg, id: 1 },
+        { title: "Pizza", price: 17.99, Image: pizzaImg, id: 1 },
+      ]
+    },
+    burgers: {
+      title: "Burgers",
+      items: [
+        { title: "Burger", price: 15, Image: burgerImg, id: 2 },
+        { title: "Burger", price: 15, Image: burgerImg, id: 2 },
+        { title: "Burger", price: 15, Image: burgerImg, id: 2 },
+        { title: "Burger", price: 15, Image: burgerImg, id: 2 },
+      ]
+    },
+    coolDrinks: {
+      title: "Cool Drinks",
+      items: [
+        { title: "Coca", price: 3.5, Image: cocaImg, id: 3 },
+        { title: "Water", price: 0.99, Image: waterImg, id: 6 },
+        { title: "Coca", price: 3.5, Image: cocaImg, id: 3 },
+        { title: "Water", price: 0.99, Image: waterImg, id: 6 },
+        { title: "Coca", price: 3.5, Image: cocaImg, id: 3 },
+        { title: "Water", price: 0.99, Image: waterImg, id: 6 },
+        { title: "Coca", price: 3.5, Image: cocaImg, id: 3 },
+        { title: "Water", price: 0.99, Image: waterImg, id: 6 },
+      ]
+    },
+    desserts: {
+      title: "Desserts",
+      items: [
+        { title: "Ice cream", price: 2.99, Image: iceCreamImg, id: 7 },
+        { title: "Ice cream", price: 2.99, Image: iceCreamImg, id: 7 },
+        { title: "Ice cream", price: 2.99, Image: iceCreamImg, id: 7 },
+        { title: "Ice cream", price: 2.99, Image: iceCreamImg, id: 7 },
+      ]
+    },
+    salads: {
+      title: "Salads",
+      items: [
+        { title: "Salad", price: 2.5, Image: saladImg, id: 5 },
+        { title: "Salad", price: 2.5, Image: saladImg, id: 5 },
+        { title: "Salad", price: 2.5, Image: saladImg, id: 5 },
+        { title: "Salad", price: 2.5, Image: saladImg, id: 5 },
+      ]
+    }
+  };
+
+  return foods
+  
+
+    // return [
+    //   { title: "Pizza", price: 17.99, Image: pizzaImg,id:1 },
+    //   { title: "Burger", price: 15, Image: burgerImg,id:2 },
+    //   { title: "Coca", price: 3.5, Image: cocaImg ,id:3},
+    //   { title: "Salad", price: 2.5, Image: saladImg,id:5 },
+    //   { title: "Water", price: 0.99, Image: waterImg,id:6 },
+    //   { title: "Ice cream", price: 2.99, Image: iceCreamImg,id:7 },
       
-      { title: "Pizza", price: 17.99, Image: pizzaImg,id:1 },
-      { title: "Burger", price: 15, Image: burgerImg,id:2 },
-      { title: "Coca", price: 3.5, Image: cocaImg ,id:3},
-      { title: "Salad", price: 2.5, Image: saladImg,id:5 },
-      { title: "Water", price: 0.99, Image: waterImg,id:6 },
-      { title: "Ice cream", price: 2.99, Image: iceCreamImg,id:7 },
-      { title: "Pizza", price: 17.99, Image: pizzaImg,id:1 },
-      { title: "Burger", price: 15, Image: burgerImg,id:2 },
-      { title: "Coca", price: 3.5, Image: cocaImg ,id:3},
-      { title: "Salad", price: 2.5, Image: saladImg,id:5 },
-      { title: "Water", price: 0.99, Image: waterImg,id:6 },
-      { title: "Ice cream", price: 2.99, Image: iceCreamImg,id:7 },
-      { title: "Pizza", price: 17.99, Image: pizzaImg,id:1 },
-      { title: "Burger", price: 15, Image: burgerImg,id:2 },
-      { title: "Coca", price: 3.5, Image: cocaImg ,id:3},
-      { title: "Salad", price: 2.5, Image: saladImg,id:5 },
-      { title: "Water", price: 0.99, Image: waterImg,id:6 },
-      { title: "Ice cream", price: 2.99, Image: iceCreamImg,id:7 },
+    //   { title: "Pizza", price: 17.99, Image: pizzaImg,id:1 },
+    //   { title: "Burger", price: 15, Image: burgerImg,id:2 },
+    //   { title: "Coca", price: 3.5, Image: cocaImg ,id:3},
+    //   { title: "Salad", price: 2.5, Image: saladImg,id:5 },
+    //   { title: "Water", price: 0.99, Image: waterImg,id:6 },
+    //   { title: "Ice cream", price: 2.99, Image: iceCreamImg,id:7 },
+    //   { title: "Pizza", price: 17.99, Image: pizzaImg,id:1 },
+    //   { title: "Burger", price: 15, Image: burgerImg,id:2 },
+    //   { title: "Coca", price: 3.5, Image: cocaImg ,id:3},
+    //   { title: "Salad", price: 2.5, Image: saladImg,id:5 },
+    //   { title: "Water", price: 0.99, Image: waterImg,id:6 },
+    //   { title: "Ice cream", price: 2.99, Image: iceCreamImg,id:7 },
+    //   { title: "Pizza", price: 17.99, Image: pizzaImg,id:1 },
+    //   { title: "Burger", price: 15, Image: burgerImg,id:2 },
+    //   { title: "Coca", price: 3.5, Image: cocaImg ,id:3},
+    //   { title: "Salad", price: 2.5, Image: saladImg,id:5 },
+    //   { title: "Water", price: 0.99, Image: waterImg,id:6 },
+    //   { title: "Ice cream", price: 2.99, Image: iceCreamImg,id:7 },
 
       
-    ];
+    // ];
 }

@@ -172,7 +172,7 @@ const Listing = () => {
 
 
       {/* Listing Page */}
-      {step === 'listing' && (
+      {/* {step === 'listing' && (
         <>
           {userData?.first_name && (
             <h1 className="heading">Hello, {userData.first_name}</h1>
@@ -193,7 +193,42 @@ const Listing = () => {
             ))}
           </div>
         </>
-      )}
+      )} */}
+
+
+      {/* Listing Page */}
+{step === 'listing' && (
+  <>
+    {userData?.first_name && (
+      <h1 className="heading">Hello, {userData.first_name}</h1>
+    )}
+
+    <h1 className="heading">Order Food</h1>
+    <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
+    
+    <div className="cards__container">
+      {Object.entries(foods).map(([categoryKey, categoryValue]) => (
+        <div key={categoryKey}>
+          {/* Category Title */}
+          <h2 className="category__heading">{categoryValue.title}</h2>
+          
+          <div className="cards__inner">
+            {categoryValue.items.map((food, index) => (
+              <Card
+                food={food}
+                key={food.id || index}
+                step={step}
+                onAdd={onAdd}
+                onRemove={onRemove}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </>
+)}
+
 
 
 
