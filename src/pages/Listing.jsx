@@ -4,12 +4,12 @@ import "../assets/style.css";
 import Card from "../components/card";
 import Cart from "../components/cart";
 
-// import {userData} from '../script/bot.cjs'
+const { userData } = require('./path/to/your/bot.cjs');
 import { getData } from "../db/db";
 
 const tele = window.Telegram.WebApp;
 const foods = getData();
-// const user = userData();
+const chatData = userData(ctx);
 
 const Listing = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -35,7 +35,7 @@ const Listing = () => {
         ...prev,
         firstName: user.first_name || '',
         lastName: user.last_name || '',
-        phone: '', // Telegram doesn't provide phone directly unless shared explicitly
+        phone: '',
         city: '',
         state: '',
         country: '',
@@ -166,34 +166,6 @@ const Listing = () => {
 
 
     <div style={{ position: 'relative', paddingTop: '50px' }}>
-
-
-
-
-
-      {/* Listing Page */}
-      {/* {step === 'listing' && (
-        <>
-          {userData?.first_name && (
-            <h1 className="heading">Hello, {userData.first_name}</h1>
-          )}
-
-          <h1 className="heading">Order Food</h1>
-          <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
-          <div className="cards__container">
-            {foods.map((food, index) => (
-              <Card
-                food={food}
-                key={food.id || index}
-                // key={`${food.id || index}-${step}`}
-                step={step}
-                onAdd={onAdd}
-                onRemove={onRemove}
-              />
-            ))}
-          </div>
-        </>
-      )} */}
 
 
 
