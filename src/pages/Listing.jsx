@@ -174,9 +174,9 @@ const Listing = () => {
       {/* Listing Page */}
       {step === 'listing' && (
         <>
-          {/* {userData?.first_name && (
+          {userData?.first_name && (
             <h1 className="heading">Hello, {userData.first_name}</h1>
-          )} */}
+          )}
 
           <h1 className="heading">Order Food</h1>
           <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
