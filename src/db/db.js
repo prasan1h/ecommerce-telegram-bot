@@ -34,5 +34,7 @@ export function getData() {
       { title: "Salad", price: 2.5, Image: saladImg,id:5 },
       { title: "Water", price: 0.99, Image: waterImg,id:6 },
       { title: "Ice cream", price: 2.99, Image: iceCreamImg,id:7 },
+
+      
     ];
 }
