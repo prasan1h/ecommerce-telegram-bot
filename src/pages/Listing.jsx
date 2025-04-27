@@ -4,12 +4,12 @@ import "../assets/style.css";
 import Card from "../components/card";
 import Cart from "../components/cart";
 
-const { userData } = require('./path/to/your/bot.cjs');
+// const { userData } = require('../script/bot.cjs');
 import { getData } from "../db/db";
 
 const tele = window.Telegram.WebApp;
 const foods = getData();
-const chatData = userData(ctx);
+// const chatData = userData(ctx);
 
 const Listing = () => {
   const [cartItems, setCartItems] = useState([]);
