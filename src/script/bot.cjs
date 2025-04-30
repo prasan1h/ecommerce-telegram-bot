@@ -130,12 +130,13 @@ bot.telegram.setWebhook(`${DOMAIN}/`)
 app.get('*', (req, res) => {
   // res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   res.sendFile(path.join(__dirname, '../../dist', 'index.html'));
+  console.log("bot on port");
 });
 
 // Root route for checking if the bot is running
-app.get("/", (req, res) => {
-  res.send("🤖 Bot is running.");
-});
+// app.get("/", (req, res) => {
+//   res.send("🤖 Bot is running.");
+// });
 
 
 
