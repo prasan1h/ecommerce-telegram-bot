@@ -10,6 +10,9 @@
     "preview": "vite preview",
     "type": "module"
   },
+  "engines": {
+  "node": "20"
+  },
   "dependencies": {
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
