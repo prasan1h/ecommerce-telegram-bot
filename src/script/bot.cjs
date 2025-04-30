@@ -56,9 +56,11 @@ bot.on(message("text"), async (ctx) => {
 
 // === Webhook setup ===
 app.use(bot.webhookCallback("/api"));
-bot.telegram.setWebhook(`${cleanDomain}/`)
+
+bot.telegram.setWebhook(`${cleanDomain}/api`)
   .then(() => console.log(`✅ Webhook set to ${cleanDomain}/api`))
   .catch((err) => console.error("❌ Failed to set webhook:", err));
+
 
 // === Root route (health check) ===
 // app.get("/:", (req, res) => {
