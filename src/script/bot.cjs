@@ -38,7 +38,7 @@ bot.start((ctx) => {
   ctx.reply(`Welcome ${firstName} 🙂\n\nInformation: /info\n:)`, {
     reply_markup: {
       inline_keyboard: [
-        [{ text: "🛍️ Tap to shop now", web_app: { url: WEB_LINK } }],
+        [{ text: "🛍️shop now", web_app: { url: WEB_LINK } }],
       ],
       resize_keyboard: true,
     },
