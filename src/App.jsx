@@ -8,6 +8,7 @@ import Listing from './pages/Listing';
 import Checkout from './pages/Checkout';
 import Add from './pages/AddList';
 import Payment from './pages/Payment';
+import About from "./pages/About"
 
 function App() {
 
@@ -24,6 +25,10 @@ function App() {
     {
       path:"/checkout",
       element: <><Checkout/></>
+    },
+    {
+      path:"/about",
+      element: <><About/></>
     },
     {
       path:"/add",

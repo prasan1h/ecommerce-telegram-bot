@@ -52,6 +52,8 @@ bot.command("info", (ctx) =>
   )
 );
 
+bot.command("about", (ctx) => ctx.reply("about"));
+
 // Reject plain messages
 bot.on(message("text"), async (ctx) => {
   await ctx.reply("🚫 Please use the provided buttons or commands.");
@@ -60,6 +62,7 @@ bot.on(message("text"), async (ctx) => {
 // === Webhook setup ===
 app.use(bot.webhookCallback("/"));
 app.use(bot.webhookCallback("/payment"));
+app.use(bot.webhookCallback("/about"));
 
 bot.telegram.setWebhook(`${cleanDomain}/`)
   .then(() => console.log(`✅ Webhook set to ${cleanDomain}/`))
@@ -75,4 +78,3 @@ app.listen(PORT, () => {
   console.log(`🌐 Server is running on port ${PORT}`);
 });
 
-// === Do NOT call bot.stop() — webhook mode doesn't use launch/stop ===
