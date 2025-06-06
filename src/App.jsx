@@ -6,13 +6,19 @@ import "./assets/style.css";
 
 import Listing from './pages/Listing';
 import Checkout from './pages/Checkout';
-import Address from './pages/Address';
+import Add from './pages/AddList';
 import Payment from './pages/Payment';
 
 function App() {
+
+  // navigate = Navigate();
   const router = createBrowserRouter([
     {
       path:"/",
+      element: <Navigate to="/home" />
+    },
+    {
+      path:"/home",
       element: <><Listing/></>
     },
     {
@@ -20,8 +26,8 @@ function App() {
       element: <><Checkout/></>
     },
     {
-      path:"/address",
-      element: <><Address/></>
+      path:"/add",
+      element: <><Add/></>
     },
     {
       path:"/payment",

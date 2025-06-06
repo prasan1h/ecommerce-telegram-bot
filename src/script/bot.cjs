@@ -24,6 +24,8 @@ const bot = new Telegraf(TOKEN);
 
 // === Serve Vite build ===
 app.use(express.static(path.join(__dirname, "../../dist")));
+// app.use(await bot.createWebhook({ domain: webhookDomain }));
+
 app.get("/*name", (req, res) => {
   res.sendFile(path.join(__dirname, "../../dist", "index.html"));
 });
@@ -35,7 +37,7 @@ bot.start((ctx) => {
 
   ctx.reply(`Welcome ${firstName} 🙂\n\nInformation: /info\n:)`, {
     reply_markup: {
-      keyboard: [
+      inline_keyboard: [
         [{ text: "🛍️ Tap to shop now", web_app: { url: WEB_LINK } }],
       ],
       resize_keyboard: true,
