@@ -59,6 +59,7 @@ bot.on(message("text"), async (ctx) => {
 
 // === Webhook setup ===
 app.use(bot.webhookCallback("/"));
+app.use(bot.webhookCallback("/payment"));
 
 bot.telegram.setWebhook(`${cleanDomain}/`)
   .then(() => console.log(`✅ Webhook set to ${cleanDomain}/`))
