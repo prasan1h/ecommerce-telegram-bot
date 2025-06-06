@@ -1,5 +1,6 @@
 
 import { useState, useEffect, React } from 'react';
+import { Link } from 'react-router-dom';
 import "../assets/style.css";
 import "../assets/style/address.css"
 import "../assets/style/payMethod.css"
@@ -321,7 +322,7 @@ const Listing = () => {
     {userData?.first_name && (
       <h1 className="heading">Hello, {userData.first_name}</h1>
     )}
-
+    <Link to="/about">about</Link>
     <h1 className="heading">Order Food</h1>
     <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
     
