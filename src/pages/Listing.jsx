@@ -322,7 +322,7 @@ const Listing = () => {
 {step === 'listing' && (
   <>
     {userData.firstName && (
-      <h1 className="heading">Hello, {user.firstName}</h1>
+      <h1 className="heading">Hello, {userData.firstName}</h1>
     )}
 
     {userData.id == "1144248731" && (
