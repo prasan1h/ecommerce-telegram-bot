@@ -1,11 +1,29 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  telegram_id: { type: String, unique: true },
-  first_name: String,
-  last_name: String,
-  username: String,
-  created_at: { type: Date, default: Date.now },
+id: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  first_name: {
+    type: String,
+    required: true
+  },
+  last_name: {
+    type: String,
+    required: false
+  },
+  username: {
+    type: String,
+    required: false
+  },
+  type: {
+    type: String,
+    enum: ['private', 'group', 'supergroup', 'channel'],
+    required: true
+  }
 });
 
-module.exports = mongoose.model("User", userSchema);
+const UserMOdel = mongoose.model("users", userSchema);
+module.exports = UserMOdel
