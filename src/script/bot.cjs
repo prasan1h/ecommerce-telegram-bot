@@ -9,7 +9,7 @@ const { message } = require("telegraf/filters");
 
 
 const mongoose = require("mongoose");
-const UserMOdel = require("../db/models/userSchema");
+const UserModel = require("../db/models/userSchema");
 
 const app = express();
 
