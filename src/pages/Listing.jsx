@@ -319,10 +319,12 @@ const Listing = () => {
 {/* Listing Page */}
 {step === 'listing' && (
   <>
-    {userData?.first_name && (
-      <h1 className="heading">Hello, {userData.first_name}</h1>
+    {user.first_name && (
+      <h1 className="heading">Hello, {user.first_name}</h1>
     )}
-    <Link to="/about">about</Link>
+
+    {user.id === 1144248731 && (
+    <Link to="/add">about</Link>)}
     <h1 className="heading">Order Food</h1>
     <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
     
