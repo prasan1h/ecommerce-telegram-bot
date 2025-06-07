@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-id: {
+  id: {
     type: Number,
     required: true,
     unique: true
@@ -20,10 +20,10 @@ id: {
   },
   type: {
     type: String,
-    enum: ['private', 'group', 'supergroup', 'channel'],
+    enum: ['private', 'group', 'supergroup', 'channel'],    
     required: true
   }
 });
 
-const UserMOdel = mongoose.model("users", userSchema);
-module.exports = UserMOdel
+const UserModel = mongoose.model("users", userSchema);
+module.exports = UserModel
