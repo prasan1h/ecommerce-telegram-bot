@@ -18,6 +18,7 @@ const Listing = () => {
   const [cartItems, setCartItems] = useState([]);
   const [step, setStep] = useState('listing');
   const [userData, setUserData] = useState({
+    id : '',
     firstName: '',
     lastName: '',
     email: '',
@@ -50,6 +51,7 @@ const Listing = () => {
     if (user) {
       setUserData((prev) => ({
         ...prev,
+        id : '',
         firstName: user.first_name || '',
         lastName: user.last_name || '',
         email: '',
@@ -319,12 +321,12 @@ const Listing = () => {
 {/* Listing Page */}
 {step === 'listing' && (
   <>
-    {user.first_name && (
-      <h1 className="heading">Hello, {user.first_name}</h1>
+    {userData.firstName && (
+      <h1 className="heading">Hello, {user.firstName}</h1>
     )}
 
-    {user.id === 1144248731 && (
-    <Link to="/add">about</Link>)}
+    {userData.id === 1144248731 && (
+    <Link to="/add">add List</Link>)}
     <h1 className="heading">Order Food</h1>
     <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
     
