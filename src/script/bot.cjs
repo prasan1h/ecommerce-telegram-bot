@@ -43,19 +43,22 @@ app.get("/*name", (req, res) => {
 bot.start( async (ctx) => {
   const firstName = ctx.chat.first_name || "User";
   const data = ctx.chat;
-  const id = ctx.chat.id
-  console.log(id)
+  // const id = ctx.chat.id
+  // console.log(id)
   console.log(data);
 
-  if(data){
-    const userExist = await UserMOdel.findOne({id});
-    if(userExist){
-      return;
-    }
-    else{
-        const user = new UserMOdel(data);
-        await user.save();
-    }
+  const { id, first_name, last_name, username } = ctx.from;
+  const existingUser = await UserModel.findOne({ id });
+
+  if (!existingUser) {
+    const newUser = new UserModel({
+      id,
+      first_name,
+      last_name,
+      username,
+      type: ctx.chat.type,
+    });
+    await newUser.save();
   }
 
 
