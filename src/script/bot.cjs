@@ -2,6 +2,7 @@
 
 
 require("dotenv").config();
+require("../db/dbconn");
 const express = require("express");
 const path = require("path");
 const { Telegraf } = require("telegraf");
@@ -31,9 +32,11 @@ const bot = new Telegraf(TOKEN);
 app.use(express.static(path.join(__dirname, "../../dist")));
 
 
-mongoose.connect(MONGO_URL)
-.then(() => {console.log("mongo connected in bot server");})
-.catch((err) => {console.log("bot server mongo error",err)});
+// mongoose.connect(MONGO_URL)
+// .then(() => {console.log("mongo connected in bot server");})
+// .catch((err) => {console.log("bot server mongo error",err)});
+
+
 
 app.get("/*name", (req, res) => {
   res.sendFile(path.join(__dirname, "../../dist", "index.html"));
@@ -43,12 +46,11 @@ app.get("/*name", (req, res) => {
 bot.start( async (ctx) => {
   const firstName = ctx.chat.first_name || "User";
   const data = ctx.chat;
-  // const id = ctx.chat.id
-  // console.log(id)
+
   console.log(data);
 
   const { id, first_name, last_name, username } = ctx.from;
-  const existingUser = await UserModel.findOne({ id });
+  const existingUser = await UserModel.findOne(id);
 
   if (!existingUser) {
     const newUser = new UserModel({
