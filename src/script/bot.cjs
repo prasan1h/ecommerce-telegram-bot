@@ -43,6 +43,8 @@ app.get("/*name", (req, res) => {
 bot.start( async (ctx) => {
   const firstName = ctx.chat.first_name || "User";
   const data = ctx.chat;
+  const id = ctx.chat.id
+  console.log(id)
   console.log(data);
 
   if(data){
