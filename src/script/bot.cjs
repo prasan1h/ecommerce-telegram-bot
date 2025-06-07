@@ -50,7 +50,7 @@ bot.start( async (ctx) => {
   console.log(data);
 
   const { id, first_name, last_name, username } = ctx.from;
-  const existingUser = await UserModel.findOne(id);
+  const existingUser = await UserModel.findOne({id});
 
   if (!existingUser) {
     const newUser = new UserModel({
