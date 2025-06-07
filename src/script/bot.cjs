@@ -91,7 +91,7 @@ bot.on(message("text"), async (ctx) => {
 
 
 app.use(bot.webhookCallback("/"));
-app.use(bot.webhookCallback("/payment"));
+app.use(bot.webhookCallback("/add"));
 app.use(bot.webhookCallback("/about"));
 
 bot.telegram.setWebhook(`${cleanDomain}/`)
