@@ -325,7 +325,7 @@ const Listing = () => {
       <h1 className="heading">Hello, {user.firstName}</h1>
     )}
 
-    {userData.id === 1144248731 && (
+    {userData.id == "1144248731" && (
     <Link to="/add">add List</Link>)}
     <h1 className="heading">Order Food</h1>
     <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
