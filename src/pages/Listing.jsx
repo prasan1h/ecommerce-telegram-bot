@@ -96,7 +96,6 @@ const Listing = () => {
   useEffect(() => {
   if( step === "listing"){
     console.log(userData);
-    console.log(allowedId);
   }
   });
 
@@ -350,7 +349,7 @@ const Listing = () => {
     </div>
 
     <div className="addlink-div">
-      {userData.id === allowedId && (
+      {Number(userData.id) === allowedId && (
         <Link to="/add" className="add-link">
           ➕ Add List
         </Link>
