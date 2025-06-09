@@ -340,7 +340,7 @@ const Listing = () => {
       
     )}
 
-    {Number(userData.id) === allowedId && (
+    {userData.id === allowedId && (
     <Link to="/add">add List</Link>)}
  
  
