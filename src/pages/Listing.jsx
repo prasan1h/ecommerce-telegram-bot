@@ -8,7 +8,7 @@ import Card from "../components/card";
 import Cart from "../components/cart";
 
 
-const allowedId = process.env.REACT_APP_ALLOWED_TELEGRAM_ID;
+const allowedId = import.meta.env.VITE_ALLOWED_TELEGRAM_ID;
 
 // const { userData } = require('../script/bot.cjs');
 import { getData } from "../db/db";
