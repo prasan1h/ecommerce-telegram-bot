@@ -64,6 +64,7 @@ const Listing = () => {
         country: '',
         postcode: ''
       }));
+      console.log(user);
     }
 
   
@@ -323,6 +324,7 @@ const Listing = () => {
   <>
     {userData.firstName && (
       <h1 className="heading">Hello, {userData.firstName}</h1>
+      
     )}
 
     {userData?.id === 1144248731 && (
@@ -336,7 +338,7 @@ const Listing = () => {
     <div className="cards__container">
       {Object.entries(foods).map(([categoryKey, categoryValue]) => (
         <div key={categoryKey} className="category__block">
-          {/* Category Title */}
+        
           <h2 className="category__heading">{categoryValue.title}:</h2>
           
           <div className="cards__inner__wrap">
