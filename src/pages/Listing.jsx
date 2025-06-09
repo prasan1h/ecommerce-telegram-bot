@@ -70,9 +70,6 @@ const Listing = () => {
         postcode: ''
       }));
 
-      console.log(allowedId);
-
-
     }
 
 
@@ -99,6 +96,7 @@ const Listing = () => {
   useEffect(() => {
   if( step === "listing"){
     console.log(userData);
+    console.log(allowedId);
   }
   });
 
