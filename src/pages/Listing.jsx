@@ -346,7 +346,7 @@ const Listing = () => {
     </div>
 
 <div className="addlink-div">
-  {userData.id === `${allowedId}` && (
+  {Number(userData.id) === Number(allowedId) && (
     <Link to="/add" className="add-link">
       ➕ Add List
     </Link>
