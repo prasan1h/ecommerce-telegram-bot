@@ -7,6 +7,9 @@ import "../assets/style/payMethod.css"
 import Card from "../components/card";
 import Cart from "../components/cart";
 
+const allowedId = Number(process.env.REACT_APP_ALLOWED_TELEGRAM_ID);
+
+
 // const { userData } = require('../script/bot.cjs');
 import { getData } from "../db/db";
 
@@ -331,7 +334,7 @@ const Listing = () => {
       
     )}
 
-    {userData?.id === '1144248731' && (
+    {Number(userData?.id) === allowedId && (
     <Link to="/add">add List</Link>)}
 
       <Link to="/add">add List</Link>
