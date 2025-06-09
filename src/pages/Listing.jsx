@@ -70,7 +70,7 @@ const Listing = () => {
         postcode: ''
       }));
 
-        let content = null;
+      console.log(allowedId);
 
 
     }
