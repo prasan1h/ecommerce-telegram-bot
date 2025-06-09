@@ -48,6 +48,7 @@ const Listing = () => {
     tele.expand();
   
     const user = window.Telegram.WebApp.initDataUnsafe.user;
+    
     if (user) {
       setUserData((prev) => ({
         ...prev,
@@ -330,7 +331,7 @@ const Listing = () => {
       
     )}
 
-    {userData?.id === 1144248731 && (
+    {Number(userData?.id) === 1144248731 && (
     <Link to="/add">add List</Link>)}
 
 
