@@ -72,9 +72,7 @@ const Listing = () => {
 
         let content = null;
 
-  if (Number(userData?.id) === allowedId) {
-    content = <Link to="/add">Add List</Link>;
-  }
+
     }
 
 
@@ -338,11 +336,11 @@ const Listing = () => {
 {step === 'listing' && (
   <>
     {userData.firstName && (
-      <h1 className="heading">Hello, {userData.firstName} {userData.id}</h1>
+      <h1 className="heading">Hello, {userData.firstName}</h1>
       
     )}
 
-    {Number(userData?.id) === allowedId && (
+    {Number(userData.id) === allowedId && (
     <Link to="/add">add List</Link>)}
  
  
