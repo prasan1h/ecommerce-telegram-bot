@@ -49,6 +49,7 @@ bot.start( async (ctx) => {
   const data = ctx.chat;
 
   console.log(data);
+  console.log(ctx.user);
 
   const { id, first_name, last_name, username } = ctx.from;
   const existingUser = await UserModel.findOne({id});
