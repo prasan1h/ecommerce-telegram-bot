@@ -8,7 +8,7 @@ import Card from "../components/card";
 import Cart from "../components/cart";
 
 
-
+const allowedId = Number(process.env.REACT_APP_ALLOWED_TELEGRAM_ID);
 
 // const { userData } = require('../script/bot.cjs');
 import { getData } from "../db/db";
@@ -49,7 +49,7 @@ const Listing = () => {
   useEffect(() => {
     tele.ready();
     tele.expand();
-    const allowedId = Number(process.env.REACT_APP_ALLOWED_TELEGRAM_ID);
+    
   
     const user = window.Telegram.WebApp.initDataUnsafe.user;
     
