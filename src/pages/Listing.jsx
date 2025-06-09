@@ -7,7 +7,7 @@ import "../assets/style/payMethod.css"
 import Card from "../components/card";
 import Cart from "../components/cart";
 
-const allowedId = Number(process.env.REACT_APP_ALLOWED_TELEGRAM_ID);
+
 
 
 // const { userData } = require('../script/bot.cjs');
@@ -49,6 +49,7 @@ const Listing = () => {
   useEffect(() => {
     tele.ready();
     tele.expand();
+    const allowedId = Number(process.env.REACT_APP_ALLOWED_TELEGRAM_ID);
   
     const user = window.Telegram.WebApp.initDataUnsafe.user;
     
@@ -343,8 +344,8 @@ const Listing = () => {
 
     {Number(userData?.id) === allowedId && (
     <Link to="/add">add List</Link>)}
-
-    <div>{content}</div>
+ 
+    <div>{content ? (content) : (<p>user</p>)}</div>
 
       <Link to="/add">add List</Link>
     <h1 className="heading">Order Food</h1>
