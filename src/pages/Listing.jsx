@@ -345,13 +345,14 @@ const Listing = () => {
       )}
     </div>
 
-    <div className="addlink-div">
-      {userData.id === String(allowedId) && (
-        <Link to="/add" className="add-link">
-          ➕ Add List
-        </Link>
-      )}
-    </div>
+<div className="addlink-div">
+  {userData.id === `${allowedId}` && (
+    <Link to="/add" className="add-link">
+      ➕ Add List
+    </Link>
+  )}
+</div>
+
  
  
 
