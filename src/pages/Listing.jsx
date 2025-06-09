@@ -56,7 +56,7 @@ const Listing = () => {
     if (user) {
       setUserData((prev) => ({
         ...prev,
-        id : '',
+        id : user.id || '',
         firstName: user.first_name || '',
         lastName: user.last_name || '',
         email: '',
@@ -347,7 +347,7 @@ const Listing = () => {
  
  
 
-      <Link to="/add">add List</Link>
+
     <h1 className="heading">Order Food</h1>
 
     <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
