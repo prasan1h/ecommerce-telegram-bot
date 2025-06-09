@@ -342,6 +342,14 @@ const Listing = () => {
 
     {userData.id === 1144248731 && (
     <Link to="/add">add List</Link>)}
+
+    <div className="addlink-div">
+      {Number(userData.id) === allowedId && (
+        <Link to="/add" className="add-link">
+          ➕ Add List
+        </Link>
+      )}
+    </div>
  
  
 
