@@ -68,7 +68,14 @@ const Listing = () => {
         country: '',
         postcode: ''
       }));
+
+        let content = null;
+
+  if (Number(userData?.id) === allowedId) {
+    content = <Link to="/add">Add List</Link>;
+  }
     }
+
 
   
     const timer = setTimeout(() => {
@@ -336,6 +343,8 @@ const Listing = () => {
 
     {Number(userData?.id) === allowedId && (
     <Link to="/add">add List</Link>)}
+
+    <div>{content}</div>
 
       <Link to="/add">add List</Link>
     <h1 className="heading">Order Food</h1>
