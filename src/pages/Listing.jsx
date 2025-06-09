@@ -64,7 +64,6 @@ const Listing = () => {
         country: '',
         postcode: ''
       }));
-      console.log(user);
     }
 
   
@@ -87,7 +86,11 @@ const Listing = () => {
   }, [step]);
 
 
-
+  useEffect(() => {
+  if( step === "listing"){
+    console.log(userData);
+  }
+  });
 
 
 
