@@ -32,12 +32,30 @@ const addOn = async (req, res) => {
       return res.status(400).json({ success: false, message: "No category data provided" });
     }
 
-    const newFood = new FoodModel({ categories });
-    console.log("Saving to DB...");
+    // const newFood = new FoodModel({ categories });
+    // const existingFood = await FoodModel.findOne(newFood);
+    // console.log("Saving to DB...");
+    // if(!existingFood){
+    // const result = await newFood.save();
+    // console.log("✅ Saved:", result);
+    // }
+    // else{
+    //   console.log("food already exist");
+    // }
+    // console.log("✅ Saved:", result);
 
-    const result = await newFood.save();
+    // First check if it exists (more efficient)
+const existingFood = await FoodModel.findOne({ categories });
+console.log("Checking if food exists...");
 
-    console.log("✅ Saved:", result);
+if (!existingFood) {
+  console.log("Saving to DB...");
+  const newFood = new FoodModel({ categories });
+  const result = await newFood.save();
+  console.log("✅ Saved:", result);
+} else {
+  console.log("Food already exists");
+}
 
     return res.status(201).json({
       success: true,
