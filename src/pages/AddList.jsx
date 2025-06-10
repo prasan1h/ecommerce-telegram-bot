@@ -43,7 +43,7 @@ const AddList = () => {
   };
 
   try {
-    const response = await fetch(`${WEB_LINK}/add`, {
+    const response = await fetch(`${WEB_LINK}add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
