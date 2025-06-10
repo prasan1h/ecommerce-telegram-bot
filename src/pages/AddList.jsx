@@ -51,8 +51,15 @@ const AddList = () => {
       body: JSON.stringify(payload)
     });
 
-    const result = await response.json();
-    console.log(result);
+      const text = await response.text();
+
+  // Try parsing JSON only if text is not empty
+  let result;
+  try {
+    result = text ? JSON.parse(text) : {};
+  } catch (err) {
+    throw new Error("Server returned invalid JSON");
+  }
 
     navigate("/");
 
