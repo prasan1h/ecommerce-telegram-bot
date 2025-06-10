@@ -43,7 +43,7 @@ const AddList = () => {
   };
 
   try {
-    const response = await fetch(`${RENDER_URL}/add-list`, {
+    const response = await fetch(`${RENDER_URL}/list/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -79,25 +79,29 @@ const AddList = () => {
     type="text"
     placeholder="Category Title"
     value={formData.categoryTitle}
-    onChange={(e) => setFormData({ ...formData, categoryTitle: e.target.value })}
+    // onChange={(e) => setFormData({ ...formData, categoryTitle: e.target.value })}
+    onChange={handleChange}
   />
   <input
     type="text"
     placeholder="Item Title"
     value={formData.itemTitle}
-    onChange={(e) => setFormData({ ...formData, itemTitle: e.target.value })}
+    // onChange={(e) => setFormData({ ...formData, itemTitle: e.target.value })}
+    onChange={handleChange}
   />
   <input
     type="number"
     placeholder="Price"
     value={formData.price}
-    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+    // onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+    onChange={handleChange}
   />
   <input
     type="file"
     placeholder="Image URL (optional)"
     value={formData.image}
-    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+    // onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+    onChange={handleChange}
   />
   <button type="submit">Add Item</button>
 </form>
