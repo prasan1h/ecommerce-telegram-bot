@@ -1,7 +1,7 @@
 
 const router = require("express").Router();
-const addOn = require("../controller/itemController.cjs").default;
+const addOn = require("../controller/itemController.cjs");
 
-router.post("/list/add",addOn);
+router.post("/add",addOn);
 
 module.exports = router

@@ -11,11 +11,11 @@ import Cart from "../components/cart";
 const allowedId = import.meta.env.VITE_ALLOWED_TELEGRAM_ID;
 
 // const { userData } = require('../script/bot.cjs');
-import { getData } from "../db/db";
+import { getData } from "../db/db.cjs";
 
 const tele = window.Telegram.WebApp;
 const foods = getData();
-// const chatData = userData(ctx);
+
 
 const Listing = () => {
   const [cartItems, setCartItems] = useState([]);

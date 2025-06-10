@@ -53,5 +53,5 @@ const addOn = async (req, res) => {
   }
 };
 
-export default addOn;
+module.exports = addOn;
 
