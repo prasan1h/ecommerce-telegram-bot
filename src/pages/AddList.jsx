@@ -19,9 +19,9 @@ const AddList = () => {
 
         const handleChange = (e) => {
         const {name,value} = e.target;
-        const copyProdInfo = {...prodInfo};
-        copyProdInfo[name] = value;
-        setProdInfo(copyProdInfo);
+        const copyFormInfo = {...formData};
+        copyFormInfo[name] = value;
+        setFormData(copyFormInfo);
         }
 
     const handleSubmit = async (e) => {
