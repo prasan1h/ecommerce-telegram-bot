@@ -10,7 +10,7 @@ const { Telegraf } = require("telegraf");
 const { message } = require("telegraf/filters");
 
 
-const mongoose = require("mongoose");
+
 const UserModel = require("../db/models/userSchema");
 
 const app = express();
@@ -32,10 +32,6 @@ const bot = new Telegraf(TOKEN);
 
 app.use(express.static(path.join(__dirname, "../../dist")));
 
-
-// mongoose.connect(MONGO_URL)
-// .then(() => {console.log("mongo connected in bot server");})
-// .catch((err) => {console.log("bot server mongo error",err)});
 
 
 
