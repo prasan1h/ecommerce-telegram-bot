@@ -48,10 +48,20 @@ const addOn = async (req, res) => {
 try {
   console.log("Data to save:", { categories });
   console.log("Type:", typeof categories);
+
+  const itemTitles = [];
+categories.forEach(category => {
+  category.items.forEach(item => {
+    itemTitles.push(item.title);
+  });
+});
+console.log("Checking for item titles:", itemTitles);
   
   // Try different query approaches
-  const existingFood = await FoodModel.findOne({ categories });
-  console.log("Found existing:", existingFood);
+ const existingFood = await FoodModel.findOne({
+  'categories.items.title': { $in: itemTitles }
+});
+console.log("exist", existingFood);
   
   if (!existingFood) {
     const newFood = new FoodModel({ categories });

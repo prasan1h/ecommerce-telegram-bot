@@ -184,7 +184,7 @@ const AddList = () => {
         throw new Error('Server returned invalid JSON');
       }
 
-      // navigate("/");
+      navigate("/");
     } catch (err) {
       console.error('Error adding item:', err);
     }
