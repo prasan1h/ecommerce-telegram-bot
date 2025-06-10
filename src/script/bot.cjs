@@ -2,7 +2,7 @@
 
 
 require("dotenv").config();
-// require("../db/dbconn");
+require("../db/dbconn");
 // require("../db/server");
 const express = require("express");
 const path = require("path");
@@ -11,7 +11,7 @@ const { message } = require("telegraf/filters");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const UserModel = require("../db/models/userSchema");
+const UserModel = require("../db/models/userSchema.cjs");
 
 const app = express();
 

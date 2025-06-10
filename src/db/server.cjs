@@ -3,9 +3,9 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const prod = require("../router/productRouter");
+const prod = require("../router/productRouter.cjs");
 
-require("../db/dbconn");
+require("./dbconn.cjs");
 
 app.use(express.json());
 app.use(bodyParser.json());

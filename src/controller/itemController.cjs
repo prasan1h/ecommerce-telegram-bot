@@ -18,7 +18,7 @@
 // module.exports = addOn;
 
 
-const FoodModel = require("../db/models/itemsSchema");
+const FoodModel = require("../db/models/itemsSchema.cjs");
 
 const addOn = async (req, res) => {
   try {
