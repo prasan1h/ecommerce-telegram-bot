@@ -165,7 +165,7 @@ const AddList = () => {
     };
 
     try {
-      const response = await fetch(`${RENDER_URL}/add`, {
+      const response = await fetch(`${RENDER_URL}/server/list/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
