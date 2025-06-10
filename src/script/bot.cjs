@@ -2,7 +2,7 @@
 
 
 require("dotenv").config();
-require("../db/dbconn");
+require("../db/dbconn.cjs");
 // require("../db/server");
 const express = require("express");
 const path = require("path");
