@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node src/script/bot.cjs",
+    "start:api": "node src/db/server.js",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
