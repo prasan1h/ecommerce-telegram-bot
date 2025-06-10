@@ -18,23 +18,26 @@
 // module.exports = addOn;
 
 
-const FoodModel = require("../db/models/itemsSchema");
+import FoodModel from "../db/models/itemsSchema";
 
 const addOn = async (req, res) => {
   try {
+    console.log("Incoming request ✅");
+    console.log("Payload:", req.body);
+
     const { categories } = req.body;
 
     if (!categories || categories.length === 0) {
-      return res.status(400).json({
-        success: false,
-        message: "No category data provided"
-      });
+      console.log("❌ No category data");
+      return res.status(400).json({ success: false, message: "No category data provided" });
     }
 
     const newFood = new FoodModel({ categories });
+    console.log("Saving to DB...");
 
     const result = await newFood.save();
-    console.log("Saved to DB:", result);
+
+    console.log("✅ Saved:", result);
 
     return res.status(201).json({
       success: true,
@@ -42,7 +45,7 @@ const addOn = async (req, res) => {
       data: result
     });
   } catch (err) {
-    console.error("Save error:", err);
+    console.error("🔥 Error in addOn:", err);
     return res.status(500).json({
       success: false,
       message: "Error adding item: internal server error"
@@ -50,5 +53,5 @@ const addOn = async (req, res) => {
   }
 };
 
-module.exports = addOn;
+export default addOn;
 
