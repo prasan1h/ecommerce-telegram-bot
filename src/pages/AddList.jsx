@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const RENDER_URL = import.meta.env.VITE_RENDER_EXTERNAL_URL;
+const WEB_LINK = import.meta.env.VITE_WEB_LINK;
 
 const AddList = () => {
         
@@ -42,7 +43,7 @@ const AddList = () => {
   };
 
   try {
-    const response = await fetch(`${RENDER_URL}/add`, {
+    const response = await fetch(`${WEB_LINK}/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
