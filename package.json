@@ -8,8 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "type": "module"
+    "preview": "vite preview"
   },
   "engines": {
     "node": "20"
