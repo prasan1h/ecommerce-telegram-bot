@@ -8,8 +8,8 @@ const express = require("express");
 const path = require("path");
 const { Telegraf } = require("telegraf");
 const { message } = require("telegraf/filters");
-
-
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const UserModel = require("../db/models/userSchema");
 
@@ -31,8 +31,8 @@ const bot = new Telegraf(TOKEN);
 
 
 app.use(express.static(path.join(__dirname, "../../dist")));
-
-
+app.use(cors());
+app.use(bodyParser.json());
 
 
 app.get("/*name", (req, res) => {
