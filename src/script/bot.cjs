@@ -97,9 +97,7 @@ bot.telegram.setWebhook(`${cleanDomain}/`)
   .catch((err) => console.error("❌ Failed to set webhook:", err));
 
 
-app.get("/", (req, res) => {
-  res.send("🤖 Bot is running.");
-});
+
 
 
 app.listen(PORT, () => {
