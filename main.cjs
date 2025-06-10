@@ -3,15 +3,16 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-
-const bot = require("./src/script/bot.cjs");
+const { bot, router } = require("./src/script/bot.cjs");
+// const bot = require("./src/script/bot.cjs");
 const server = require("./src/db/server.cjs")
 
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use("/",bot);
+// app.use("/",bot);
+app.use("/", router);
 app.use("/server",server);
 
 const port = process.env.BOT_PORT || 3000;
