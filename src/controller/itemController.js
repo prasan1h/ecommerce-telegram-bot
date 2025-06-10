@@ -10,7 +10,7 @@ const addOn = async (req,res) => {
     console.log("Saved:", result);
     return res.status(201).json({ success: true, message: "Item added successfully" });
   } catch (err) {
-    console.error("Save error:", err); // 👈 this line is crucial
+    console.error("Save error:", err);
     return res.status(500).json({ success: false, message: "Error adding item : internal server error" });
   }
 }
