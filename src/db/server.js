@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use("/list", prod);
+app.use("/", prod);
 
 // app.get("/",(req,res) => {
 //     res.send("hello 8800");
