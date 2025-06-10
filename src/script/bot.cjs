@@ -13,7 +13,8 @@ const bodyParser = require("body-parser");
 
 const UserModel = require("../db/models/userSchema.cjs");
 
-const app = express();
+// const app = express();
+const router = express.Router();
 
 
 const TOKEN = process.env.BOT_TOKEN;
@@ -30,13 +31,13 @@ const cleanDomain = DOMAIN.replace(/\/+$/, "");
 const bot = new Telegraf(TOKEN);
 
 
-app.use(express.static(path.join(__dirname, "../../dist")));
-app.use(express.json());
-app.use(cors());
-app.use(bodyParser.json());
+// app.use(express.static(path.join(__dirname, "../../dist")));
+// app.use(express.json());
+// app.use(cors());
+// app.use(bodyParser.json());
 
 
-app.get("/*name", (req, res) => {
+router.get("/*name", (req, res) => {
   res.sendFile(path.join(__dirname, "../../dist", "index.html"));
 });
 
@@ -88,10 +89,15 @@ bot.on(message("text"), async (ctx) => {
 });
 
 
-app.use(bot.webhookCallback("/"));
-app.use(bot.webhookCallback("/add"));
-app.use(bot.webhookCallback("/list/add"));
-app.use(bot.webhookCallback("/about"));
+// app.use(bot.webhookCallback("/"));
+// app.use(bot.webhookCallback("/add"));
+// app.use(bot.webhookCallback("/list/add"));
+// app.use(bot.webhookCallback("/about"));
+
+router.use('/', bot.webhookCallback('/'));
+router.use('/add', bot.webhookCallback('/add'));
+router.use('/list/add', bot.webhookCallback('/list/add'));
+router.use('/about', bot.webhookCallback('/about'));
 
 bot.telegram.setWebhook(`${cleanDomain}/`)
   .then(() => console.log(`✅ Webhook set to URL hosted on Render`))
@@ -99,7 +105,7 @@ bot.telegram.setWebhook(`${cleanDomain}/`)
 
 
 
-module.exports = { bot, app };
+module.exports = { bot, router };
 
 // app.listen(PORT, () => {
 //   console.log(`🌐 Server is running on port ${PORT}`);

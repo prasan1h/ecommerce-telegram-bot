@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use("/bot",bot);
+app.use("/",bot);
 app.use("/server",server);
 
 const port = process.env.BOT_PORT || 3000;
