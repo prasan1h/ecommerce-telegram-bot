@@ -45,16 +45,24 @@ const addOn = async (req, res) => {
     // console.log("✅ Saved:", result);
 
     // First check if it exists (more efficient)
-const existingFood = await FoodModel.findOne({ categories });
-console.log("Checking if food exists...");
-
-if (!existingFood) {
-  console.log("Saving to DB...");
-  const newFood = new FoodModel({ categories });
-  const result = await newFood.save();
-  console.log("✅ Saved:", result);
-} else {
-  console.log("Food already exists");
+try {
+  console.log("Data to save:", { categories });
+  console.log("Type:", typeof categories);
+  
+  // Try different query approaches
+  const existingFood = await FoodModel.findOne({ categories });
+  console.log("Found existing:", existingFood);
+  
+  if (!existingFood) {
+    const newFood = new FoodModel({ categories });
+    console.log("About to save:", newFood);
+    const result = await newFood.save();
+    console.log("✅ Saved:", result);
+  } else {
+    console.log("❌ Food already exists:", existingFood);
+  }
+} catch (error) {
+  console.error("Error:", error);
 }
 
     return res.status(201).json({
