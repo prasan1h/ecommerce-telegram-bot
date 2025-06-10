@@ -18,7 +18,7 @@
 // module.exports = addOn;
 
 
-import FoodModel from "../db/models/itemsSchema";
+const FoodModel = require("../db/models/itemsSchema");
 
 const addOn = async (req, res) => {
   try {

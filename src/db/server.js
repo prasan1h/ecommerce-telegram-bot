@@ -13,10 +13,10 @@ app.use(cors());
 
 app.use("/", prod);
 
-// app.get("/",(req,res) => {
-//     res.send("hello 8800");
-// });
+app.get("/",(req,res) => {
+    res.send("hello 8800");
+});
 
-// app.listen(8800, () => {
-//     console.log("8800 is working");
-// });
+app.listen(8800, () => {
+    console.log("8800 is working");
+});
