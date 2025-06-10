@@ -51,9 +51,8 @@ const AddList = () => {
       body: JSON.stringify(payload)
     });
 
-      const fetchedData = await response.json();
-      console.log(fetchedData);
       const text = await response.text();
+      console.log(text);
 
   // Try parsing JSON only if text is not empty
   let result;
