@@ -53,7 +53,7 @@ const AddList = () => {
     const result = await response.json();
     console.log(result);
 
-    navigate("/home");
+    navigate("/");
 
   } catch (err) {
     console.error("Error adding item:", err);
