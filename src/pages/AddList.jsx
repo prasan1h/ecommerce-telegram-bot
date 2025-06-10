@@ -57,11 +57,12 @@ const AddList = () => {
   let result;
   try {
     result = text ? JSON.parse(text) : {};
+    console.log(result);
   } catch (err) {
     throw new Error("Server returned invalid JSON");
   }
 
-    navigate("/");
+    // navigate("/");
 
   } catch (err) {
     console.error("Error adding item:", err);
