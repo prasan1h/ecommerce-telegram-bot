@@ -8,10 +8,11 @@ export default defineConfig({
     outDir: 'dist',
   },
   server: {
-    historyApiFallback: true
-  },
-  preview: {
-    historyApiFallback: true
+    // historyApiFallback: true
   }
+  // },
+  // preview: {
+  //   historyApiFallback: true
+  // }
 });
 
