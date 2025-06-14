@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Card from "../components/card";
 import Cart from "../components/cart";
 
-const SERVER_LINK = import.meta.env.VITE_RENDER_EXTERNAL_UR;
+const RENDER_EXTERNAL_URL = import.meta.env.VITE_RENDER_EXTERNAL_URL;
 
 const ListingStep = ({ 
   userData, 
@@ -22,29 +22,61 @@ const ListingStep = ({
   const [error, setError] = useState(null);
 
   // Fetch data from MongoDB
-  useEffect(() => {
-    const fetchFoods = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(`${SERVER_LINK}/server/list/foods`); // Adjust this endpoint as needed
+//   useEffect(() => {
+//     const fetchFoods = async () => {
+//       try {
+//         setLoading(true);
+//         const response = await fetch(`${RENDER_EXTERNAL_URL}/server/list/foods`); // Adjust this endpoint as needed
         
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! status: ${response.status}`);
+//         }
         
-        const data = await response.json();
-        setFoods(data);
-        setError(null);
-      } catch (err) {
-        console.error('Error fetching foods:', err);
-        setError('Failed to load food items. Please try again.');
-      } finally {
-        setLoading(false);
-      }
-    };
+//         const data = await response.json();
+//         setFoods(data);
+//         setError(null);
+//       } catch (err) {
+//         setError(true);
+//         console.error('Error fetching foods:', err);
+//         setError('Failed to load food items. Please try again.');
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
 
-    fetchFoods();
-  }, []);
+//     fetchFoods();
+//   }, []);
+
+
+useEffect(() => {
+  const fetchFoods = async () => {
+    try {
+      setLoading(true);
+
+      const response = await fetch(`${RENDER_EXTERNAL_URL}/server/list/foods`);
+
+      // Check if response is valid JSON
+      const contentType = response.headers.get('content-type');
+      if (!response.ok || !contentType || !contentType.includes('application/json')) {
+        const text = await response.text();
+        console.error('Invalid response body:', text.slice(0, 200));
+        throw new Error('Invalid response format');
+      }
+
+      const data = await response.json();
+      setFoods(data);
+      setError(null);
+    } catch (err) {
+      console.error('Error fetching foods:', err);
+      setError('Failed to load food items. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchFoods();
+}, []);
+
 
   // Loading state
   if (loading) {
