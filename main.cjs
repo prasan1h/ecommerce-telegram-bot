@@ -4,14 +4,14 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const { bot, router } = require("./src/script/bot.cjs");
-// const bot = require("./src/script/bot.cjs");
+
 const server = require("./src/db/server.cjs")
 
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.use("/",bot);
+
 app.use("/", router);
 app.use("/server",server);
 

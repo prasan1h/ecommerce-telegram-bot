@@ -89,10 +89,6 @@ bot.on(message("text"), async (ctx) => {
 });
 
 
-// app.use(bot.webhookCallback("/"));
-// app.use(bot.webhookCallback("/add"));
-// app.use(bot.webhookCallback("/list/add"));
-// app.use(bot.webhookCallback("/about"));
 
 router.use('/', bot.webhookCallback('/'));
 router.use('/add', bot.webhookCallback('/add'));
@@ -107,7 +103,4 @@ bot.telegram.setWebhook(`${cleanDomain}/`)
 
 module.exports = { bot, router };
 
-// app.listen(PORT, () => {
-//   console.log(`🌐 Server is running on port ${PORT}`);
-// });
 

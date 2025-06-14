@@ -629,14 +629,14 @@ ul{
 
 
 /* add list button */
-.addlink-div{
+/* .addlink-div{
     padding: 20px;
   text-align: center;
 }
 
 .add-link {
   display: inline-block;
-  background-color: #0088cc; /* Telegram blue */
+  background-color: #0088cc; 
   color: white;
   padding: 12px 24px;
   font-size: 1rem;
@@ -650,4 +650,47 @@ ul{
 .add-link:hover {
   background-color: #0073b1;
   transform: scale(1.05);
+} */
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.form-input {
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.form-button {
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #0056b3;
 }

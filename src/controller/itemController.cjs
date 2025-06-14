@@ -1,22 +1,3 @@
-// const FoodModel = require("../db/models/itemsSchema");
-
-// const addOn = async (req,res) => {
-//   try {
-//     const data = req.body;
-//     const newFood = new FoodModel(data);
-//     await newFood.save();
-//     const result = await newFood.save();
-
-//     console.log("Saved:", result);
-//     return res.status(201).json({ success: true, message: "Item added successfully" });
-//   } catch (err) {
-//     console.error("Save error:", err);
-//     return res.status(500).json({ success: false, message: "Error adding item : internal server error" });
-//   }
-// }
-
-// module.exports = addOn;
-
 
 const FoodModel = require("../db/models/itemsSchema.cjs");
 
@@ -32,19 +13,6 @@ const addOn = async (req, res) => {
       return res.status(400).json({ success: false, message: "No category data provided" });
     }
 
-    // const newFood = new FoodModel({ categories });
-    // const existingFood = await FoodModel.findOne(newFood);
-    // console.log("Saving to DB...");
-    // if(!existingFood){
-    // const result = await newFood.save();
-    // console.log("✅ Saved:", result);
-    // }
-    // else{
-    //   console.log("food already exist");
-    // }
-    // console.log("✅ Saved:", result);
-
-    // First check if it exists (more efficient)
 try {
   console.log("Data to save:", { categories });
   console.log("Type:", typeof categories);
@@ -57,7 +25,7 @@ categories.forEach(category => {
 });
 console.log("Checking for item titles:", itemTitles);
   
-  // Try different query approaches
+ 
  const existingFood = await FoodModel.findOne({
   'categories.items.title': { $in: itemTitles }
 });

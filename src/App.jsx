@@ -9,6 +9,7 @@ import Checkout from './pages/Checkout';
 import Add from './pages/AddList';
 import Payment from './pages/Payment';
 import About from "./pages/About"
+import ShowList from "./pages/ShowList";
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
     },
     {
       path:"/home",
-      element: <><Listing/></>
+      element: <><ShowList/></>
     },
     {
       path:"/checkout",
@@ -37,6 +38,10 @@ function App() {
     {
       path:"/payment",
       element: <><Payment/></>
+    },
+    {
+      path : "/show",
+      element: <> <ShowList/> </>
     }
   ])
 
