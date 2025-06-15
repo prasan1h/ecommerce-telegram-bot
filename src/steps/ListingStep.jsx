@@ -52,10 +52,14 @@ useEffect(() => {
   const fetchFoods = async () => {
     try {
       setLoading(true);
+      const response = await fetch(`${RENDER_EXTERNAL_URL}/server/list/foods`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
 
-      const response = await fetch(`${RENDER_EXTERNAL_URL}/server/list/foods`);
-
-      // Check if response is valid JSON
+      // Validate JSON response
       const contentType = response.headers.get('content-type');
       if (!response.ok || !contentType || !contentType.includes('application/json')) {
         const text = await response.text();
