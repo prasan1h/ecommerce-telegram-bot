@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-app.use("/", router);
+app.use("/bot", router);
 app.use("/server",server);
 // app.use("/listings", listings);
 
