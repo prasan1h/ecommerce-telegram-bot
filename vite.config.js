@@ -31,7 +31,7 @@ export default defineConfig(({ command, mode }) => {
     plugins: [react()],
     
     // Base path configuration
-    base: isProduction && isRender ? './' : '/',
+    base: isProduction && isRender ? '/' : '/',
     
     build: {
       outDir: 'dist',
