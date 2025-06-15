@@ -42,7 +42,7 @@ router.use("/read", read);
 // Health check endpoint
 router.get("/", (req, res) => {
     res.json({ 
-        message: "Server is running", 
+        message: "Server is running in backend", 
         status: "healthy",
         timestamp: new Date().toISOString()
     });
