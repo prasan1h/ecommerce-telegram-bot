@@ -2,7 +2,7 @@ const FoodModel = require("../db/models/itemsSchema.cjs");
 
 const foodsList = async (req, res) => {
   try {
-    const foods = await FoodModel.find();
+    const foods = await FoodModel.find().lean();
     res.status(200).json(foods);
   } catch (err) {
     res.status(500).json({ message: 'Error fetching foods', error: err });

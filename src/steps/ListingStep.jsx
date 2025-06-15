@@ -52,7 +52,7 @@ useEffect(() => {
   const fetchFoods = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${RENDER_EXTERNAL_URL}/server/list/foods`, {
+      const response = await fetch(`${RENDER_EXTERNAL_URL}/server/read/foods`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"

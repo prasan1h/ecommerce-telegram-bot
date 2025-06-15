@@ -12,9 +12,21 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-app.use("/bot", router);
+app.get("/", (req, res) => {
+    res.json({ message: "Server is running", status: "ok" });
+});
+
 app.use("/server",server);
+
+app.use("/bot", router);
+// app.use("/server",server);
 // app.use("/listings", listings);
+
+app.use((err, req, res, next) => {
+    console.error("Error:", err);
+    res.status(500).json({ error: err.message });
+});
+
 
 const port = process.env.BOT_PORT || 3000;
 app.listen(port, () => {
