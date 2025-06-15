@@ -33,9 +33,11 @@ require("./dbconn.cjs");
 
 // Import routers
 const prod = require("../router/productRouter.cjs");
+const read = require("../router/readListRouter.cjs");
 
 // Routes
 router.use("/list", prod);
+router.use("/read", read);
 
 // Health check endpoint
 router.get("/", (req, res) => {
