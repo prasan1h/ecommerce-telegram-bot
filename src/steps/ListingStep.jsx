@@ -101,7 +101,7 @@ useEffect(() => {
 
   const handleDeleteItem = (itemId, categoryId) => {
     // Remove item from UI immediately for better UX
-    setFoodData(prevData => 
+    setFoods(prevData => 
       prevData.map(category => {
         if (category._id === categoryId) {
           return {
