@@ -268,7 +268,7 @@ const Card = ({ food, onAdd, onRemove, onDelete, step, categoryId, mainDocumentI
       console.log('Deleting item with mainDocId:', mainDocumentId, 'categoryId:', categoryId, 'itemId:', _id);
       
       // URL includes main document ID
-      const deleteUrl = `${VITE_RENDER_EXTERNAL_URL}/server/read/foods/${mainDocumentId}/${categoryId}/${_id}`;
+      const deleteUrl = `${VITE_RENDER_EXTERNAL_URL}/server/del/foods/${mainDocumentId}/${categoryId}/${_id}`;
       console.log('DELETE URL:', deleteUrl);
       
       const response = await fetch(deleteUrl, {

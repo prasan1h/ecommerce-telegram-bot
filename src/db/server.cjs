@@ -1,30 +1,6 @@
 
 
 
-// const express = require("express");
-// const router = express.Router();
-// const cors = require("cors");
-// const bodyParser = require("body-parser");
-
-// const prod = require("../router/productRouter.cjs");
-
-// require("./dbconn.cjs");
-
-
-// router.use(express.json());
-// router.use(bodyParser.json());
-// router.use(cors());
-
-// router.use("/list", prod);
-
-// router.get("/", (req, res) => {
-//     res.send("hello 8800");
-// });
-
-
-// module.exports = router;
-
-
 const express = require("express");
 const router = express.Router();
 
@@ -34,10 +10,12 @@ require("./dbconn.cjs");
 // Import routers
 const prod = require("../router/productRouter.cjs");
 const read = require("../router/readListRouter.cjs");
+const del = require("../router/deleteListRouter.cjs");
 
 // Routes
 router.use("/list", prod);
 router.use("/read", read);
+router.use("/del", del);
 
 // Health check endpoint
 router.get("/", (req, res) => {
