@@ -38,7 +38,7 @@ ul{
 /* button.jsx */
 
 :root{
-    --primary-color : red;
+    --primary-color : rgb(255, 251, 0);
 }
 
 .btn{
@@ -59,7 +59,7 @@ ul{
 }
 
 .btn.remove {
-    background-color: tomato;
+    background-color: rgb(255, 138, 71);
 }
 
 .btn.checkout {
@@ -226,6 +226,12 @@ ul{
   animation: none !important;
 }
 
+
+.card__delete-btn{
+  background-color: red;
+  border-radius: 8px;
+  border-style: none;
+}
 
 
 /* cart */
@@ -702,7 +708,7 @@ ul{
   display: flex;
   justify-content: center;
   align-self: center;
-
+ flex-wrap: wrap;
 }
 
 .list-del-div{
