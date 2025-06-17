@@ -635,7 +635,7 @@ ul{
 
 
 /* add list button */
-/* .addlink-div{
+.addlink-div{
     padding: 20px;
   text-align: center;
 }
@@ -656,7 +656,7 @@ ul{
 .add-link:hover {
   background-color: #0073b1;
   transform: scale(1.05);
-} */
+}
 
 .form-container {
   display: flex;
