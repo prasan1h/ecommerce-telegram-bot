@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Card from "../components/card";
 import Cart from "../components/cart";
+import '../assets/style.css';
 
 const RENDER_EXTERNAL_URL = import.meta.env.VITE_RENDER_EXTERNAL_URL;
 
@@ -21,31 +22,6 @@ const ListingStep = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch data from MongoDB
-//   useEffect(() => {
-//     const fetchFoods = async () => {
-//       try {
-//         setLoading(true);
-//         const response = await fetch(`${RENDER_EXTERNAL_URL}/server/list/foods`); // Adjust this endpoint as needed
-        
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-        
-//         const data = await response.json();
-//         setFoods(data);
-//         setError(null);
-//       } catch (err) {
-//         setError(true);
-//         console.error('Error fetching foods:', err);
-//         setError('Failed to load food items. Please try again.');
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchFoods();
-//   }, []);
 
 
 useEffect(() => {
@@ -114,6 +90,42 @@ useEffect(() => {
     );
   }
 
+
+
+
+
+
+
+
+
+
+  const handleDeleteItem = (itemId, categoryId) => {
+    // Remove item from UI immediately for better UX
+    setFoodData(prevData => 
+      prevData.map(category => {
+        if (category._id === categoryId) {
+          return {
+            ...category,
+            items: category.items.filter(item => item._id !== itemId)
+          };
+        }
+        return category;
+      })
+    );
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <>
       {userData.firstName && (
@@ -139,18 +151,30 @@ useEffect(() => {
               <h2 className="category__heading">{category.title}:</h2>
               
               <div className="cards__inner__wrap">
+                <div className='card-del-div'>
                 {category.items && category.items.map((food, itemIndex) => (
                   <Card
                     food={{
                       ...food,
-                      id: food._id || `${docIndex}-${categoryIndex}-${itemIndex}` // Ensure unique ID
+                      id: food._id || `${docIndex}-${categoryIndex}-${itemIndex}` 
                     }}
                     key={food._id || `${docIndex}-${categoryIndex}-${itemIndex}`}
                     step="listing"
                     onAdd={onAdd}
                     onRemove={onRemove}
+                    categoryId={category._id}
+                    onDelete={handleDeleteItem}
                   />
                 ))}
+                {/* {Number(userData.id) === Number(allowedId) && (
+                  <div className='list-del-div'>
+                    <button className='list-del-btn'>delete</button>
+                  </div>
+                )}  */}
+                <div className='list-del-div'>
+                    <button className='list-del-btn'>delete</button>
+                  </div>
+              </div>
               </div>
             </div>
           ))

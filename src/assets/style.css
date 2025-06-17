@@ -694,3 +694,30 @@ ul{
 .form-button:hover {
   background-color: #0056b3;
 }
+
+
+/* listing step */
+
+.card-del-div{
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
+}
+
+.list-del-div{
+  /* width: 80%; */
+  height: max-content;
+  /* border: 2px solid white; */
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  margin: 0;
+}
+
+.list-del-btn{
+  border: 2px solid red;
+  border-radius: 20px;
+  padding: 5px 10px;
+  background-color: red;
+}

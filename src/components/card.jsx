@@ -1,34 +1,90 @@
-// import React, {useState} from 'react'
+// // import React, {useState} from 'react'
 
-// import '../assets/style.css'
+// // import '../assets/style.css'
 
-// import Button from './button'
+// // import Button from './button'
+
+// // const tele = window.Telegram.WebApp;
+
+// // const card = ({food,onAdd,onRemove}) => {
+
+// //     const [count,setCount] = useState(0);
+// //     const {title,Image,price,id} = food;
+
+// //     const handleIncrement = () => {
+// //         setCount(count+1);
+// //         onAdd(food);
+
+// //     }
+
+// //     const handleDecrement = () => {
+// //         setCount(count-1);
+// //         onRemove(food);
+// //     }
+
+
+
+
+// //   return (
+// //     <div className="card">
+// //       <span
+// //         className={`${count !== 0 ? "card__badge" : "card__badge--hidden"}`}
+// //       >
+// //         {count}
+// //       </span>
+// //       <div className="image__container">
+// //         <img src={Image} alt={title} />
+// //       </div>
+// //       <h4 className="card__title">
+// //         {title}  <br /> <span className="card__price">₹ {price}</span>
+// //       </h4>
+
+// //       <div className="btn-container">
+// //         <Button title={"+"} type={"add"} onClick={handleIncrement} />
+// //         {count !== 0 ? (
+// //           <Button title={"-"} type={"remove"} onClick={handleDecrement}/>
+// //         ) : (
+// //           ""
+// //         )}
+// //       </div>
+// //     </div>
+// //   )
+// // }
+
+// // export default card
+
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import '../assets/style.css';
+// import Button from './button';
 
 // const tele = window.Telegram.WebApp;
 
-// const card = ({food,onAdd,onRemove}) => {
+// const Card = ({ food, onAdd, onRemove, step }) => {
+//   const [count, setCount] = useState(0);
+//   const { title, Image, price, id } = food;
 
-//     const [count,setCount] = useState(0);
-//     const {title,Image,price,id} = food;
+//   const handleIncrement = () => {
+//     setCount(count + 1);
+//     onAdd(food);
+//   };
 
-//     const handleIncrement = () => {
-//         setCount(count+1);
-//         onAdd(food);
-
-//     }
-
-//     const handleDecrement = () => {
-//         setCount(count-1);
-//         onRemove(food);
-//     }
-
-
-
+//   const handleDecrement = () => {
+//     setCount(count - 1);
+//     onRemove(food);
+//   };
 
 //   return (
 //     <div className="card">
 //       <span
-//         className={`${count !== 0 ? "card__badge" : "card__badge--hidden"}`}
+//         key={`${step}-${id}`} // 👈 This forces the span to remount and restart animation
+//         className={count !== 0 ? "card__badge" : "card__badge--hidden"}
 //       >
 //         {count}
 //       </span>
@@ -36,39 +92,162 @@
 //         <img src={Image} alt={title} />
 //       </div>
 //       <h4 className="card__title">
-//         {title}  <br /> <span className="card__price">₹ {price}</span>
+//         {title} <br /> <span className="card__price">₹ {price}</span>
 //       </h4>
 
 //       <div className="btn-container">
 //         <Button title={"+"} type={"add"} onClick={handleIncrement} />
-//         {count !== 0 ? (
-//           <Button title={"-"} type={"remove"} onClick={handleDecrement}/>
-//         ) : (
-//           ""
+//         {count !== 0 && (
+//           <Button title={"-"} type={"remove"} onClick={handleDecrement} />
 //         )}
 //       </div>
 //     </div>
-//   )
-// }
+//   );
+// };
 
-// export default card
+// export default Card;
+const VITE_RENDER_EXTERNAL_URL = import.meta.env.VITE_RENDER_EXTERNAL_URL;
+const allowedId = import.meta.env.VITE_ALLOWED_TELEGRAM_ID;
+
+// import React, { useState } from 'react';
+// import '../assets/style.css';
+// import Button from './button';
+
+// const tele = window.Telegram.WebApp;
+
+// const Card = ({ food, onAdd, onRemove, onDelete, step, categoryId }) => {
+//   const [count, setCount] = useState(0);
+//   const [isDeleting, setIsDeleting] = useState(false);
+//   const { title, Image, price, _id } = food;
+
+//   const handleIncrement = () => {
+//     setCount(count + 1);
+//     onAdd(food);
+//   };
+
+//   const handleDecrement = () => {
+//     if (count > 0) {
+//       setCount(count - 1);
+//       onRemove(food);
+//     }
+//   };
+
+//   const handleDelete = async () => {
+//     setIsDeleting(true);
+//     try {
+//       // Debug logging to check the IDs
+//       console.log('Deleting item with categoryId:', categoryId, 'itemId:', _id);
+      
+//       // URL should match your backend route pattern
+//       const deleteUrl = `${VITE_RENDER_EXTERNAL_URL}/server/read/foods/${categoryId}/${_id}`;
+//       console.log('DELETE URL:', deleteUrl);
+      
+//       const response = await fetch(deleteUrl, {
+//         method: 'DELETE',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//       });
+
+//       if (response.ok) {
+//         onDelete(_id, categoryId);
+
+//         if (tele?.showAlert) {
+//           try {
+//             tele.showAlert('Item deleted successfully!');
+//           } catch {
+//             console.log('Item deleted successfully!');
+//           }
+//         } else {
+//           console.log('Item deleted successfully!');
+//         }
+//       } else {
+//         let errorMessage = 'Failed to delete item';
+
+//         try {
+//           const errorData = await response.json();
+//           if (errorData?.message) {
+//             errorMessage = errorData.message;
+//           }
+//         } catch {
+//           // fallback to default message
+//         }
+
+//         throw new Error(errorMessage);
+//       }
+//     } catch (error) {
+//       console.error('Error deleting item:', error);
+//       const errorMessage = error.message || 'Error deleting item. Please try again.';
+
+//       // Uncomment these lines if you want to show error alerts
+//       // if (tele?.showAlert) {
+//       //   try {
+//       //     tele.showAlert(errorMessage);
+//       //   } catch {
+//       //     alert(errorMessage);
+//       //   }
+//       // } else {
+//       //   alert(errorMessage);
+//       // }
+//     } finally {
+//       setIsDeleting(false);
+//     }
+//   };
+
+//   return (
+//     <div className="card">
+//       <span
+//         key={`${step}-${_id}`}
+//         className={count !== 0 ? "card__badge" : "card__badge--hidden"}
+//       >
+//         {count}
+//       </span>
+      
+//       {/* Delete button - only show for admin */}
+//       <button 
+//         className="card__delete-btn"
+//         onClick={handleDelete}
+//         disabled={isDeleting}
+//         title="Delete item"
+//       >
+//         {isDeleting ? '⏳' : '🗑️'}
+//       </button>
+
+//       <div className="image__container">
+//         <img src={Image} alt={title} />
+//       </div>
+      
+//       <h4 className="card__title">
+//         {title} <br /> 
+//         <span className="card__price">₹ {price}</span>
+//       </h4>
+
+//       <div className="btn-container">
+//         <Button title={"+"} type={"add"} onClick={handleIncrement} />
+//         {count !== 0 && (
+//           <Button title={"-"} type={"remove"} onClick={handleDecrement} />
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Card;
 
 
 
 
-
-
-
-
+// Frontend: Card component using main document ID
 import React, { useState } from 'react';
 import '../assets/style.css';
 import Button from './button';
 
 const tele = window.Telegram.WebApp;
 
-const Card = ({ food, onAdd, onRemove, step }) => {
+const Card = ({ food, onAdd, onRemove, onDelete, step, categoryId, mainDocumentId }) => {
   const [count, setCount] = useState(0);
-  const { title, Image, price, id } = food;
+  const [isDeleting, setIsDeleting] = useState(false);
+  const { title, Image, price, _id } = food;
 
   const handleIncrement = () => {
     setCount(count + 1);
@@ -76,23 +255,88 @@ const Card = ({ food, onAdd, onRemove, step }) => {
   };
 
   const handleDecrement = () => {
-    setCount(count - 1);
-    onRemove(food);
+    if (count > 0) {
+      setCount(count - 1);
+      onRemove(food);
+    }
+  };
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      // Debug logging
+      console.log('Deleting item with mainDocId:', mainDocumentId, 'categoryId:', categoryId, 'itemId:', _id);
+      
+      // URL includes main document ID
+      const deleteUrl = `${VITE_RENDER_EXTERNAL_URL}/server/read/foods/${mainDocumentId}/${categoryId}/${_id}`;
+      console.log('DELETE URL:', deleteUrl);
+      
+      const response = await fetch(deleteUrl, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        onDelete(_id, categoryId);
+
+        if (tele?.showAlert) {
+          try {
+            tele.showAlert('Item deleted successfully!');
+          } catch {
+            console.log('Item deleted successfully!');
+          }
+        } else {
+          console.log('Item deleted successfully!');
+        }
+      } else {
+        let errorMessage = 'Failed to delete item';
+
+        try {
+          const errorData = await response.json();
+          if (errorData?.message) {
+            errorMessage = errorData.message;
+          }
+        } catch {
+          // fallback to default message
+        }
+
+        throw new Error(errorMessage);
+      }
+    } catch (error) {
+      console.error('Error deleting item:', error);
+      const errorMessage = error.message || 'Error deleting item. Please try again.';
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   return (
     <div className="card">
       <span
-        key={`${step}-${id}`} // 👈 This forces the span to remount and restart animation
+        key={`${step}-${_id}`}
         className={count !== 0 ? "card__badge" : "card__badge--hidden"}
       >
         {count}
       </span>
+      
+      <button 
+        className="card__delete-btn"
+        onClick={handleDelete}
+        disabled={isDeleting}
+        title="Delete item"
+      >
+        {isDeleting ? '⏳' : '🗑️'}
+      </button>
+
       <div className="image__container">
         <img src={Image} alt={title} />
       </div>
+      
       <h4 className="card__title">
-        {title} <br /> <span className="card__price">₹ {price}</span>
+        {title} <br /> 
+        <span className="card__price">₹ {price}</span>
       </h4>
 
       <div className="btn-container">
@@ -107,3 +351,11 @@ const Card = ({ food, onAdd, onRemove, step }) => {
 
 export default Card;
 
+// Usage: You need to pass mainDocumentId as a prop
+// <Card 
+//   food={item} 
+//   categoryId={category._id} 
+//   mainDocumentId={mainDocument._id}  // <- Add this
+//   onDelete={handleDelete}
+//   // ... other props
+// />

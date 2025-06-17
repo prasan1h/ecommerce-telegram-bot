@@ -95,7 +95,7 @@ router.use('/add', bot.webhookCallback('/add'));
 router.use('/list/add', bot.webhookCallback('/list/add'));
 router.use('/about', bot.webhookCallback('/about'));
 
-bot.telegram.setWebhook(`${cleanDomain}/`)
+bot.telegram.setWebhook(`${cleanDomain}/bot`)
   .then(() => console.log(`✅ Webhook set to URL hosted on Render`))
   .catch((err) => console.error("❌ Failed to set webhook:", err));
 
