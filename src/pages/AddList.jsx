@@ -80,14 +80,33 @@ const AddList = () => {
   return (
     <div>
       <form className="form-container" onSubmit={handleSubmit}>
-  <input
+  {/* <input
     type="text"
     name="categoryTitle"
     placeholder="Category Title"
     value={formData.categoryTitle}
     onChange={handleChange}
     className="form-input"
-  />
+  /> */}
+  <select
+   name="categoryTitle"
+   className="form-input"
+   placeholder="Category Title"
+   value={formData.categoryTitle}
+   onChange={handleChange}
+   style={{color : "gray"}}
+   
+   >
+    <option value="" disabled selected style={{color : "gray"}}>Select the category</option>
+    <option value="Pizza">Pizza</option>
+    <option value="Burger">Burger</option>
+    <option value="Cool Drinks">Cool Drinks</option>
+    <option value="Hot Drinks">Hot Drinks</option>
+    <option value="Sandwichs">Sandwichs</option>
+    <option value="Snacks/Chaats">Snacks/Chaats</option>
+    <option value="Frankie Roll">Frankie Roll</option>
+    <option value="Noodles">Noodles</option>
+   </select>
   <input
     type="text"
     name="itemTitle"

@@ -321,15 +321,6 @@ const Card = ({ food, onAdd, onRemove, onDelete, step, categoryId, mainDocumentI
       >
         {count}
       </span>
-      
-      <button 
-        className="card__delete-btn"
-        onClick={handleDelete}
-        disabled={isDeleting}
-        title="Delete item"
-      >
-        {isDeleting ? '⏳' : '🗑️'}
-      </button>
 
       <div className="image__container">
         <img src={Image} alt={title} />
@@ -346,6 +337,14 @@ const Card = ({ food, onAdd, onRemove, onDelete, step, categoryId, mainDocumentI
           <Button title={"-"} type={"remove"} onClick={handleDecrement} />
         )}
       </div>
+      <button 
+        className="card__delete-btn"
+        onClick={handleDelete}
+        disabled={isDeleting}
+        title="Delete item"
+      >
+        {isDeleting ? '⏳' : '🗑️'}
+      </button>
     </div>
   );
 };
