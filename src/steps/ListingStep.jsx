@@ -147,10 +147,19 @@ const ListingStep = ({
   // No data state
   if (!foods || foods.length === 0) {
     return (
+      <>
+      <div className="addlink-div">
+        {Number(userData.id) === Number(allowedId) && (
+          <Link to="/add" className="add-link">
+            ➕ Add List
+          </Link>
+        )}
+      </div>
       <div className="no-data-container">
         <h2>No food items available</h2>
         <p>Please check back later or contact support.</p>
       </div>
+      </>
     );
   }
 
@@ -192,7 +201,7 @@ const ListingStep = ({
                         onRemove={onRemove}
                         categoryId={food.categoryId}
                         onDelete={handleDeleteItem}
-                        user={userData.id}
+                        user={userData.id} 
                       />
                     ))
                   ) : (
