@@ -190,6 +190,7 @@ const ListingStep = ({
                         onRemove={onRemove}
                         categoryId={food.categoryId}
                         onDelete={handleDeleteItem}
+                        user={userData.id}
                       />
                     ))
                   ) : (
