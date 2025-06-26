@@ -238,16 +238,22 @@ const allowedId = import.meta.env.VITE_ALLOWED_TELEGRAM_ID;
 
 
 // Frontend: Card component using main document ID
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../assets/style.css';
 import Button from './button';
 
 const tele = window.Telegram.WebApp;
+// const allowedId = import.meta.env.VITE_ALLOWED_TELEGRAM_ID;
 
 const Card = ({ food, onAdd, onRemove, onDelete, step, categoryId, mainDocumentId }) => {
   const [count, setCount] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const { title, Image, price, _id } = food;
+
+  useEffect(() => {
+    const user = window.Telegram.WebApp.initDataUnsafe.user;
+    const id = user.id;
+  })
 
   const handleIncrement = () => {
     setCount(count + 1);
@@ -330,13 +336,14 @@ const Card = ({ food, onAdd, onRemove, onDelete, step, categoryId, mainDocumentI
         {title} <br /> 
         <span className="card__price">₹ {price}</span>
       </h4>
-
+      
       <div className="btn-container">
         <Button title={"+"} type={"add"} onClick={handleIncrement} />
         {count !== 0 && (
           <Button title={"-"} type={"remove"} onClick={handleDecrement} />
         )}
       </div>
+      {Number(id) === Number(allowedId) &&  (
       <button 
         className="card__delete-btn"
         onClick={handleDelete}
@@ -345,6 +352,7 @@ const Card = ({ food, onAdd, onRemove, onDelete, step, categoryId, mainDocumentI
       >
         {isDeleting ? '⏳' : '🗑️'}
       </button>
+      )}
     </div>
   );
 };
