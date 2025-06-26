@@ -91,21 +91,14 @@ const AddList = () => {
   return (
     <div>
       <form className="form-container" onSubmit={handleSubmit}>
-  {/* <input
-    type="text"
-    name="categoryTitle"
-    placeholder="Category Title"
-    value={formData.categoryTitle}
-    onChange={handleChange}
-    className="form-input"
-  /> */}
+ 
   <select
    name="categoryTitle"
    className="form-input"
    placeholder="Category Title"
    value={formData.categoryTitle}
    onChange={handleChange}
-   style={{color : "gray"}}
+   style={{color : "black"}}
    
    >
     <option value="" disabled selected style={{color : "gray"}}>Select the category</option>
@@ -113,10 +106,17 @@ const AddList = () => {
     <option value="Burger">Burger</option>
     <option value="Cool Drinks">Cool Drinks</option>
     <option value="Hot Drinks">Hot Drinks</option>
+    <option value="Hot Soups">Hot Soups</option>
+    <option value="Starters">Starters</option>
+    <option value="Fried Rice">Fried Rice</option>
+    <option value="Pav Bhajis">Pav's</option>
     <option value="Sandwichs">Sandwichs</option>
     <option value="Snacks/Chaats">Snacks/Chaats</option>
     <option value="Frankie Roll">Frankie Roll</option>
     <option value="Noodles">Noodles</option>
+    <option value="Juice">Juice</option>
+    <option value="Milkshake">Milkshake</option>
+    <option value="Ice Cream">Ice Cream</option>
    </select>
   <input
     type="text"

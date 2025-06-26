@@ -14,12 +14,10 @@ const ListingStep = ({
   onRemove, 
   setStep, 
   allowedId ,
-  // catTitles
 }) => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [catTitles, setCatTitles] = useState();
 
   useEffect(() => {
     const fetchFoods = async () => {
@@ -53,15 +51,6 @@ const ListingStep = ({
             }
           }
         }
-
-
-
-        const allTitles = data.map(x => x.categories[0].title);
-        console.log("all titles :",allTitles);
-        const unique = [...new Set(allTitles)];
-        console.log("all unique title", unique);
-        setCatTitles(unique);
-
 
 
         setFoods(data);
@@ -204,8 +193,6 @@ const ListingStep = ({
                         categoryId={food.categoryId}
                         onDelete={handleDeleteItem}
                         user={userData.id}
-                        catTitle={catTitles}
-                        mapTitle={category.title}
                       />
                     ))
                   ) : (

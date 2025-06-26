@@ -37,8 +37,8 @@ function App() {
       element: <><Add/></>
     },
     {
-      path:"/payment",
-      element: <><Payment/></>
+      path:"/list",
+      element: <><Listing/></>
     },
     {
       path : "/show",
