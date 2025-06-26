@@ -1,5 +1,6 @@
 // steps/PaymentStep.jsx
 import { BackButton, NextButton } from '../components/NavigationButtons';
+import ItemImg from '../pages/img';
 
 const PaymentStep = ({ 
   cartItems, 
@@ -9,7 +10,8 @@ const PaymentStep = ({
   platformFee, 
   totalPrice, 
   setStep, 
-  handlePaymentNext 
+  handlePaymentNext ,
+  catTitles
 }) => {
   return (
     <div className="payment-page">
@@ -26,7 +28,8 @@ const PaymentStep = ({
           {cartItems.map((item, index) => (
             <div key={index} className="item-row">
               <div className="item-info">
-                <img src={item.Image} alt={item.name} />
+                {/* <img src={item.Image} alt={item.name} /> */}
+                <ItemImg catTitle={item.categoryTitle}/>
                 <div>
                   <p className="item-name">{item.name}</p>
                   <p className="item-qty">Qty: {item.quantity}</p>

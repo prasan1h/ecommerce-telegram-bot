@@ -11,7 +11,8 @@ const AddressStep = ({
   setFormSubmitted,
   setStep, 
   handleAddressNext,
-  validateForm
+  validateForm,
+  catTitles
 }) => {
   
   useEffect(() => {

@@ -10,6 +10,7 @@ import Add from './pages/AddList';
 import Payment from './pages/Payment';
 import About from "./pages/About"
 import ShowList from "./pages/ShowList";
+import Img from './pages/img';
 
 function App() {
 
@@ -42,6 +43,10 @@ function App() {
     {
       path : "/show",
       element: <> <ShowList/> </>
+    },
+    {
+      path : "/img",
+      element: <> <Img/> </>
     }
   ])
 

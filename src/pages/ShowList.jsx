@@ -16,6 +16,7 @@ import CompletedStep from '../steps/CompletedStep';
 import { getData } from "../db/db.cjs";
 
 const allowedId = import.meta.env.VITE_ALLOWED_TELEGRAM_ID;
+const RENDER_EXTERNAL_URL = import.meta.env.VITE_RENDER_EXTERNAL_URL;
 const tele = window.Telegram.WebApp;
 const foods = getData();
 
@@ -37,6 +38,7 @@ const ShowList = () => {
     postcode: ''
   });
   const [formErrors, setFormErrors] = useState({});
+  const [catTitles, setCatTitles] = useState();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState('upi');
   const [paymentData, setPaymentData] = useState({
@@ -88,6 +90,31 @@ const ShowList = () => {
     }
   }, [step]);
 
+
+  useEffect( () => {
+    const fetchFoods = async () => {
+    const response = await fetch(`${RENDER_EXTERNAL_URL}/server/read/foods`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+        const data = await response.json();
+        const allTitles = data.map(x => x.categories[0].title);
+        console.log("all titles :",allTitles);
+        const unique = [...new Set(allTitles)];
+        console.log("all unique title", unique);
+        setCatTitles(unique);
+        
+      }
+      fetchFoods();
+  },[]);
+
+  useEffect(() => {
+    console.log("cart items ",cartItems);
+  }, []);
+
+
   // Cart functions
   const onAdd = (food) => {
     const exist = cartItems.find((x) => x.id === food.id);
@@ -97,6 +124,7 @@ const ShowList = () => {
       ));
     } else {
       setCartItems([...cartItems, { ...food, quantity: 1 }]);
+      console.log("cart items on add",cartItems);
     }
   };
 
@@ -108,6 +136,7 @@ const ShowList = () => {
       setCartItems(cartItems.map((x) =>
         x.id === food.id ? { ...x, quantity: x.quantity - 1 } : x
       ));
+      console.log("cart items on remove",cartItems);
     }
   };
 
@@ -224,11 +253,12 @@ const ShowList = () => {
     platformFee,
     totalPrice,
     foods,
-    allowedId
+    allowedId,
+    catTitles
   };
 
   return (
-    <div style={{ position: 'relative', paddingTop: '50px' }}>
+    <div style={{ position: 'relative', paddingTop: '5px' }}>
       {step === 'listing' && <ListingStep {...stepProps} />}
       {step === 'checkout' && <CheckoutStep {...stepProps} />}
       {step === 'address' && <AddressStep {...stepProps} />}

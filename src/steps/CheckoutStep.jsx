@@ -1,10 +1,12 @@
 // steps/CheckoutStep.jsx
 import { BackButton, NextButton } from '../components/NavigationButtons';
+import ItemImg from '../pages/img';
 
 const CheckoutStep = ({ 
   cartItems, 
   setStep, 
-  handleCheckoutNext 
+  handleCheckoutNext ,
+  catTitles
 }) => {
   return (
     <div className="checkout-page">
@@ -23,10 +25,12 @@ const CheckoutStep = ({
       <div className="checkout-list-wrapper">
         <ul className="checkout-list">
           {cartItems.map((food) => (
+            
             <li className="checkout-item" key={food.id}>
               <div className="checkout-item-box">
                 <div className="item-info">
-                  <img src={food.Image} alt={food.title} className="item-image" />
+                  {/* <img src={food.Image} alt={food.title} className="item-image" /> */}
+                  <ItemImg catTitle={food.categoryTitle} className="item-image"/>
                   <span className="item-title">
                     {food.title} x {food.quantity}
                   </span>

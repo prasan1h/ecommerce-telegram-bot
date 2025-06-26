@@ -7,7 +7,8 @@ const PaymentMethodStep = ({
   paymentData, 
   setPaymentData, 
   setStep, 
-  handlePaymentMethodNext 
+  handlePaymentMethodNext ,
+  catTitles
 }) => {
   return (
     <div className="payment-method-page">

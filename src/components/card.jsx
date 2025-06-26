@@ -2,18 +2,41 @@
 import React, { useEffect, useState } from 'react';
 import '../assets/style.css';
 import Button from './button';
+import ItemImg from '../pages/img';
 
 const tele = window.Telegram.WebApp;
 const VITE_RENDER_EXTERNAL_URL = import.meta.env.VITE_RENDER_EXTERNAL_URL;
 const allowedId = import.meta.env.VITE_ALLOWED_TELEGRAM_ID;
 
+import pizzaImg from '../assets/img/pizza.png';
+import burgerImg from '../assets/img/burger.png'
+import cocaImg from '../assets/img/cocacola.png'
+import saladImg from '../assets/img/salad.png'
+import waterImg from '../assets/img/water.png'
+import iceCreamImg from '../assets/img/icecream.png'
 
-const Card = ({ food, onAdd, onRemove, onDelete, step, categoryId, mainDocumentId, user}) => {
+
+  const images = {
+  Pizza : pizzaImg,
+  "Burger": burgerImg,
+  "Cool Drinks": cocaImg,
+  "Hot Drinks": waterImg,
+  "Sandwichs": iceCreamImg,
+  "Snacks/Chaats": saladImg,
+  "Frankie Roll": iceCreamImg,
+  "Noodles": iceCreamImg,
+};
+
+
+const Card = ({ food, onAdd, onRemove, onDelete, step, categoryId, mainDocumentId, user, catTitle}) => {
   const [count, setCount] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const { title, Image, price, _id } = food;
+  // const { title, Image, price, _id } = food;
+  const { title, price, _id, categoryTitle } = food;
 
 
+  // const selectedImage = images[title] || pizzaImg;
+    // const Image = images[grp] || pizzaImg;
 
   const handleIncrement = () => {
     setCount(count + 1);
@@ -89,7 +112,9 @@ const Card = ({ food, onAdd, onRemove, onDelete, step, categoryId, mainDocumentI
       </span>
 
       <div className="image__container">
-        <img src={Image} alt={title} />
+        {/* <img src={Image} alt={title} /> */}
+        {/* <ItemImg catTitle={mapTitle}/> */}
+        <ItemImg catTitle={categoryTitle}/>
       </div>
       
       <h4 className="card__title">

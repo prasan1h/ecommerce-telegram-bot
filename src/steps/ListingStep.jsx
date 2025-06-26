@@ -5,7 +5,6 @@ import Card from "../components/card";
 import Cart from "../components/cart";
 import '../assets/style.css';
 
-
 const RENDER_EXTERNAL_URL = import.meta.env.VITE_RENDER_EXTERNAL_URL;
 
 const ListingStep = ({ 
@@ -14,11 +13,13 @@ const ListingStep = ({
   onAdd, 
   onRemove, 
   setStep, 
-  allowedId 
+  allowedId ,
+  // catTitles
 }) => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [catTitles, setCatTitles] = useState();
 
   useEffect(() => {
     const fetchFoods = async () => {
@@ -43,6 +44,7 @@ const ListingStep = ({
         console.log('Data structure check:');
         if (Array.isArray(data) && data.length > 0) {
           console.log('First document:', data[0]);
+          console.log(' document:', data[0].categories.title);
           if (data[0].categories) {
             console.log('Categories in first document:', data[0].categories);
             if (data[0].categories[0]) {
@@ -51,6 +53,17 @@ const ListingStep = ({
             }
           }
         }
+
+
+
+        const allTitles = data.map(x => x.categories[0].title);
+        console.log("all titles :",allTitles);
+        const unique = [...new Set(allTitles)];
+        console.log("all unique title", unique);
+        setCatTitles(unique);
+
+
+
         setFoods(data);
         setError(null);
       } catch (err) {
@@ -60,7 +73,7 @@ const ListingStep = ({
         setLoading(false);
       }
     };
-
+    // console.log(data[0].categories[0]);
     fetchFoods();
   }, []);
 
@@ -184,13 +197,15 @@ const ListingStep = ({
                     category.items.map((food, itemIndex) => (
                       <Card
                         key={food._id || `${index}-${itemIndex}`}
-                        food={{ ...food, id: food._id }}
+                        food={{ ...food, id: food._id, categoryTitle: category.title  }}
                         step="listing"
                         onAdd={onAdd}
                         onRemove={onRemove}
                         categoryId={food.categoryId}
                         onDelete={handleDeleteItem}
                         user={userData.id}
+                        catTitle={catTitles}
+                        mapTitle={category.title}
                       />
                     ))
                   ) : (
