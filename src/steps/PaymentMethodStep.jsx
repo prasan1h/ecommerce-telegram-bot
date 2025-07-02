@@ -2,13 +2,13 @@
 import { BackButton, NextButton } from '../components/NavigationButtons';
 
 const PaymentMethodStep = ({ 
+  
   selectedPayment, 
   setSelectedPayment, 
   paymentData, 
   setPaymentData, 
   setStep, 
-  handlePaymentMethodNext ,
-  catTitles
+  handlePaymentMethodNext
 }) => {
   return (
     <div className="payment-method-page">
@@ -51,7 +51,7 @@ const PaymentMethodStep = ({
           <form>
             <label htmlFor="cardNumber">Card Number</label>
             <input
-              type="text"
+              type="number"
               id="cardNumber"
               placeholder="1234 5678 9012 3456"
               value={paymentData.cardNumber}
@@ -60,7 +60,7 @@ const PaymentMethodStep = ({
 
             <label htmlFor="expiry">Expiry Date</label>
             <input
-              type="text"
+              type="date"
               id="expiry"
               placeholder="MM/YY"
               value={paymentData.expiry}

@@ -137,7 +137,7 @@ const ListingStep = ({
       <div className="error-container">
         <h2>Oops! Something went wrong</h2>
         <p>{error}</p>
-        <button onClick={() => window.location.reload()}>
+        <button className='reloadbtn' onClick={() => window.location.reload()}>
           Try Again
         </button>
       </div>

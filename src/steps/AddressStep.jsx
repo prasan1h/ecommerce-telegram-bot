@@ -108,7 +108,7 @@ const AddressStep = ({
           <label htmlFor="houseNo">House No.</label>
           <input
             id="houseNo"
-            type="text"
+            type="number"
             placeholder="Enter your house number"
             value={userData.houseNo || ''}
             onChange={(e) => setUserData({ ...userData, houseNo: e.target.value })}

@@ -398,7 +398,7 @@ ul{
 /* payment */
 .payment-page {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 1.5rem;
   background-color: #fff;
   border-radius: 16px;
@@ -729,4 +729,18 @@ ul{
   border-radius: 20px;
   padding: 5px 10px;
   background-color: red;
+}
+
+
+.reloadbtn{
+  margin: 15px 0;
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }

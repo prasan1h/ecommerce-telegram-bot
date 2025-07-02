@@ -11,7 +11,7 @@ const PaymentStep = ({
   totalPrice, 
   setStep, 
   handlePaymentNext ,
-  catTitles
+  selectedPayment,
 }) => {
   return (
     <div className="payment-page">
@@ -67,7 +67,8 @@ const PaymentStep = ({
           <button onClick={() => setStep('payment-method')}>Edit</button>
         </div>
         <div className="edit-details">
-          <p>{userData.paymentMethod || 'UPI'}</p>
+          {/* <p>{userData.paymentMethod || selectedPayment}</p> */}
+          <p>{selectedPayment}</p>
         </div>
       </div>
 
