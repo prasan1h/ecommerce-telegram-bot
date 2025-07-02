@@ -48,8 +48,8 @@ ul{
     border: 0;
     outline: none;
     border-radius: 10px;
-    width: 80px;
-    margin: 10px 3px;
+    width: 50px;
+    margin: 6px 3px;
     box-shadow: 1px -3px 52px -5px rgba(0, 0, 0, 0.77);
     cursor: pointer;
 }
