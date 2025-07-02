@@ -184,6 +184,7 @@ ul{
 .cards__inner__wrap {
   display: flex;
   flex-wrap: wrap; 
+  justify-content:flex-start;
   overflow-x: auto;   
   gap: 0.1rem;
   padding-top: 1rem;
