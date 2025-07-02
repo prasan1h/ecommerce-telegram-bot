@@ -7,7 +7,7 @@ const CompletedStep = ({ userData }) => {
       <div className="confetti" />
       <div className="completed-card">
         <div className="checkmark">&#10003;</div>
-        <h2>Order Placed Successfully!</h2>
+        <h2>Order Placed Successfully!!!!!</h2>
         <p>Thanks for your order, <strong>{userData.firstName}</strong>!</p>
         <button className="reloadbtn" onClick={() => window.location.reload()}>
           Visit Home
