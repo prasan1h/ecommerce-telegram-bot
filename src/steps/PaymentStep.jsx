@@ -18,11 +18,7 @@ const PaymentStep = ({
   selectedPayment,
 }) => {
 
-  // const [orderData, setOrderData] = useState({
-  //   items: cartItems,
-  //   totalAmount: totalPrice.toFixed(2),
-  //   status: 'pending',
-  // });
+
   const customerInfo = String(`${userData.firstName} ${userData.lastName}`);
   const phone = String(`${userData.phone}`);
   const addressInfo = String(`${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, ${userData.state}, ${userData.country}`);
@@ -33,7 +29,7 @@ const PaymentStep = ({
     ${userData.state}, ${userData.country}`,
     contact: String(`${userData.phone}`),
     items: cartItems.map(item => ({
-      title: item.name,
+      title: item.title,
       price: item.price,
       quantity: item.quantity
     })),
@@ -46,8 +42,9 @@ const PaymentStep = ({
   console.log('Cart Items:', cartItems);
   console.log('Order Info:', orderInfo);
 
-  useEffect(() => {
-    const response = fetch(`${RENDER_URL}/server/order/addorder`, {
+  useEffect( () => {
+      try {
+    const response =  fetch(`${RENDER_URL}/server/order/addorder`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -55,6 +52,9 @@ const PaymentStep = ({
       body: JSON.stringify(orderInfo),
     });
     console.log('Order submission response:', response);
+      } catch (err) {
+            console.error("🔥 Error sending order:", err);
+  }
   }, []);
 
   return (

@@ -1,16 +1,28 @@
 const OrderModel = require("../db/models/orderSchema.cjs");
 
+function generateOrderId() {
+  const timestamp = Date.now();
+  const random = Math.floor(Math.random() * 10000);
+  return `ORD-${timestamp}-${random}`;
+}
+
 const createOrder = async (req, res) => {
   try {
+
+    const orderId = generateOrderId();
+
     const { customer, address, contact, items, totalAmount, orderDate, status } = req.body;
 
     // Validate request body
     if (!customer || !address || !contact || !items || !Array.isArray(items) || items.length === 0 || !totalAmount) {
       return res.status(400).json({ success: false, message: "Invalid order data" });
     }
+      const exists = await OrderModel.findOne({ orderId });
+    if (exists) return res.status(400).json({ message: "Order ID already exists" });
 
     // Construct new order
     const newOrder = new OrderModel({
+      orderId,
       customer,
       address,
       contact,
