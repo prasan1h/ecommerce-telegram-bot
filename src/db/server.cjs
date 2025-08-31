@@ -11,11 +11,13 @@ require("./dbconn.cjs");
 const prod = require("../router/productRouter.cjs");
 const read = require("../router/readListRouter.cjs");
 const del = require("../router/deleteListRouter.cjs");
+const order = require("../router/orderRouter.cjs");
 
 // Routes
 router.use("/list", prod);
 router.use("/read", read);
 router.use("/del", del);
+router.use("/order", order);
 
 // Health check endpoint
 router.get("/", (req, res) => {

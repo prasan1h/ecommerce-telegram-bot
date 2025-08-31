@@ -1,6 +1,10 @@
 // steps/PaymentStep.jsx
+import { useEffect } from 'react';
 import { BackButton, NextButton } from '../components/NavigationButtons';
 import ItemImg from '../pages/img';
+
+
+const RENDER_URL = import.meta.env.VITE_RENDER_EXTERNAL_URL;
 
 const PaymentStep = ({ 
   cartItems, 
@@ -13,6 +17,35 @@ const PaymentStep = ({
   handlePaymentNext ,
   selectedPayment,
 }) => {
+
+  // const [orderData, setOrderData] = useState({
+  //   items: cartItems,
+  //   totalAmount: totalPrice.toFixed(2),
+  //   status: 'pending',
+  // });
+
+  const orderInfo = {
+    // orderId: 'ORD123456',
+    // date: new Date().toLocaleDateString(),
+    // time: new Date().toLocaleTimeString(),
+    items: cartItems,
+    totalAmount: totalPrice.toFixed(2),
+    status: 'pending',
+  };
+  console.log('Cart Items:', cartItems);
+  console.log('Order Info:', orderInfo);
+
+  useEffect(() => {
+    const response = fetch(`${RENDER_URL}/server/order/addorder`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(orderInfo),
+    });
+    console.log('Order submission response:', response);
+  }, []);
+
   return (
     <div className="payment-page">
       {/* Header */}
