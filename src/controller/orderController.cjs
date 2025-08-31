@@ -2,7 +2,7 @@ const OrderModel = require("../db/models/orderSchema.cjs");
 
 const createOrder = async (req, res) => {
   try {
-    const { customer, address, contact, items, totalAmount } = req.body;
+    const { customer, address, contact, items, totalAmount,orderDate,status } = req.body;
 
     if (!customer || !address || !contact || !items || items.length === 0 || !totalAmount) {
       return res.status(400).json({ success: false, message: "Invalid order data" });
@@ -13,7 +13,9 @@ const createOrder = async (req, res) => {
       address,
       contact,
       items,
-      totalAmount
+      totalAmount,
+      orderDate,
+      status
     });
 
     const savedOrder = await newOrder.save();
