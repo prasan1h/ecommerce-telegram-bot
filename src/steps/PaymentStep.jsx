@@ -31,7 +31,7 @@ const PaymentStep = ({
     customer: `${userData.firstName} ${userData.lastName}`,
     address: `${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, 
     ${userData.state}, ${userData.country}`,
-    contact: `${userData.phone}`,
+    contact: String(`${userData.phone}`),
     items: cartItems.map(item => ({
       title: item.name,
       price: item.price,

@@ -2,22 +2,25 @@ const OrderModel = require("../db/models/orderSchema.cjs");
 
 const createOrder = async (req, res) => {
   try {
-    const { customer, address, contact, items, totalAmount,orderDate,status } = req.body;
+    const { customer, address, contact, items, totalAmount, orderDate, status } = req.body;
 
-    if (!customer || !address || !contact || !items || items.length === 0 || !totalAmount) {
+    // Validate request body
+    if (!customer || !address || !contact || !items || !Array.isArray(items) || items.length === 0 || !totalAmount) {
       return res.status(400).json({ success: false, message: "Invalid order data" });
     }
 
+    // Construct new order
     const newOrder = new OrderModel({
       customer,
       address,
       contact,
       items,
       totalAmount,
-      orderDate,
-      status
+      orderDate: orderDate || Date.now(), // fallback if not provided
+      status: status || "pending" // fallback if not provided
     });
 
+    // Save to DB
     const savedOrder = await newOrder.save();
     return res.status(201).json({ success: true, message: "Order created successfully", data: savedOrder });
   } catch (err) {
@@ -25,6 +28,7 @@ const createOrder = async (req, res) => {
     return res.status(500).json({ success: false, message: err.message });
   }
 };
+
 
 
 const getOrders = async (req, res) => {
