@@ -24,7 +24,7 @@ const PaymentStep = ({
   //   status: 'pending',
   // });
   const customerInfo = String(`${userData.firstName} ${userData.lastName}`);
-  const phone = Number(`${userData.phone}`);
+  const phone = String(`${userData.phone}`);
   const addressInfo = String(`${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, ${userData.state}, ${userData.country}`);
 
   const orderInfo = {

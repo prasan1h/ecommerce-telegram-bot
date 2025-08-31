@@ -2,13 +2,16 @@ const OrderModel = require("../db/models/orderSchema.cjs");
 
 const createOrder = async (req, res) => {
   try {
-    const { items, totalAmount } = req.body;
+    const { customer, address, contact, items, totalAmount } = req.body;
 
-    if (!items || items.length === 0 || !totalAmount) {
+    if (!customer || !address || !contact || !items || items.length === 0 || !totalAmount) {
       return res.status(400).json({ success: false, message: "Invalid order data" });
     }
 
     const newOrder = new OrderModel({
+      customer,
+      address,
+      contact,
       items,
       totalAmount
     });
@@ -17,9 +20,10 @@ const createOrder = async (req, res) => {
     return res.status(201).json({ success: true, message: "Order created successfully", data: savedOrder });
   } catch (err) {
     console.error("🔥 Error in createOrder:", err);
-    return res.status(500).json({ success: false, message: "Error creating order: internal server error" });
+    return res.status(500).json({ success: false, message: err.message });
   }
-}
+};
+
 
 const getOrders = async (req, res) => {
   try {
