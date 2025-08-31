@@ -27,9 +27,6 @@ const PaymentStep = ({
   const addressInfo = `${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, ${userData.state}, ${userData.country}`;
 
   const orderInfo = {
-    // orderId: 'ORD123456',
-    // date: new Date().toLocaleDateString(),
-    // time: new Date().toLocaleTimeString(),
     customer: customerInfo,
     address: addressInfo,
     items: cartItems,
