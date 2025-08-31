@@ -47,7 +47,7 @@ const PaymentStep = ({
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({orderInfo}),
+      body: JSON.stringify(orderInfo),
     });
     console.log('Order submission response:', response);
   }, []);
