@@ -28,9 +28,10 @@ const PaymentStep = ({
   const addressInfo = String(`${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, ${userData.state}, ${userData.country}`);
 
   const orderInfo = {
-    customer: customerInfo,
-    address: addressInfo,
-    contact: phone,
+    customer: `${userData.firstName} ${userData.lastName}`,
+    address: `${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, 
+    ${userData.state}, ${userData.country}`,
+    contact: `${userData.phone}`,
     items: cartItems.map(item => ({
       title: item.name,
       price: item.price,
