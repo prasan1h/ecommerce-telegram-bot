@@ -31,7 +31,11 @@ const PaymentStep = ({
     customer: customerInfo,
     address: addressInfo,
     contact: phone,
-    items: cartItems,
+    items: cartItems.map(item => ({
+      title: item.name,
+      price: item.price,
+      quantity: item.quantity
+    })),
     totalAmount: totalPrice.toFixed(2),
     status: 'pending',
   };
