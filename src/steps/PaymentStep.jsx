@@ -23,9 +23,9 @@ const PaymentStep = ({
   //   totalAmount: totalPrice.toFixed(2),
   //   status: 'pending',
   // });
-  const customerInfo = `${userData.firstName} ${userData.lastName}`;
+  const customerInfo = String(`${userData.firstName} ${userData.lastName}`);
   const phone = Number(`${userData.phone}`);
-  const addressInfo = `${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, ${userData.state}, ${userData.country}`;
+  const addressInfo = String(`${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, ${userData.state}, ${userData.country}`);
 
   const orderInfo = {
     customer: customerInfo,
@@ -47,7 +47,7 @@ const PaymentStep = ({
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(orderInfo),
+      body: JSON.stringify({orderInfo}),
     });
     console.log('Order submission response:', response);
   }, []);

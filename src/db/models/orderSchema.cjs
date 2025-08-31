@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
 
+function getTodayDate() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); // months are 0-based
+  const dd = String(today.getDate()).padStart(2, '0');
+  return `${dd}-${mm}-${yyyy}`;
+}
+
+
 const orderSchema = new mongoose.Schema({
   customer: {
     type: String,
@@ -36,7 +45,7 @@ const orderSchema = new mongoose.Schema({
   },
   orderDate: {
     type: Date,
-    default: Date.now
+    default: getTodayDate()
   },
   status: {
     type: String,
