@@ -23,16 +23,20 @@ const PaymentStep = ({
   //   totalAmount: totalPrice.toFixed(2),
   //   status: 'pending',
   // });
-  const customerInfo = `${userData.firstName} ${userData.lastName}, ${userData.phone}`;
+  const customerInfo = `${userData.firstName} ${userData.lastName}`;
+  const phone = Number(`${userData.phone}`);
   const addressInfo = `${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, ${userData.state}, ${userData.country}`;
 
   const orderInfo = {
     customer: customerInfo,
     address: addressInfo,
+    contact: phone,
     items: cartItems,
     totalAmount: totalPrice.toFixed(2),
     status: 'pending',
   };
+  console.log('customer info: ', customerInfo);
+  console.log('address info: ', addressInfo);
   console.log('user data: ', userData);
   console.log('Cart Items:', cartItems);
   console.log('Order Info:', orderInfo);
