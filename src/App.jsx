@@ -11,6 +11,7 @@ import Payment from './pages/Payment';
 import About from "./pages/About"
 import ShowList from "./pages/ShowList";
 import Img from './pages/img';
+import ReadOrder from "./pages/ReadOrder";
 
 function App() {
 
@@ -47,6 +48,10 @@ function App() {
     {
       path : "/img",
       element: <> <Img/> </>
+    },
+    {
+      path : "/readorder",
+      element: <> <ReadOrder/> </>
     }
   ])
 

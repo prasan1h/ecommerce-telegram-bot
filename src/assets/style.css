@@ -744,3 +744,73 @@ ul{
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+
+/* Container for all orders */
+.orders-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Each order card */
+.order-card {
+  background: #56596f;
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+/* Heading */
+.order-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: rgb(255, 255, 255);
+}
+
+/* Subheading for items */
+.order-card h3 {
+  margin-top: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(255, 251, 251);
+}
+
+/* Order details text */
+.order-card p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+/* Items list */
+.order-card ul {
+  list-style: none;
+  padding: 5px;
+  margin-top: 8px;
+  border: 1px solid #f0f0f0 ;
+  border-radius: 5px;
+}
+
+.order-card li {
+  font-size: 0.9rem;
+  padding: 4px 0;
+  /* border-bottom: 1px solid #f0f0f0; */
+}
+
+.order-card li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .orders-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+}
