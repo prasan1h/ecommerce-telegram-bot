@@ -10,8 +10,8 @@ const ReadOrder = () => {
     useEffect(() => {
         const fetchOrders = async () => {
           try {
-            // const response = await fetch(`${RENDER_URL}/server/read/readorder`, {
-            const response = await fetch(`http://localhost:8800/server/order/readorder`, {
+            const response = await fetch(`${RENDER_URL}/server/read/readorder`, {
+            // const response = await fetch(`http://localhost:8800/server/order/readorder`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json"
@@ -21,7 +21,7 @@ const ReadOrder = () => {
               throw new Error(`HTTP error! status: ${response.status}`);
             }   
             const data = await response.json();
-            const orders = data.data; // Adjust based on actual response structure
+            const orders = data.data;
             console.log('Fetched orders:', data);
             console.log('Orders structure check:', orders);
             setOrders(orders);
