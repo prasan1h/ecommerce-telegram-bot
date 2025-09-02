@@ -174,13 +174,13 @@ const ListingStep = ({
           <Link to="/add" className="add-link">
             ➕ Add List
           </Link>
-        )}
-        <br />
+         )} 
+
         {Number(userData.id) === Number(allowedId) && (
         <Link to="/readorder" className="add-link">
             ➕ Read Orders
           </Link>
-        )}
+        )} 
       </div>
 
       <h1 className="heading">Order Food</h1>
