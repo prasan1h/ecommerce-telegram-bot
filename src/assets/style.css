@@ -749,7 +749,7 @@ ul{
 /* Container for all orders */
 .orders-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 20px;
   padding: 20px;
 }
@@ -813,4 +813,19 @@ ul{
     gap: 12px;
     padding: 12px;
   }
+}
+
+
+.pass-order{
+    background-color: #4CAF50; /* Green base color */
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-block;
 }

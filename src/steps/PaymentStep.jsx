@@ -61,7 +61,7 @@ const PaymentStep = ({
     <div className="payment-page">
       {/* Header */}
       <div className="order-header">
-        <h2>🧾 Order ID: #ORD123456</h2>
+        <h2>🧾 Order Placed </h2>
         <p>Thank you for shopping with us!</p>
       </div>
 

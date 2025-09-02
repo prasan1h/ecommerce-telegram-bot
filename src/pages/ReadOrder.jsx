@@ -1,6 +1,6 @@
 import { set } from 'mongoose';
 import React, { useEffect } from 'react'
-import { data } from 'react-router-dom';
+import { data, Link } from 'react-router-dom';
 const RENDER_URL = import.meta.env.VITE_RENDER_EXTERNAL_URL;
 
 const ReadOrder = () => {
@@ -30,12 +30,44 @@ const ReadOrder = () => {
           }
         };
         fetchOrders();
+
+
       }, []
 
 
     );
 
+
+        const deleteOrder = async (id) => {
+            try {
+              // const response = await fetch(`http://localhost:8800/server/order/deleteorder/${id}`, {  
+               const response = await fetch(`${RENDER_URL}/server/order/deleteorder/${id}`, { 
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json"
+                }
+              });
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const data = await response.json();
+              const deletedorders = data.data;
+              console.log('Order Pass:', deletedorders);
+              // Optionally, refresh the orders list after deletion
+              setOrders((prevOrders) => prevOrders.filter(order => order._id !== id));
+            } catch (err) {
+              console.error('Error deleting order:', err);
+            }
+          };
+
+
   return (
+    <>
+    <Link to="/" className="add-link">
+                Go to Home
+    </Link>
+    <h1>Orders</h1>
+
     <div className="orders-container">
         {orders.map((order) => (
             <div key={order._id} className="order-card">
@@ -53,10 +85,13 @@ const ReadOrder = () => {
                 </li>
                 ))}
             </ul>
+            <p>Order Date: {new Date(order.orderDate).toLocaleString()}</p>
+            <button onClick={() => deleteOrder(order._id) } className="pass-order">Pass the order</button>
             </div>
+            
         ))}
     </div>
-
+      </>
   )
 }
 

@@ -5,7 +5,7 @@ const {createOrder, getOrders, deleteOrder} = require("../controller/orderContro
 
 router.post('/addorder', createOrder);
 router.get('/readorder', getOrders);
-router.delete('/deleteorder', deleteOrder);
+router.delete('/deleteorder/:id', deleteOrder);
 
 
 
