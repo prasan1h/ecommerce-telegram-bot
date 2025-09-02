@@ -81,7 +81,7 @@ const ReadOrder = () => {
             <ul>
                 {order.items.map((item, index) => (
                 <li key={index}>
-                    {item.title} - ${item.price} x {item.quantity}
+                    {item.title} - ₹{item.price} x {item.quantity}
                 </li>
                 ))}
             </ul>
