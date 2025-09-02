@@ -75,7 +75,7 @@ const ReadOrder = () => {
             <p>Customer: {order.customer}</p>
             <p>Address: {order.address}</p>
             <p>Contact: {order.contact}</p>
-            <p>Total Amount: ${order.totalAmount}</p>
+            <p>Total Amount: ₹{order.totalAmount}</p>
             <p>Status: {order.status}</p>
             <h3>Items:</h3>
             <ul>
