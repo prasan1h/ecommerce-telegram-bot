@@ -22,6 +22,7 @@ const createOrder = async (req, res) => {
 
     // Construct new order
     const newOrder = new OrderModel({
+      userId,
       orderId,
       customer,
       address,

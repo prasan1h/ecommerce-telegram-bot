@@ -24,6 +24,7 @@ const PaymentStep = ({
   const addressInfo = String(`${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, ${userData.state}, ${userData.country}`);
 
   const orderInfo = {
+    userId : userData.id || 'guest',
     customer: `${userData.firstName} ${userData.lastName}`,
     address: `${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, 
     ${userData.state}, ${userData.country}`,
@@ -101,6 +102,7 @@ const PaymentStep = ({
           <button onClick={() => setStep('address')}>Edit</button>
         </div>
         <div className="edit-details">
+          <p>userID: {userData.id}</p>
           <p>{userData.firstName} {userData.lastName}</p>
           <p>{userData.phone}</p>
           <p>{userData.address}</p>
