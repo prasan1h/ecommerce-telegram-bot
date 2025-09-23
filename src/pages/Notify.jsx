@@ -1,8 +1,10 @@
 import React from 'react'
+import { useEffect, useState } from "react";
+
 
 const Notify = () => {
 
-    const [orderData, setOrderData] = React.useState('');
+    const [orderData, setOrderData] = useState('');
 
     const RENDER_URL = import.meta.env.VITE_RENDER_EXTERNAL_URL;
     const user = window.Telegram.WebApp.initDataUnsafe.user;
