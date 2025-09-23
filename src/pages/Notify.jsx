@@ -41,14 +41,18 @@ const Notify = () => {
 
   return (
     <>
+       <Link to="/" className="add-link">
+                Go to Home
+       </Link>
       <div className="notify-wrapper">
+
         <h1 className="notify-title">Notify</h1>
 
         {orderData.map((my_order) =>
           Number(user.id) === Number(my_order.userId) && (
             <div className="notify-card" key={my_order._id}>
-              <h2 className="order-id">Order ID: {my_order.orderId}</h2>
-              <p className="order-status">On the way</p>
+              <h3 className="order-id">Order ID: {my_order.orderId}</h3>
+              <p className="order-status">On the way..............</p>
             </div>
           )
         )}
