@@ -12,6 +12,7 @@ import About from "./pages/About"
 import ShowList from "./pages/ShowList";
 import Img from './pages/img';
 import ReadOrder from "./pages/ReadOrder";
+import Notify from "./pages/Notify";
 
 function App() {
 
@@ -46,8 +47,8 @@ function App() {
       element: <> <ShowList/> </>
     },
     {
-      path : "/img",
-      element: <> <Img/> </>
+      path : "/notify",
+      element: <> <Notify/> </>
     },
     {
       path : "/readorder",
