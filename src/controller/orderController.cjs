@@ -11,9 +11,9 @@ const createOrder = async (req, res) => {
 
     const orderId = generateOrderId();
 
-    const { customer, address, contact, items, totalAmount, orderDate, status } = req.body;
+    const {userId, customer, address, contact, items, totalAmount, orderDate, status } = req.body;
 
-    // Validate request body
+
     if (!customer || !address || !contact || !items || !Array.isArray(items) || items.length === 0 || !totalAmount) {
       return res.status(400).json({ success: false, message: "Invalid order data" });
     }
@@ -29,11 +29,10 @@ const createOrder = async (req, res) => {
       contact,
       items,
       totalAmount,
-      orderDate: orderDate || Date.now(), // fallback if not provided
-      status: status || "pending" // fallback if not provided
+      orderDate: orderDate || Date.now(),
+      status: status || "pending"
     });
 
-    // Save to DB
     const savedOrder = await newOrder.save();
     return res.status(201).json({ success: true, message: "Order created successfully", data: savedOrder });
   } catch (err) {
