@@ -172,17 +172,17 @@ const ListingStep = ({
       <div className="addlink-div">
         {Number(userData.id) === Number(allowedId) && (
           <Link to="/add" className="add-link">
-            ➕ Add List
+            ➕ 
           </Link>
          )} 
 
         {Number(userData.id) === Number(allowedId) && (
         <Link to="/readorder" className="add-link">
-            📖 Read Orders
+            🧾  
           </Link>
         )} 
         <Link to="/notify" className="add-link">
-            🔔Notify
+            🔔
           </Link>
       </div>
 
