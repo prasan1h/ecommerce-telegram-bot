@@ -51,7 +51,7 @@ const Notify = () => {
         {orderData.map((my_order) =>
           Number(user.id) === Number(my_order.userId) && (
             <div className="notify-card" key={my_order._id}>
-              <h3 className="order-id">Order ID: {my_order.orderId}</h3>
+              <p className="order-id">Order ID: {my_order.orderId}</p>
               <p className="order-status">On the way..............</p>
             </div>
           )
