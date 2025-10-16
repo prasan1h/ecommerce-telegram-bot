@@ -4,7 +4,6 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const { bot, router } = require("./src/script/bot.cjs");
-// const {listings} = require("./src/router/productRouter.cjs");
 const server = require("./src/db/server.cjs");
 
 app.use(express.json());
@@ -17,10 +16,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/server",server);
-
 app.use("/bot", router);
-// app.use("/server",server);
-// app.use("/listings", listings);
+
 
 app.use((err, req, res, next) => {
     console.error("Error:", err);
