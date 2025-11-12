@@ -10,11 +10,10 @@ import Cart from "../components/cart";
 
 const allowedId = import.meta.env.VITE_ALLOWED_TELEGRAM_ID;
 
-// const { userData } = require('../script/bot.cjs');
-import { getData } from "../db/db.cjs";
+
 
 const tele = window.Telegram.WebApp;
-const foods = getData();
+// const foods = getData();
 
 
 const Listing = () => {
@@ -92,12 +91,6 @@ const Listing = () => {
     }
   }, [step]);
 
-
-  useEffect(() => {
-  if( step === "listing"){
-    console.log(userData);
-  }
-  });
 
 
 
@@ -285,9 +278,9 @@ const Listing = () => {
       return;
     }
   
-    console.log("Address submitted successfully:", userData);
+
   
-    setStep('payment-method'); // 👉 move to payment-method page
+    setStep('payment-method'); 
   };
 
   

@@ -17,13 +17,10 @@ const Address = (props) => {
     postcode: ''
   });
   
-  // State for form errors
-  const [formErrors, setFormErrors] = useState({});
   
-  // Add a state to track if form has been submitted
+  const [formErrors, setFormErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // Validation function
   const validateForm = () => {
     const errors = {};
     
@@ -59,26 +56,22 @@ const Address = (props) => {
       errors.postcode = 'Post code is required';
     }
   
-    setFormErrors(errors);   // update formErrors
-    return Object.keys(errors).length === 0;  // true if no errors
+    setFormErrors(errors);  
+    return Object.keys(errors).length === 0; 
   };
   
-
-  // Handle Next button click
   const handleNext = () => {
-    // Set the form as submitted
+  
     setFormSubmitted(true);
     
     if (validateForm()) {
-      setStep('payment'); // or whatever the next step is
+      setStep('payment'); 
       console.log("Form submitted successfully:", userData);
       
-      // Call the callback function if provided as prop
       if (props.onAddressSubmit) {
         props.onAddressSubmit(userData);
       }
     } else {
-      // Focus on the first field with an error
       const firstErrorField = Object.keys(formErrors)[0];
       if (firstErrorField) {
         document.getElementById(firstErrorField)?.focus();
@@ -86,24 +79,20 @@ const Address = (props) => {
     }
   };
 
-  // Simple Back button component
   const BackButton = ({ onClick }) => (
     <button type="button" onClick={onClick} className="back-btn">
       Back
     </button>
   );
 
-  // Simple Next button component
   const NextButton = ({ onClick, className }) => (
     <button type="button" onClick={onClick} className={className}>
       Next
     </button>
   );
 
-  // Real-time validation for email after form is submitted
   useEffect(() => {
     if (formSubmitted) {
-      // Only run validations if the form has been submitted once
       if (userData.email && !/\S+@\S+\.\S+/.test(userData.email)) {
         setFormErrors(prev => ({ ...prev, email: 'Email is invalid' }));
       } else if (userData.email) {
@@ -114,7 +103,6 @@ const Address = (props) => {
         });
       }
       
-      // Re-validate the entire form to update error states as user edits
       validateForm();
     }
   }, [userData, formSubmitted]);

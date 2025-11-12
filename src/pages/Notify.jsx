@@ -13,7 +13,6 @@ const Notify = () => {
             const fetchOrders = async () => {
           try {
             const response = await fetch(`${RENDER_URL}/server/order/readorder`, {
-            // const response = await fetch(`http://localhost:8800/server/order/readorder`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json"

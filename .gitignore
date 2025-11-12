@@ -26,3 +26,7 @@ dist-ssr
 node_modules\
 dist\
 text.txt
+src/pages/Address.jsx
+src/pages/Checkout.jsx
+src/pages/Payment.jsx
+src/pages/Listing.jsx

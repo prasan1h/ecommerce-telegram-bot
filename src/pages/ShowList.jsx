@@ -13,11 +13,9 @@ import PaymentMethodStep from '../steps/PaymentMethodStep';
 import PaymentStep from '../steps/PaymentStep';
 import CompletedStep from '../steps/CompletedStep';
 
-import { getData } from "../db/db.cjs";
-
 const allowedId = import.meta.env.VITE_ALLOWED_TELEGRAM_ID;
 const tele = window.Telegram.WebApp;
-const foods = getData();
+// const foods = getData();
 
 const ShowList = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -89,9 +87,6 @@ const ShowList = () => {
   }, [step]);
 
 
-  useEffect(() => {
-    console.log("cart items ",cartItems);
-  }, []);
 
 
   // Cart functions
@@ -103,7 +98,6 @@ const ShowList = () => {
       ));
     } else {
       setCartItems([...cartItems, { ...food, quantity: 1 }]);
-      console.log("cart items on add",cartItems);
     }
   };
 
@@ -115,7 +109,6 @@ const ShowList = () => {
       setCartItems(cartItems.map((x) =>
         x.id === food.id ? { ...x, quantity: x.quantity - 1 } : x
       ));
-      console.log("cart items on remove",cartItems);
     }
   };
 
@@ -175,8 +168,6 @@ const ShowList = () => {
       }
       return;
     }
-
-    console.log("Address submitted successfully:", userData);
     setStep('payment-method');
   };
 
@@ -231,7 +222,6 @@ const ShowList = () => {
     handlingFee,
     platformFee,
     totalPrice,
-    foods,
     allowedId,
   };
 

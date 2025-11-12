@@ -5,7 +5,6 @@ import Listing from './Listing';
 
 const Checkout = () => {
   const location = useLocation();
-  // const cartItems = location.state?.cartItems || [];
 
 
   const [cartItems, setCartItems] = useState([]);

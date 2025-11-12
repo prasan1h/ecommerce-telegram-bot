@@ -1,6 +1,6 @@
 import React from 'react';
 import '../assets/style.css';
-// steps/CompletedStep.jsx
+
 const CompletedStep = ({ userData }) => {
   return (
     <div className="completed-page">

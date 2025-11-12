@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/style.css';
 
-import pizzaImg from '../assets/img/pizza.png';
 const RENDER_URL = import.meta.env.VITE_RENDER_EXTERNAL_URL;
-const WEB_LINK = import.meta.env.VITE_WEB_LINK;
+
 
 const AddList = () => {
   const navigate = useNavigate();
@@ -16,14 +15,6 @@ const AddList = () => {
     price: '',
     image: '' 
   });
-
-
-  //   const handleChange = (e) => {
-  //   const title = formData.categoryTitle;
-  //   const src = 
-  //   setFormData
-  // }
-
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -134,13 +125,6 @@ const AddList = () => {
     onChange={handleChange}
     className="form-input"
   />
-  {/* <input
-    type="file"
-    name="image"
-    accept="image/*"
-    onChange={handleChange}
-    className="form-input"
-  /> */}
   <button type="submit" className="form-button">
     Add Item
   </button>

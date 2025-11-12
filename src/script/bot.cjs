@@ -1,21 +1,12 @@
-
-
-
 require("dotenv").config();
 require("../db/dbconn.cjs");
-// require("../db/server");
 const express = require("express");
 const path = require("path");
 const { Telegraf } = require("telegraf");
 const { message } = require("telegraf/filters");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-
 const UserModel = require("../db/models/userSchema.cjs");
 
-// const app = express();
 const router = express.Router();
-
 
 const TOKEN = process.env.BOT_TOKEN;
 const WEB_LINK = process.env.WEB_LINK;
@@ -30,17 +21,9 @@ if (!TOKEN || !WEB_LINK || !DOMAIN) {
 const cleanDomain = DOMAIN.replace(/\/+$/, ""); 
 const bot = new Telegraf(TOKEN);
 
-
-// app.use(express.static(path.join(__dirname, "../../dist")));
-// app.use(express.json());
-// app.use(cors());
-// app.use(bodyParser.json());
-
-
 router.get("/*name", (req, res) => {
   res.sendFile(path.join(__dirname, "../../dist", "index.html"));
 });
-
 
 bot.start( async (ctx) => {
   const firstName = ctx.chat.first_name || "User";
@@ -88,8 +71,6 @@ bot.on(message("text"), async (ctx) => {
   await ctx.reply("🚫 Please use the provided buttons or commands.");
 });
 
-
-
 router.use('/', bot.webhookCallback('/'));
 router.use('/add', bot.webhookCallback('/add'));
 router.use('/list/add', bot.webhookCallback('/list/add'));
@@ -102,5 +83,3 @@ bot.telegram.setWebhook(`${cleanDomain}/bot`)
 
 
 module.exports = { bot, router };
-
-

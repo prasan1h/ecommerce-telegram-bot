@@ -41,7 +41,6 @@ const img = ({
   className
 }) => {
 
-    // const Image = images[catTitle] || pizzaImg;
     const Image = images[catTitle] 
 
   return (

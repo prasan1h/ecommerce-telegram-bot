@@ -1,4 +1,3 @@
-// steps/PaymentMethodStep.jsx
 import { BackButton, NextButton } from '../components/NavigationButtons';
 
 const PaymentMethodStep = ({ 

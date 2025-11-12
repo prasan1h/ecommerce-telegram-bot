@@ -1,4 +1,3 @@
-// steps/PaymentStep.jsx
 import { useEffect } from 'react';
 import { BackButton, NextButton } from '../components/NavigationButtons';
 import ItemImg from '../pages/img';
@@ -18,11 +17,6 @@ const PaymentStep = ({
   selectedPayment,
 }) => {
 
-
-  const customerInfo = String(`${userData.firstName} ${userData.lastName}`);
-  const phone = String(`${userData.phone}`);
-  const addressInfo = String(`${userData.houseNo}, ${userData.landmark}, ${userData.city} - ${userData.postcode}, ${userData.state}, ${userData.country}`);
-
   const orderInfo = {
     userId : userData.id || 'guest',
     customer: `${userData.firstName} ${userData.lastName}`,
@@ -37,11 +31,7 @@ const PaymentStep = ({
     totalAmount: totalPrice.toFixed(2),
     status: 'pending',
   };
-  console.log('customer info: ', customerInfo);
-  console.log('address info: ', addressInfo);
-  console.log('user data: ', userData);
-  console.log('Cart Items:', cartItems);
-  console.log('Order Info:', orderInfo);
+
 
   useEffect( () => {
       try {
@@ -52,7 +42,6 @@ const PaymentStep = ({
       },
       body: JSON.stringify(orderInfo),
     });
-    console.log('Order submission response:', response);
       } catch (err) {
             console.error("🔥 Error sending order:", err);
   }
@@ -60,20 +49,17 @@ const PaymentStep = ({
 
   return (
     <div className="payment-page">
-      {/* Header */}
       <div className="order-header">
         <h2>🧾 Order Placed </h2>
         <p>Thank you for shopping with us!</p>
       </div>
 
-      {/* Item List and Charges */}
       <div className="order-summary">
         <h3>Order Summary</h3>
         <div className="item-list">
           {cartItems.map((item, index) => (
             <div key={index} className="item-row">
               <div className="item-info">
-                {/* <img src={item.Image} alt={item.name} /> */}
                 <ItemImg catTitle={item.categoryTitle}/>
                 <div>
                   <p className="item-name">{item.name}</p>
@@ -85,7 +71,7 @@ const PaymentStep = ({
           ))}
         </div>
 
-        {/* Charges */}
+
         <div className="charges">
           <div><span>Delivery Fee</span><span>₹{deliveryFee}</span></div>
           <div><span>Handling Fee</span><span>₹{handlingFee}</span></div>
@@ -95,7 +81,7 @@ const PaymentStep = ({
         </div>
       </div>
 
-      {/* Editable Fields */}
+
       <div className="edit-section">
         <div className="edit-header">
           <p>Name & Address</p>
@@ -113,12 +99,10 @@ const PaymentStep = ({
           <button onClick={() => setStep('payment-method')}>Edit</button>
         </div>
         <div className="edit-details">
-          {/* <p>{userData.paymentMethod || selectedPayment}</p> */}
           <p>{selectedPayment}</p>
         </div>
       </div>
 
-      {/* Buttons */}
       <div className="button-row">
         <BackButton onClick={() => setStep('address')} />
         <NextButton onClick={handlePaymentNext} />

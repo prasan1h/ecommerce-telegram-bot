@@ -1,4 +1,3 @@
-// steps/AddressStep.jsx
 import { useEffect } from 'react';
 import { BackButton, NextButton } from '../components/NavigationButtons';
 
@@ -17,7 +16,6 @@ const AddressStep = ({
   
   useEffect(() => {
     if (formSubmitted) {
-      // Only run validations if the form has been submitted once
       if (userData.email && !/\S+@\S+\.\S+/.test(userData.email)) {
         setFormErrors(prev => ({ ...prev, email: 'Email is invalid' }));
       } else if (userData.email) {
@@ -27,8 +25,7 @@ const AddressStep = ({
           return newErrors;
         });
       }
-      
-      // Re-validate the entire form to update error states as user edits
+
       validateForm();
     }
   }, [userData, formSubmitted, setFormErrors, validateForm]);

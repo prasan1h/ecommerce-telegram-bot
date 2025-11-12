@@ -11,7 +11,6 @@ const ReadOrder = () => {
         const fetchOrders = async () => {
           try {
             const response = await fetch(`${RENDER_URL}/server/order/readorder`, {
-            // const response = await fetch(`http://localhost:8800/server/order/readorder`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json"
@@ -40,7 +39,6 @@ const ReadOrder = () => {
 
         const deleteOrder = async (id) => {
             try {
-              // const response = await fetch(`http://localhost:8800/server/order/deleteorder/${id}`, {  
                const response = await fetch(`${RENDER_URL}/server/order/deleteorder/${id}`, { 
                 method: "DELETE",
                 headers: {
@@ -53,7 +51,6 @@ const ReadOrder = () => {
               const data = await response.json();
               const deletedorders = data.data;
               console.log('Order Pass:', deletedorders);
-              // Optionally, refresh the orders list after deletion
               setOrders((prevOrders) => prevOrders.filter(order => order._id !== id));
             } catch (err) {
               console.error('Error deleting order:', err);

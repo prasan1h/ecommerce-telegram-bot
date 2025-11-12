@@ -33,25 +33,10 @@ const ListingStep = ({
         const contentType = response.headers.get('content-type');
         if (!response.ok || !contentType || !contentType.includes('application/json')) {
           const text = await response.text();
-          console.error('Invalid response body:', text.slice(0, 200));
           throw new Error('Invalid response format');
         }
 
         const data = await response.json();
-        console.log('Fetched data:', data);
-        console.log('Data structure check:');
-        if (Array.isArray(data) && data.length > 0) {
-          console.log('First document:', data[0]);
-          console.log(' document:', data[0].categories.title);
-          if (data[0].categories) {
-            console.log('Categories in first document:', data[0].categories);
-            if (data[0].categories[0]) {
-              console.log('First category:', data[0].categories[0]);
-              console.log('Items in first category:', data[0].categories[0].items);
-            }
-          }
-        }
-
 
         setFoods(data);
         setError(null);
@@ -62,7 +47,6 @@ const ListingStep = ({
         setLoading(false);
       }
     };
-    // console.log(data[0].categories[0]);
     fetchFoods();
   }, []);
 
@@ -89,7 +73,6 @@ const ListingStep = ({
             };
           }
 
-          // Add all items from this category
           if (category.items && Array.isArray(category.items)) {
             const itemsWithCategoryId = category.items.map(item => ({
               ...item,
@@ -122,7 +105,6 @@ const ListingStep = ({
     window.location.reload();
   };
 
-  // Loading state
   if (loading) {
     return (
       <div className="loading-container">
@@ -131,7 +113,6 @@ const ListingStep = ({
     );
   }
 
-  // Error state
   if (error) {
     return (
       <div className="error-container">
@@ -144,7 +125,6 @@ const ListingStep = ({
     );
   }
 
-  // No data state
   if (!foods || foods.length === 0) {
     return (
       <>
@@ -191,7 +171,6 @@ const ListingStep = ({
       <Cart cartItems={cartItems} onCheckout={() => setStep('checkout')} />
       
       <div className="cards__container">
-        {console.log('Grouped categories:', groupedCategories)}
         {Object.keys(groupedCategories).length === 0 ? (
           <div>No categories found</div>
         ) : (
