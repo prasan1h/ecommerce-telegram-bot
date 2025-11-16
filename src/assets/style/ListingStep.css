@@ -1,4 +1,4 @@
-/* Cards Container Styles */
+
 .cards__container {
   width: 100%;
   max-width: 1200px;
@@ -30,9 +30,9 @@
   align-items: stretch;
 }
 
-/* Individual Card Styles */
+
 .card {
-  flex: 1 1 300px; /* Grow, shrink, base width of 300px */
+  flex: 1 1 300px;
   min-width: 280px;
   max-width: 350px;
   background: #fff;
@@ -133,7 +133,7 @@
   color: #2c3e50;
 }
 
-/* Responsive Design */
+
 @media (max-width: 1200px) {
   .card-del-div {
     gap: 15px;
@@ -205,7 +205,7 @@
   }
 }
 
-/* Loading and Error States */
+
 .loading-container, .error-container, .no-data-container {
   display: flex;
   flex-direction: column;
@@ -240,3 +240,5 @@
 .error-container button:hover {
   background-color: #2980b9;
 }
+
+

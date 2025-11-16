@@ -4,8 +4,6 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-/* Hide the number input arrows in most browsers (WebKit-based browsers) */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -28,14 +26,12 @@ ul{
 .cards__container{
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
     flex-wrap: wrap;
 }
 
 
 
-/* button.jsx */
+
 
 :root{
     --primary-color : rgb(255, 251, 0);
@@ -98,14 +94,13 @@ ul{
 }
 
 
-/* card */
+
 
 .card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 70px;
-    /* height: 220px; */
     height: fit-content;
     border: 2px solid var(--primary-color);
     padding: 0.5rem 0.3rem;
@@ -190,7 +185,7 @@ ul{
   padding-top: 1rem;
 }
 
-/* Optional: Hide scrollbar nicely */
+
 .cards__inner__nowrap::-webkit-scrollbar {
   height: 8px;
 }
@@ -237,7 +232,7 @@ ul{
 }
 
 
-/* cart */
+
 
 .cart__container{
     min-width: 330px;
@@ -249,11 +244,11 @@ ul{
 }
 
 
-/* checkout css */
+
 .checkout-list {
     padding: 0;
     margin: 0;
-    list-style-type: none; /* remove the bullets */
+    list-style-type: none;
   }
   
   .checkout-item {
@@ -314,88 +309,6 @@ ul{
   }
   
 
-
-/* address page */
-/* .address-page {
-  padding: 16px;
-}
-
-.address-title h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.address-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.form-row input {
-  flex: 1;
-  min-width: 120px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.form-row input:focus {
-  border-color: #007bff;
-}
-
-.form-row input::placeholder {
-  color: #999;
-}
-
-
-.invalid-input {
-  border: 1px solid #dc3545 !important;
-  background-color: #fff8f8;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-}
-
-.form-row {
-  position: relative;
-  margin-bottom: 1rem;
-}
-
-.error-message {
-  color: #dc3545;
-  font-size: 0.8rem;
-  margin-top: 0.25rem;
-  position: absolute;
-  bottom: -18px;
-}
-
-.valid-input {
-  border: 1px solid #28a745 !important;
-  background-color: #f8fff8;
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-}
-
-
-@media (max-width: 480px) {
-  .form-row {
-    flex-direction: column;
-  }
-} */
-
-  
-
-
-/* payment */
 .payment-page {
   max-width: 600px;
   margin: 50px auto;
@@ -542,7 +455,6 @@ ul{
 
 
 
-/* order complete */
 .completed-page {
   display: flex;
   justify-content: center;
@@ -583,7 +495,6 @@ ul{
   animation: popUp 0.6s ease;
 }
 
-/* Fade in animation */
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -595,7 +506,6 @@ ul{
   }
 }
 
-/* Pop animation for checkmark */
 @keyframes popUp {
   0% {
     transform: scale(0.2);
@@ -607,7 +517,6 @@ ul{
   }
 }
 
-/* Confetti animation (simple sparkles) */
 .confetti {
   position: absolute;
   top: 0;
@@ -637,7 +546,6 @@ ul{
 }
 
 
-/* add list button */
 .addlink-div{
     padding: 25px;
   text-align: center;
@@ -706,7 +614,6 @@ ul{
 }
 
 
-/* listing step */
 
 .card-del-div{
   display: flex;
@@ -716,9 +623,7 @@ ul{
 }
 
 .list-del-div{
-  /* width: 80%; */
   height: max-content;
-  /* border: 2px solid white; */
   display: flex;
   justify-content: center;
   align-self: center;
@@ -747,7 +652,6 @@ ul{
 }
 
 
-/* Container for all orders */
 .orders-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
@@ -755,7 +659,6 @@ ul{
   padding: 20px;
 }
 
-/* Each order card */
 .order-card {
   background: #56596f;
   border: 1px solid #e2e2e2;
@@ -766,14 +669,12 @@ ul{
 }
 
 
-/* Heading */
 .order-card h2 {
   font-size: 1.2rem;
   margin-bottom: 8px;
   color: rgb(255, 255, 255);
 }
 
-/* Subheading for items */
 .order-card h3 {
   margin-top: 12px;
   font-size: 1rem;
@@ -781,14 +682,12 @@ ul{
   color: rgb(255, 251, 251);
 }
 
-/* Order details text */
 .order-card p {
   margin: 4px 0;
   font-size: 0.95rem;
   color: #ffffff;
 }
 
-/* Items list */
 .order-card ul {
   list-style: none;
   padding: 5px;
@@ -800,14 +699,12 @@ ul{
 .order-card li {
   font-size: 0.9rem;
   padding: 4px 0;
-  /* border-bottom: 1px solid #f0f0f0; */
 }
 
 .order-card li:last-child {
   border-bottom: none;
 }
 
-/* Responsive tweaks */
 @media (max-width: 600px) {
   .orders-container {
     grid-template-columns: 1fr;
@@ -818,7 +715,7 @@ ul{
 
 
 .pass-order{
-    background-color: #4CAF50; /* Green base color */
+    background-color: #4CAF50; 
   color: white;
   padding: 10px 20px;
   margin: 8px 0;
@@ -839,7 +736,6 @@ ul{
 
 
 
-/* Container */
 .notify-wrapper {
   max-width: 700px;
   margin: 2rem auto;
@@ -848,7 +744,6 @@ ul{
   background: #f9fafb;
 }
 
-/* Title */
 .notify-title {
   font-size: 1.8rem;
   margin-bottom: 1rem;
@@ -856,11 +751,10 @@ ul{
   color: #333;
 }
 
-/* Each card / notification */
 .notify-card {
   background: #ffffff;
   border: 1px solid #e5e7eb;
-  border-left: 6px solid #4f46e5; /* accent stripe */
+  border-left: 6px solid #4f46e5; 
   border-radius: 0.5rem;
   padding: 1rem 1.25rem;
   margin-bottom: 1rem;
@@ -873,7 +767,6 @@ ul{
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Text styles */
 .order-id {
   font-size: 1.2rem;
   color: #111827;
@@ -884,4 +777,12 @@ ul{
   font-size: 1rem;
   color: #4b5563;
   margin: 0;
-}
+} 
+
+
+
+
+
+
+
+

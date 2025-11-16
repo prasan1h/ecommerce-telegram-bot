@@ -1,4 +1,4 @@
-.payment-method-page {
+ .payment-method-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,4 +58,4 @@
     border: 1px solid #ccc;
     border-radius: 6px;
   }
-  
+ 
