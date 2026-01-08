@@ -59,7 +59,7 @@ bot.start( async (ctx) => {
 
 bot.command("info", (ctx) =>
   ctx.reply(
-    `🛒 *E-commerce Telegram Bot (Mini App)*\n\nThis chat-based shopping assistant allows users to browse products, manage their cart, and checkout—all within Telegram. Built using Telegraf.js and Node.js with Express, the bot uses a web mini-app for seamless UI and integrates MongoDB for product/order data.\n\nKey Features:\n- Browse and shop\n- Add to cart\n- Admin inventory panel\n- Optional payment gateways\n\nIdeal for small businesses!\n\nProject Team :\n- Prasanna Hiremath\n- Ranjit U K\n- Shashank S\n- Vishnuraddi Y K`,
+    `🛒 *E-commerce Telegram Bot (Mini App)*\n\nThis chat-based shopping assistant allows users to browse products, manage their cart, and checkout—all within Telegram. Built using Telegraf.js and Node.js with Express, the bot uses a web mini-app for seamless UI and integrates MongoDB for product/order data.\n\nKey Features:\n- Browse and shop\n- Add to cart\n- Admin inventory panel\n- Optional payment gateways\n\nIdeal for small businesses!\n\nProject Team :\n- Prasanna Hiremath\n- Ranjita U K\n- Shashank S\n- Vishnuraddi Y K`,
     { parse_mode: "Markdown" }
   )
 );
